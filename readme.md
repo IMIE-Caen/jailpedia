@@ -1,7 +1,10 @@
 #JailWiki
+
 ## L'univers carcéral n'aura plus aucun secret pour vous ! Essentiel pour bien organiser son séjour !
 
-* coucou
-* les 
-* amis
-* comment ça va ?
+Avec ce wiki vous pouvez 
+
+* Consulter les prisons du monde 
+* Les soirées organisé dans les prisons 
+* Le classsement des meilleures prisons 
+* Spécialités culinaires dans chaque prisons
