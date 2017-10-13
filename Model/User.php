@@ -20,7 +20,6 @@ class User
      * @param $dob
      * @param $email
      */
-
     public function __construct($firstname, $lastname, $dob, $email)
     {
         $this->firstname = $firstname;
@@ -28,6 +27,7 @@ class User
         $this->dob = $dob;
         $this->email = $email;
     }
+
 
     /**
      * @return mixed
@@ -70,7 +70,7 @@ class User
     }
 
     /**
-     * @param mixed $doa
+     * @param mixed $dob
      */
     public function setDob($dob)
     {

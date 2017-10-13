@@ -10,18 +10,37 @@ class Evaluation
 {
     private $article;
     private $note;
+    private $user;
 
     /**
      * Evaluation constructor.
      * @param $article
      * @param $note
+     * @param $user
      */
-    public function __construct($article = Article::class, $note)
+    public function __construct($article = Article::class, $note, $user = User::class)
     {
         $this->article = $article;
         $this->note = $note;
+        $this->user = $user;
     }
 
+
+    /**
+     * @return mixed
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param mixed $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
 
     /**
      * @return mixed

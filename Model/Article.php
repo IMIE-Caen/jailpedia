@@ -10,6 +10,19 @@ class Article
 {
     private $title;
     private $text;
+    private $tag;
+
+    /**
+     * Article constructor.
+     * @param $title
+     * @param $text
+     */
+    public function __construct($title, $text)
+    {
+        $this->title = $title;
+        $this->text = $text;
+    }
+
 
     /**
      * @return mixed
