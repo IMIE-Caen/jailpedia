@@ -8,20 +8,43 @@
 
 class Tag
 {
+    /**
+     * @var int id
+     */
+    private $id;
+    /**
+     * @var string the tag name
+     */
     private $name;
 
     /**
      * Tag constructor.
-     * @param $name
+     * @param string $name
      */
     public function __construct($name)
     {
         $this->name = $name;
     }
 
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
-     * @return mixed
+     * @param int $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+
+    /**
+     * @return string
      */
     public function getName()
     {
@@ -29,12 +52,13 @@ class Tag
     }
 
     /**
-     * @param mixed $name
+     * @param string $name
      */
     public function setName($name)
     {
         $this->name = $name;
     }
+
 
 
 }

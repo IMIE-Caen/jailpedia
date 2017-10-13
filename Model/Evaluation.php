@@ -8,42 +8,54 @@
 
 class Evaluation
 {
+    /**
+     * @var int id
+     */
+    private $id;
+    /**
+     * @var Article a article Object
+     */
     private $article;
+    /**
+     * @var string the user's note for this article
+     */
     private $note;
+    /**
+     * @var User the user who wrote the note
+     */
     private $user;
 
     /**
      * Evaluation constructor.
-     * @param $article
-     * @param $note
-     * @param $user
+     * @param Article $article
+     * @param string $note
+     * @param User $user
      */
-    public function __construct($article = Article::class, $note, $user = User::class)
+    public function __construct(Article $article, $note, User $user)
     {
         $this->article = $article;
         $this->note = $note;
         $this->user = $user;
     }
 
-
     /**
-     * @return mixed
+     * @return int
      */
-    public function getUser()
+    public function getId()
     {
-        return $this->user;
+        return $this->id;
     }
 
     /**
-     * @param mixed $user
+     * @param int $id
      */
-    public function setUser($user)
+    public function setId($id)
     {
-        $this->user = $user;
+        $this->id = $id;
     }
 
     /**
-     * @return mixed
+     * @return Article
      */
     public function getArticle()
     {
@@ -51,7 +63,7 @@ class Evaluation
     }
 
     /**
-     * @param mixed $article
+     * @param Article $article
      */
     public function setArticle($article)
     {
@@ -59,7 +71,7 @@ class Evaluation
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getNote()
     {
@@ -67,12 +79,29 @@ class Evaluation
     }
 
     /**
-     * @param mixed $note
+     * @param string $note
      */
     public function setNote($note)
     {
         $this->note = $note;
     }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * @param User $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
 
 
 }
