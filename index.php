@@ -7,8 +7,14 @@ include_once("./my_http.php");
 $request = new MyHttp();
 
 if($request->pathInfo() == "/"){
-  $coucou= "LES AMIS";
+
+  ob_start();
   include("./views/index.html.php");
+  $page_content = ob_get_clean();
+
+  //$page_content = "COUCOU";
+
+  include("./views/layout.html.php");
 }
 else {
   if($request->pathInfo() == "/pouet"){
