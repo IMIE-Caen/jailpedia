@@ -18,6 +18,8 @@ php -S localhost:8080
 
 ```
 
+Ouvrez le navigateur à l'adresse `http://localhost:8080`
+
 ### Contact
 Ministère d'Alain Térieur : contact@interieur.gouv.fr
 
