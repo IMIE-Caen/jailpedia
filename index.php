@@ -108,7 +108,7 @@ if ($request->method()== "GET"){
 
     }
 
-    //inscription 
+    //inscription
     // /signup
     elseif (preg_match('/^\/signup\/?$/',
       $request->pathInfo())) {
@@ -116,7 +116,7 @@ if ($request->method()== "GET"){
       $controller->signUp();
     }
 
-    //connexion 
+    //connexion
     // /signin
     else if (preg_match('/^\/signin\/?$/',
       $request->pathInfo()) ) {
@@ -124,7 +124,7 @@ if ($request->method()== "GET"){
       $controller->signIn();
     }
 
-    //formulaire recherche article 
+    //formulaire recherche article
     else if (preg_match('/^\/articles\/search\/?$/',
       $request->pathInfo())) {
       $controller = new ArticlesController();
@@ -146,7 +146,7 @@ elseif($request->method()== "POST"){
 
   }
 
-  // ajout user 
+  // ajout user
 
    // /users
     elseif (preg_match('/^\/users\/?$/',
@@ -159,23 +159,23 @@ elseif($request->method()== "POST"){
      elseif (preg_match('/^\/users\/signin\/?$/',
       $request->pathInfo())) {
       $controller = new UsersController();
-    
-      $email = $_POST['login']; 
+
+      $email = $_POST['login'];
       $pwd = $_POST['password'];
       if($controller->validForAuth($email,$pwd)){
-        $_SESSION['connecte']= true ; 
+        $_SESSION['connecte']= true ;
         header('./index.php');
       }else{
-        $_SESSION['connecte']= false ; 
+        $_SESSION['connecte']= false ;
         header('./views/signIn.php');
       }
     }
-      
-      
-     
+
+
+
     }
 
-    // recherche article 
+    // recherche article
     else if(
     preg_match('/^\/articles\/?$/',
       $request->pathInfo())){
@@ -239,7 +239,7 @@ elseif($request->method()== "DELETE"){
 
 }
 else if (preg_match('/^\/populateDB\/?$/',$request->pathInfo()) ){
-  
+
 
 }
 else{
