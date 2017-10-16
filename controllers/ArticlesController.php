@@ -18,8 +18,25 @@ class ArticlesController {
     include("./views/layout.html.php");
   }
 
-  function new(){
+  function create(){
     $page_content ="Nouvel article ";
     include("./views/layout.html.php");
   }
+
+	function delete(){
+		$page_content ="suppression article ";
+		include("./views/layout.html.php");
+	}
+
+  function search(){
+    $page_content ="rechercher article ";
+    include("./views/layout.html.php");
+  }
+
+  function searchArticle(){
+    $page_content ="rechercher article ";
+    include("./views/layout.html.php");
+  }
+
+
 }
