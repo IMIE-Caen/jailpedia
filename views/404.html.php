@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title></title>
-  </head>
-  <body>
-      <h1>404 NOT FOUND</h1>
-  </body>
-</html>
+<div class="page404">
+  <h1>404 NOT FOUND</h1>
+  <img src="/images/joedalton.jpg" alt="Page non trouvée" title="Page non trouvée" />
+</div>

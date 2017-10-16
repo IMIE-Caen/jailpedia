@@ -14,7 +14,7 @@ $stmt->closeCursor();
 foreach ($articles_list as $row) {
 //    echo 'Identifiant'.$row['ME_ID'].'Nom'.$row['ME_NAME']."<br />";
 }
-echo "<br />";
+//echo "<br />";
 $sql = 'SELECT * FROM USERS';
 $stmt = $db->prepare($sql);
 $stmt->execute();
@@ -48,7 +48,7 @@ if ($request->pathInfo() == "/") {
 }
 
 
-if ($request->method() == "GET") {
+else if ($request->method() == "GET") {
   // /articles/12345
   if (
           preg_match('/^\/articles\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
@@ -71,6 +71,12 @@ if ($request->method() == "GET") {
     $id = $preg_match_results[1];
     $controller = new TagsController();
     $controller->show($id);
+  } else {
+//    header("HTTP/1.0 404 Not Found");
+    ob_start();
+    require "./views/404.html.php";
+    $page_content = ob_get_clean();
+    include "./views/layout.html.php";
   }
 }
 // si méthode HTTP est POST 
@@ -108,10 +114,5 @@ elseif ($request->method() == "GET") {
     $controller = new ArticlesController();
     $controller->edit($id);
   }
-} else {
-  var_dump("toto");
-  header("HTTP/1.0 404 Not Found");
-  echo file_get_contents("./views/404.html.php");
-  echo "La page n'existe pas";
-}
+} 
 

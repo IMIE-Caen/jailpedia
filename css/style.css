@@ -1,9 +1,34 @@
-/*header {
-    height: 100px;
-    line-height: 100px;
-    overflow: hidden;
+@import url('https://fonts.googleapis.com/css?family=Fascinate+Inline');
+
+body {
+  color: #333;
+  background: url("/images/bg.jpg") center top fixed no-repeat;
+  background-size: cover;
 }
-*/
+
+header { background-color: #fff; }
+.headline > span {
+  display: block;
+  text-align: center;
+}
+
+.headline .headline-l1 {
+  font-family: 'Fascinate Inline', cursive;
+  font-size: 3em;
+}
+
+.headline .headline-l2 {
+  font-size: 1rem;
+}
+
+.headline .jaune {
+  color: #fbf406;
+}
+
+header button {
+   cursor: pointer;
+}
+
 header .logo img {
     max-height: 100px;
 }
@@ -24,10 +49,17 @@ nav .paypal img {
 }
 */  
 .content {
-    min-height: 700px;
+    min-height: 1000px;
+    background-color: #fff;
+    box-shadow: 0 0 20px #000;
 }
 
 footer {
     text-align: center;
     border-top: 1px solid #333;
+    background-color: #fff;
 }
+
+body > .content { padding: 10px; }
+
+.page404 { text-align: center; }
