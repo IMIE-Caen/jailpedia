@@ -8,13 +8,12 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
         <title>JAILPEDIA - INDEX</title>
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/select2-bootstrap.css">
     </head>
     <body>
         <?php include("header.html.php"); ?>
         <?php include("menu.html.php"); ?>
-        <div class="content">
-            <?php echo $page_content ?>
-        </div>
         <?php include("footer.html.php"); ?>
     </body>
+
 </html>
