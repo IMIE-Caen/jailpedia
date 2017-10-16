@@ -1,10 +1,6 @@
 <?php
 ini_set('display_errors', 'On');
-/*include_once("./my_http.php");
-include_once("./controllers/HomeController.php");
-include_once("./controllers/ArticlesController.php");
-include_once("./controllers/UsersController.php");
-include_once("./controllers/TagsController.php");*/
+
 
 function __autoload($className) {
   if (file_exists($className . '.php')) {
@@ -118,14 +114,6 @@ elseif($request->method()== "PATCH"){
 
 
 } 
-
-
-
-
-
-
-
-
 
 
 

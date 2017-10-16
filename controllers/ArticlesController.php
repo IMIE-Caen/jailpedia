@@ -24,5 +24,4 @@ class ArticlesController {
     $page_content ="Ajout article ";
     include("./views/layout.html.php");
   }
-
 }

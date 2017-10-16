@@ -1,0 +1,36 @@
+/*header {
+    height: 100px;
+    line-height: 100px;
+    overflow: hidden;
+}
+*/
+header .logo img {
+    max-height: 100px;
+}
+/*
+nav {
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+}
+
+nav .paypal {
+    box-sizing: border-box;
+    position: absolute;
+    right: 10px;
+    height: 50px;
+}
+
+nav .paypal img { 
+    max-height: 100%; 
+    padding: 5px;
+}
+*/  
+.content {
+    min-height: 700px;
+}
+
+footer {
+    text-align: center;
+    border-top: 1px solid #333;
+}
