@@ -5,25 +5,32 @@
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     //Créer la table
     $db->exec("CREATE TABLE IF NOT EXISTS ARTICLES (
-                        ME_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                        ME_NAME VARCHAR(100))");
+                        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                        TITRE VARCHAR(100),
+                        TEXTE VARCHAR(100),
+                        TAG VARCHAR(100))");
 
     $db->exec("CREATE TABLE IF NOT EXISTS TAGS (
-                        ME_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                        ME_NAME VARCHAR(100))");
+                        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                        NOM VARCHAR(100))");
 
     $db->exec("CREATE TABLE IF NOT EXISTS USERS (
-                        ME_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                        ME_NAME VARCHAR(100),
-                        ME_LASTNAME varchar(100))");
+                        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                        PRENOM VARCHAR(100),
+                        NOM VARCHAR(100),
+                        DATE_DE_NAISSANCE DATE,
+                        EMAIL VARCHAR(100))");
 
     $db->exec("CREATE TABLE IF NOT EXISTS EVALUATIONS (
-                        ME_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                        ME_NOTES integer(3))");
+                        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                        ARTICLE VARCHAR(100),
+                        NOTES integer(3),
+                        USERS VARCHAR(100))");
 
     $db->exec("CREATE TABLE IF NOT EXISTS CONTRIBUTIONS (
-                        ME_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                        ME_NAME VARCHAR(100))");
+                        ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                        ARTICLE VARCHAR(100),
+                        USERS VARCHAR(100))");
 
                         /*
     $sql = 'INSERT INTO ARTICLES (ME_NAME) values(:ME_NAME)';
