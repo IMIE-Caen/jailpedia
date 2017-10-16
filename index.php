@@ -5,31 +5,6 @@ ini_set('display_errors', 'On');
 include_once 'PDO.php';
 
 
-ini_set('display_errors', 'On');
-
-include_once("./PDO.php");
-
-$sql = 'SELECT * FROM ARTICLES';
-$stmt = $db->prepare($sql);
-$stmt->execute();
-//extaire les données
-$articles_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$stmt->closeCursor();
-//Parcourir la liste des membres
-foreach ($articles_list as $row) {
-//    echo 'Identifiant'.$row['ME_ID'].'Nom'.$row['ME_NAME']."<br />";
-}
-//echo "<br />";
-$sql = 'SELECT * FROM USERS';
-$stmt = $db->prepare($sql);
-$stmt->execute();
-//extaire les données
-$users_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$stmt->closeCursor();
-//Parcourir la liste des membres
-foreach ($users_list as $row) {
-//    echo 'Identifiant'.$row['ME_ID']. 'Prenom '.$row['ME_NAME'].' Nom '.$row['ME_LASTNAME']."<br />";
-}
 
 function __autoload($className) {
   if (file_exists($className . '.php')) {
@@ -66,7 +41,7 @@ $articles_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt->closeCursor();
 //Parcourir la liste des membres
 foreach ($articles_list as $row) {
-    echo 'Identifiant'.$row['ID'].' Titre '.$row['TITRE']."<br />";
+echo 'Identifiant'.$row['ID'].' Titre '.$row['TITRE']."<br />";
 }*/
 
 
@@ -76,23 +51,11 @@ if ($request->pathInfo() == "/") {
   $controller->render();
 }
 
-if ($request->method()== "GET"){
-    // /articles/12345
-    if(
-      preg_match('/^\/articles\/(\d+)\/?$/',
-        $request->pathInfo(),
-        $preg_match_results) ){
-
-      $id = $preg_match_results[1];
-      $controller = new ArticlesController();
-      $controller->show($id);
-
-
 
 else if ($request->method() == "GET") {
-  // /articles/12345
+// /articles/12345
   if (
-          preg_match('/^\/articles\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
+    preg_match('/^\/articles\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
 
 
     $id = $preg_match_results[1];
@@ -101,90 +64,90 @@ else if ($request->method() == "GET") {
   }
 
 
-    // /users/toto
-    elseif (preg_match('/^\/users\/(\w+)\/?$/',
-      $request->pathInfo(),
-      $preg_match_results)) {
-
-      $id = $preg_match_results[1];
-      $controller = new UsersController();
-      $controller->show($id);
-    }
-
-      // /tags/{id}
-    elseif (preg_match('/^\/tags\/(\d+)\/?$/',
-      $request->pathInfo(),
-      $preg_match_results)) {
-      $id = $preg_match_results[1];
-      $controller = new TagsController();
-      $controller->show($id);
-    }
-    // recuperer les articles
-    // /articles
-    else if(
-      preg_match('/^\/articles\/?$/',
-        $request->pathInfo())){
-         $controller = new ArticlesController();
-         $controller->showAllArticles();
-    }
-    else if(
-      preg_match('/^\/articles\/new\/?$/',
-        $request->pathInfo())){
-         $controller = new ArticlesController();
-         $controller->create();
-    }
-    // /tags
-     else if (preg_match('/^\/tags\/?$/',
-      $request->pathInfo())) {
-        $controller = new TagsController();
-      $controller->showAllTags();
-
-    }
-
-    //inscription
-    // /signup
-    elseif (preg_match('/^\/signup\/?$/',
-      $request->pathInfo())) {
-      $controller = new UsersController();
-      $controller->signUp();
-    }
-
-    //connexion
-    // /signin
-    else if (preg_match('/^\/signin\/?$/',
-      $request->pathInfo()) ) {
-      $controller = new UsersController();
-      $controller->signIn();
-    }
-
-    //formulaire recherche article
-    else if (preg_match('/^\/articles\/search\/?$/',
-      $request->pathInfo())) {
-      $controller = new ArticlesController();
-      $controller->search();
-    }
-
-
-  // /users/123
-  elseif (preg_match('/^\/users\/(\w+)\/?$/', $request->pathInfo(), $preg_match_results)) {
+// /users/toto
+  elseif (preg_match('/^\/users\/(\w+)\/?$/',
+    $request->pathInfo(),
+    $preg_match_results)) {
 
     $id = $preg_match_results[1];
-    $controller = new UsersController();
-    $controller->show($id);
-  }
+  $controller = new UsersController();
+  $controller->show($id);
+}
 
-  // /tags/{id}
-  elseif (preg_match('/^\/tags\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
-    $id = $preg_match_results[1];
-    $controller = new TagsController();
-    $controller->show($id);
-  } else {
+// /tags/{id}
+elseif (preg_match('/^\/tags\/(\d+)\/?$/',
+  $request->pathInfo(),
+  $preg_match_results)) {
+  $id = $preg_match_results[1];
+$controller = new TagsController();
+$controller->show($id);
+}
+// recuperer les articles
+// /articles
+else if(
+  preg_match('/^\/articles\/?$/',
+    $request->pathInfo())){
+  $controller = new ArticlesController();
+  $controller->showAllArticles();
+}
+else if(
+  preg_match('/^\/articles\/new\/?$/',
+    $request->pathInfo())){
+  $controller = new ArticlesController();
+  $controller->create();
+}
+// /tags
+else if (preg_match('/^\/tags\/?$/',
+  $request->pathInfo())) {
+  $controller = new TagsController();
+$controller->showAllTags();
+
+}
+
+//inscription
+// /signup
+elseif (preg_match('/^\/signup\/?$/',
+  $request->pathInfo())) {
+  $controller = new UsersController();
+$controller->signUp();
+}
+
+//connexion
+// /signin
+else if (preg_match('/^\/signin\/?$/',
+  $request->pathInfo()) ) {
+  $controller = new UsersController();
+$controller->signIn();
+}
+
+//formulaire recherche article
+else if (preg_match('/^\/articles\/search\/?$/',
+  $request->pathInfo())) {
+  $controller = new ArticlesController();
+$controller->search();
+}
+
+
+// /users/123
+elseif (preg_match('/^\/users\/(\w+)\/?$/', $request->pathInfo(), $preg_match_results)) {
+
+  $id = $preg_match_results[1];
+  $controller = new UsersController();
+  $controller->show($id);
+}
+
+// /tags/{id}
+elseif (preg_match('/^\/tags\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
+  $id = $preg_match_results[1];
+  $controller = new TagsController();
+  $controller->show($id);
+} else {
 //    header("HTTP/1.0 404 Not Found");
-    ob_start();
-    require "./views/404.html.php";
-    $page_content = ob_get_clean();
-    include "./views/layout.html.php";
-  }
+  ob_start();
+  require "./views/404.html.php";
+  $page_content = ob_get_clean();
+  include "./views/layout.html.php";
+}
 }
 // si méthode HTTP est POST 
 elseif ($request->method() == "GET") {
@@ -194,148 +157,148 @@ elseif ($request->method() == "GET") {
 // si méthode HTTP est POST
 elseif($request->method()== "POST"){
 
-   //ajout article
-  // /articles
+//ajout article
+// /articles
 
   if(
     preg_match('/^\/articles\/?$/',
       $request->pathInfo())){
-     $controller = new ArticlesController();
-
-  if (
-          preg_match('/^\/articles\/?$/', $request->pathInfo())) {
     $controller = new ArticlesController();
-    $controller->showAllArticles();
-  }
 
-  //ajout article 
-  // /articles/create
-  else if (
-          preg_match('/^\/articles\/create\/?$/', $request->pathInfo())) {
-    $controller = new ArticlesController();
-    $controller->save();
-  }
+    if (
+      preg_match('/^\/articles\/?$/', $request->pathInfo())) {
+      $controller = new ArticlesController();
+      $controller->showAllArticles();
+    }
 
-  // ajout user
-
-
-   // /users
-    elseif (preg_match('/^\/users\/?$/',
-      $request->pathInfo())) {
-      $controller = new UsersController();
+//ajout article 
+// /articles/create
+    else if (
+      preg_match('/^\/articles\/create\/?$/', $request->pathInfo())) {
+      $controller = new ArticlesController();
       $controller->save();
     }
 
-    //connexionUser
-     elseif (preg_match('/^\/users\/signin\/?$/',
+// ajout user
+
+
+// /users
+    elseif (preg_match('/^\/users\/?$/',
       $request->pathInfo())) {
       $controller = new UsersController();
-
-      $email = $_POST['login'];
-      $pwd = $_POST['password'];
-      if($controller->validForAuth($email,$pwd)){
-        $_SESSION['connecte']= true ;
-        header('./index.php');
-      }else{
-        $_SESSION['connecte']= false ;
-        header('./views/signIn.php');
-      }
-    }
-
-
-
-    }
-
-    // recherche article
-    else if(
-    preg_match('/^\/articles\/?$/',
-      $request->pathInfo())){
-     $controller = new ArticlesController();
-    $controller->searchArticle();
-
+    $controller->save();
   }
+
+//connexionUser
+  elseif (preg_match('/^\/users\/signin\/?$/',
+    $request->pathInfo())) {
+    $controller = new UsersController();
+
+  $email = $_POST['login'];
+  $pwd = $_POST['password'];
+  if($controller->validForAuth($email,$pwd)){
+    $_SESSION['connecte']= true ;
+    header('./index.php');
+  }else{
+    $_SESSION['connecte']= false ;
+    header('./views/signIn.php');
+  }
+}
+
+
+
+}
+
+// recherche article
+else if(
+  preg_match('/^\/articles\/?$/',
+    $request->pathInfo())){
+  $controller = new ArticlesController();
+  $controller->searchArticle();
+
+}
 
 
 
 elseif($request->method()== "PATCH"){
 
-  // modifier un article
-  // /articles/update
+// modifier un article
+// /articles/update
   if(
     preg_match('/^\/articles\/edit\/(\d+)\/?$/',
       $request->pathInfo(),
-      $preg_match_results) ){
+      $preg_match_results) ){}
 
-  // /tags 
-  else if (preg_match('/^\/tags\/?$/', $request->pathInfo())) {
-    $controller = new TagsController();
-    $controller->showAllTags();
-  }
-} elseif ($request->method() == "PATCH") {
+// /tags 
+    else if (preg_match('/^\/tags\/?$/', $request->pathInfo())) {
+      $controller = new TagsController();
+      $controller->showAllTags();
+    }
+  } elseif ($request->method() == "PATCH") {
 
-  // modifier un article 
-  // /articles/update 
-  if (
-          preg_match('/^\/articles\/edit\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
+// modifier un article 
+// /articles/update 
+    if (
+      preg_match('/^\/articles\/edit\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
 
-    $id = $preg_match_results[1];
-    $controller = new ArticlesController();
-    $controller->edit($id);
-  }
+      $id = $preg_match_results[1];
+      $controller = new ArticlesController();
+      $controller->edit($id);
+    }
 
 
-  else if(
-    preg_match('/^\/users\/edit\/(\w+)\/?$/',
-      $request->pathInfo(),
-      $preg_match_results) ){
-    $id = $preg_match_results[1];
-    $controller = new ArticlesController();
-    $controller->edit($id);
+    else if(
+      preg_match('/^\/users\/edit\/(\w+)\/?$/',
+        $request->pathInfo(),
+        $preg_match_results) ){
+      $id = $preg_match_results[1];
+      $controller = new ArticlesController();
+      $controller->edit($id);
 
-  }
-
-}
-
-elseif($request->method()== "DELETE"){
-
-  // supprimer un article
-  // /articles/delete/{id}
-  if(
-    preg_match('/^\/articles\/delete\/(\d+)\/?$/',
-      $request->pathInfo(),
-      $preg_match_results) ){
-    $id = $preg_match_results[1];
-    $controller = new ArticlesController();
-    $controller->delete($id);
+    }
 
   }
 
-  // supprimer un user
-  // /users/delete/{id}
-  else if(
-    preg_match('/^\/users\/delete\/(\d+)\/?$/',
-      $request->pathInfo(),
-      $preg_match_results) ){
-    $id = $preg_match_results[1];
-    $controller = new ArticlesController();
-    $controller->delete($id);
+  elseif($request->method()== "DELETE"){
+
+// supprimer un article
+// /articles/delete/{id}
+    if(
+      preg_match('/^\/articles\/delete\/(\d+)\/?$/',
+        $request->pathInfo(),
+        $preg_match_results) ){
+      $id = $preg_match_results[1];
+      $controller = new ArticlesController();
+      $controller->delete($id);
+
+    }
+
+// supprimer un user
+// /users/delete/{id}
+    else if(
+      preg_match('/^\/users\/delete\/(\d+)\/?$/',
+        $request->pathInfo(),
+        $preg_match_results) ){
+      $id = $preg_match_results[1];
+      $controller = new ArticlesController();
+      $controller->delete($id);
+
+    }
+
+  }
+  else if (preg_match('/^\/populateDB\/?$/',$request->pathInfo()) ){
+
 
   }
 
-}
-else if (preg_match('/^\/populateDB\/?$/',$request->pathInfo()) ){
 
 
-}
-
-
-
-else{
-   var_dump("toto");
-  header("HTTP/1.0 404 Not Found");
-  echo file_get_contents("./views/404.html.php");
-  echo "La page n'existe pas";
-}
+  else{
+    var_dump("toto");
+    header("HTTP/1.0 404 Not Found");
+    echo file_get_contents("./views/404.html.php");
+    echo "La page n'existe pas";
+  }
 
 } 
 
