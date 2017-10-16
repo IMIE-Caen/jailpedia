@@ -1,6 +1,30 @@
 <?php
 ini_set('display_errors', 'On');
 
+include_once("./PDO.php");
+
+$sql = 'SELECT * FROM ARTICLES';
+$stmt = $db->prepare($sql);
+$stmt->execute();
+//extaire les données
+$articles_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->closeCursor();
+//Parcourir la liste des membres
+foreach ($articles_list as $row) {
+    echo 'Identifiant'.$row['ME_ID'].'Nom'.$row['ME_NAME']."<br />";
+}
+echo "<br />";
+$sql = 'SELECT * FROM USERS';
+$stmt = $db->prepare($sql);
+$stmt->execute();
+//extaire les données
+$users_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->closeCursor();
+//Parcourir la liste des membres
+foreach ($users_list as $row) {
+    echo 'Identifiant'.$row['ME_ID']. 'Prenom '.$row['ME_NAME'].' Nom '.$row['ME_LASTNAME']."<br />";
+}
+
 
 function __autoload($className) {
   if (file_exists($className . '.php')) {
@@ -123,4 +147,3 @@ else{
   echo file_get_contents("./views/404.html.php");
   echo "La page n'existe pas";
 }
-
