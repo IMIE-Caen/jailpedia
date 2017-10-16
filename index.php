@@ -25,7 +25,6 @@ foreach ($users_list as $row) {
     echo 'Identifiant'.$row['ME_ID']. 'Prenom '.$row['ME_NAME'].' Nom '.$row['ME_LASTNAME']."<br />";
 }
 
-
 function __autoload($className) {
   if (file_exists($className . '.php')) {
     require_once $className . '.php';
@@ -147,3 +146,4 @@ else{
   echo file_get_contents("./views/404.html.php");
   echo "La page n'existe pas";
 }
+
