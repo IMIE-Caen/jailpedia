@@ -51,21 +51,7 @@ echo "\n";
 echo ''.$eval->getUser()->getFirstname() .' '.$eval->getUser()->getLastname() .' a mis la note de '.$eval->getNote() .' pour l\'article '.$eval->getArticle()->getTitle();
 echo "\n";
 /****************************************/
-$db = new PDO('sqlite:../JailPedia.sqlite');
-//Activer les exceptions
-$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-$sql = 'INSERT INTO ARTICLES (title, text) values(:TITRE,:TEXTE)';
-$stmt = $db->prepare($sql);
-$P = array('TITRE' => 'Guantanamo','TEXTE'=>'Coucou');
-//Executer la requete
-$stmt->execute($P);
-$sql = 'INSERT INTO ARTICLES (title, text) values(:TITRE,:TEXTE)';
-$stmt = $db->prepare($sql);
-$P = array('TITRE' => 'Alcatraz','TEXTE'=>'Coucou');
-//Executer la requete
-$stmt->execute($P);
-$stmt->closeCursor();
-
+$ajout = Article::createArticle("Fleury Merogis","C'est un article sur Fleury Merogis");
 
 $articles = Article::fectchAll();
 foreach ($articles as $txt){

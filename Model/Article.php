@@ -129,5 +129,14 @@ class Article
         return $result;
     }
 
+    public static function createArticle($title,$text){
+        $db = new PDO('sqlite:../JailPedia.sqlite');
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $sql = 'INSERT INTO ARTICLES (title, text) values(:TITRE,:TEXTE)';
+        $stmt = $db->prepare($sql);
+        $P = array('TITRE' => $title,'TEXTE'=>$text);
+        $stmt->execute($P);
+        $stmt->closeCursor();
+    }
 
 }
