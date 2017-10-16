@@ -7,9 +7,7 @@ class ArticlesController {
     include("./views/layout.html.php");
   }
 
-
 	function showAllArticles(){
-
     $page_content ="Affichage des article";
     include("./views/layout.html.php");
   }
