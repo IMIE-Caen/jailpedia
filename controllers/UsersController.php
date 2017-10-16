@@ -1,8 +1,7 @@
 <?php
-include_once("./PDO.php");
-$db = new PDO('sqlite:JailPedia.sqlite') ; 
+
 class UsersController {
-  
+
   function show($id){
     $page_content ="Affichage de l'user $id";
     include("./views/layout.html.php");
@@ -15,19 +14,22 @@ class UsersController {
 
   function signIn(){
   	ob_start();
-  	include('./views/signIn.php'); 
+  	include('./views/signIn.php');
     $page_content =ob_get_clean();
     include("./views/layout.html.php");
   }
 
   function validForAuth( $log, $password){
-  	
-  	$sql = 'SELECT * FROM USERS WHERE ME_NAME = ? and ME_LASTNAME = ? ';
-  	$stmt = $db->prepareStatement($sql) ; 
-		$stmt= $db->bindValues([$log,$password]);
-		$stmt= $db->execute();
+    $db= $GLOBALS['db'];
+  	$sql = 'SELECT COUNT(*) FROM USERS WHERE ME_NAME = ? and ME_LASTNAME = ? ';
+  	$stmt = $db->prepare($sql) ;
+		$stmt->bindValue(1, $log);
+    $stmt->bindValue(2, $password);
+	  $stmt->execute();
 
-		
+    $userValid = $stmt->fetchAll()[0][0];
+    return $userValid == 1 ;
+
  	}
 
   function save(){
