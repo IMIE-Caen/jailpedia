@@ -8,7 +8,6 @@
       <div class="form-row align-items-center">
         <div class="col-auto">
           <input class="form-control mr-sm-2" type="text" placeholder="Rechercher" aria-label="Rechercher">
-
         </div>
         <div class="col-auto">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
@@ -21,7 +20,7 @@
       </span>
       <span class="headline-l2">Préparez votre évasion</span>
     </div>
-
+  </div>
 </header>
 
 

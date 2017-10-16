@@ -29,10 +29,6 @@ class User
      * @var string email address
      */
     private $email;
-    /**
-     * @var string mdp
-     */
-    private $mdp;
 
     /**
      * User constructor.
@@ -137,14 +133,6 @@ class User
     public function setEmail($email)
     {
         $this->email = $email;
-    }
-
-    /**
-     * @param string mdp
-     */
-    public function setMdp($mdp)
-    {
-        $this->mdp = $mdp;
     }
 
 

@@ -4,11 +4,6 @@ session_start();
 ini_set('display_errors', 'On');
 include_once 'PDO.php';
 
-
-ini_set('display_errors', 'On');
-
-include_once("./PDO.php");
-
 $sql = 'SELECT * FROM ARTICLES';
 $stmt = $db->prepare($sql);
 $stmt->execute();
@@ -39,35 +34,11 @@ function __autoload($className) {
     require_once "./controllers/" . $className . '.php';
     return true;
   }
-
-  else if (file_exists("./Model/".$className . '.php')){
-    require_once "./Model/".$className . '.php';
-    return true;
-  }
   return false;
-
-
-  return false;
-
 }
 
 $request = new MyHttp();
-$PDO     = new SQLitePDO();
-$PDO->bdd();
 $preg_match_results = [];
-/*exemple requete SQLitePDO
-
-
-$sql = 'SELECT * FROM ARTICLES';
-$stmt = $PDO->bdd()->prepare($sql);
-$stmt->execute();
-//extaire les données
-$articles_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$stmt->closeCursor();
-//Parcourir la liste des membres
-foreach ($articles_list as $row) {
-    echo 'Identifiant'.$row['ID'].' Titre '.$row['TITRE']."<br />";
-}*/
 
 
 if ($request->pathInfo() == "/") {
@@ -87,19 +58,10 @@ if ($request->method()== "GET"){
       $controller = new ArticlesController();
       $controller->show($id);
 
-
-
-else if ($request->method() == "GET") {
-  // /articles/12345
-  if (
-          preg_match('/^\/articles\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
-
-
-    $id = $preg_match_results[1];
-    $controller = new ArticlesController();
-    $controller->show($id);
   }
 
+  // /users/123
+  elseif (preg_match('/^\/users\/(\w+)\/?$/', $request->pathInfo(), $preg_match_results)) {
 
     // /users/toto
     elseif (preg_match('/^\/users\/(\w+)\/?$/',
@@ -189,19 +151,8 @@ else if ($request->method() == "GET") {
 // si méthode HTTP est POST 
 elseif ($request->method() == "GET") {
 
-
-}
-// si méthode HTTP est POST
-elseif($request->method()== "POST"){
-
-   //ajout article
+  // recuperer les articles 
   // /articles
-
-  if(
-    preg_match('/^\/articles\/?$/',
-      $request->pathInfo())){
-     $controller = new ArticlesController();
-
   if (
           preg_match('/^\/articles\/?$/', $request->pathInfo())) {
     $controller = new ArticlesController();
@@ -277,7 +228,6 @@ elseif($request->method()== "PATCH"){
   // /articles/update 
   if (
           preg_match('/^\/articles\/edit\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
-
     $id = $preg_match_results[1];
     $controller = new ArticlesController();
     $controller->edit($id);
