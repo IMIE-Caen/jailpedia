@@ -21,11 +21,11 @@ nav .paypal {
     height: 50px;
 }
 
-nav .paypal img { 
-    max-height: 100%; 
+nav .paypal img {
+    max-height: 100%;
     padding: 5px;
 }
-*/  
+*/
 .content {
     min-height: 700px;
 }
@@ -33,4 +33,27 @@ nav .paypal img {
 footer {
     text-align: center;
     border-top: 1px solid #333;
+}
+
+.content_article  {
+	margin-left: 25%;
+	margin-right: 25%;
+	width: 50%;
+	text_align: center;
+}
+
+.form_article h2 {
+	margin-left: 40%;
+	text_align: center;
+}
+
+.form_article button {
+	margin-left: 48%;
+}
+
+#add{
+	float: right;
+	width: 10%;
+	vertical-align: top;
+
 }
