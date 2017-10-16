@@ -31,11 +31,11 @@ class Article
      * @param string $text
      * @param Tag $tag
      */
-    public function __construct($title, $text)
+    /*public function __construct($title, $text)
     {
         $this->title = $title;
         $this->text = $text;
-    }
+    }*/
 
     /**
      * @return int
@@ -102,7 +102,7 @@ class Article
         $this->tag = $tag;
     }
 
-    function getBdd() {
+    public function getDatabase() {
         $db = new PDO('sqlite:JailPedia.sqlite');
         //Activer les exceptions
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -110,7 +110,7 @@ class Article
     }
 
     public static function fectchAll(){
-        $db = new PDO('sqlite:JailPedia.sqlite');
+        $db = new PDO('sqlite:../JailPedia.sqlite');
         //Activer les exceptions
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $articles = $db->prepare("SELECT * FROM ARTICLES");
@@ -120,12 +120,13 @@ class Article
     }
 
     public static function getArticleById($id){
-        $db = new PDO('sqlite:JailPedia.sqlite');
+        $db = new PDO('sqlite:../JailPedia.sqlite');
         //Activer les exceptions
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $article = $db->prepare("SELECT * FROM ARTICLES WHERE ME_ID = ?");
+        $article = $db->prepare("SELECT * FROM ARTICLES WHERE id = ? ");
         $article->execute(array($id));
-        return $article;
+        $result = $article->fetchAll(PDO::FETCH_CLASS,"Article");
+        return $result;
     }
 
 

@@ -37,13 +37,13 @@ class User
      * @param string $dob
      * @param string $email
      */
-    public function __construct($firstname, $lastname, $dob, $email)
+    /*public function __construct($firstname, $lastname, $dob, $email)
     {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->dob = $dob;
         $this->email = $email;
-    }
+    }*/
 
     /**
      * @return int
