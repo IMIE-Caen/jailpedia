@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Fascinate+Inline');
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
 
 /************/
 /* Couleurs
@@ -11,14 +12,14 @@
 *************************************/
 body {
   color: #CEC68F; /* Vert */
+  font-family: 'Oswald', sans-serif;
   background: url("/images/bg.jpg") center top fixed no-repeat;
   background-size: cover;
 }
 
-body > .content { padding: 10px; }
-
 .content {
   min-height: 1000px;
+  padding: 40px;
   background-color: #fff;
   box-shadow: 0 0 20px #000;
 }
@@ -75,10 +76,12 @@ nav a {
   box-sizing: border-box;
   display: block;
   color: #CEC68F;
+  transition: all .2s ease;
 }
 
 nav li {
   padding: 0 10px;
+  transition: all .2s ease;
 }
 
 nav li:hover {
