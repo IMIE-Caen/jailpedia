@@ -13,14 +13,11 @@ nav {
     height: 50px;
     line-height: 50px;
 }
-
+*/
 nav .paypal {
-    box-sizing: border-box;
-    position: absolute;
-    right: 10px;
-    height: 50px;
+  margin-left: auto;
 }
-
+/*
 nav .paypal img { 
     max-height: 100%; 
     padding: 5px;
