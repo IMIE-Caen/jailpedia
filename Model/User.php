@@ -29,6 +29,10 @@ class User
      * @var string email address
      */
     private $email;
+    /**
+     * @var string mdp
+     */
+    private $mdp;
 
     /**
      * User constructor.
@@ -36,13 +40,15 @@ class User
      * @param string $lastname
      * @param string $dob
      * @param string $email
+     * @param string $mdp
      */
-    public function __construct($firstname, $lastname, $dob, $email)
+    public function __construct($firstname, $lastname, $dob, $email, $mdp)
     {
         $this->firstname = $firstname;
         $this->lastname = $lastname;
         $this->dob = $dob;
         $this->email = $email;
+        $this->mdp = $mdp;
     }
 
     /**
@@ -118,11 +124,27 @@ class User
     }
 
     /**
+     * @return string
+     */
+    public function getMdp()
+    {
+        return $this->mdp;
+    }
+
+    /**
      * @param string $email
      */
     public function setEmail($email)
     {
         $this->email = $email;
+    }
+
+    /**
+     * @param string mdp
+     */
+    public function setMdp($mdp)
+    {
+        $this->mdp = $mdp;
     }
 
 

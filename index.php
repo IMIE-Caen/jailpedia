@@ -1,30 +1,7 @@
 <?php
 
 ini_set('display_errors', 'On');
-
-include_once("./PDO.php");
-
-$sql = 'SELECT * FROM ARTICLES';
-$stmt = $db->prepare($sql);
-$stmt->execute();
-//extaire les données
-$articles_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$stmt->closeCursor();
-//Parcourir la liste des membres
-foreach ($articles_list as $row) {
-    echo 'Identifiant'.$row['ID'].' Titre '.$row['TITRE']."<br />";
-}
-echo "<br />";
-$sql = 'SELECT * FROM USERS';
-$stmt = $db->prepare($sql);
-$stmt->execute();
-//extaire les données
-$users_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$stmt->closeCursor();
-//Parcourir la liste des membres
-foreach ($users_list as $row) {
-    echo 'Identifiant'.$row['ID']. 'Prenom '.$row['PRENOM'].' Nom '.$row['NOM']."<br />";
-}
+include_once 'PDO.php';
 
 function __autoload($className) {
   if (file_exists($className . '.php')) {
@@ -37,12 +14,25 @@ function __autoload($className) {
   }
   return false;
 
-
-
 }
 
 $request = new MyHttp();
+$PDO     = new SQLitePDO();
+$PDO->bdd();
 $preg_match_results = [];
+/*exemple requete SQLitePDO
+
+
+$sql = 'SELECT * FROM ARTICLES';
+$stmt = $PDO->bdd()->prepare($sql);
+$stmt->execute();
+//extaire les données
+$articles_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$stmt->closeCursor();
+//Parcourir la liste des membres
+foreach ($articles_list as $row) {
+    echo 'Identifiant'.$row['ID'].' Titre '.$row['TITRE']."<br />";
+}*/
 
 
 if($request->pathInfo() == "/"){
