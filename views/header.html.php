@@ -7,14 +7,19 @@
             <form class="col-6 form-group row">
                 <div class="form-row align-items-center">
                     <div class="col-auto">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Rechercher" aria-label="Rechercher">
                     </div>
                     <div class="col-auto">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>
                     </div>
                 </div>
             </form>
-            <a class="col-4" href="/">Jailpedia</a>
+          <div class="headline col-4">
+            <span class="headline-l1">
+              J<span class="jaune">a</span>i<span class="jaune">l</span>p<span class="jaune">e</span>d<span class="jaune">i</span>a
+            </span>
+            <span class="headline-l2">Préparez votre évasion</span>
+          </div>
         </div>
     </div>
 </header>
