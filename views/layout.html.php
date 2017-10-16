@@ -20,4 +20,12 @@
 
     </body>
 
+    <?php
+    if($_SESSION['connecte']==true){
+        echo('connecte');
+    }
+    else{
+        echo('pas co');
+    }
+    ?>
 </html>
