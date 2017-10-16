@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <a class="logo col-2" href="/" title="Jailpedia">
-                <img class="img-fluid" src="images/logo.png" alt="Logo Jailpedia" title="Jailpedia" />
+                <img class="img-fluid" src="/images/logo.png" alt="Logo Jailpedia" title="Jailpedia" />
             </a>
             <form class="col-6 form-group row">
                 <div class="form-row align-items-center">

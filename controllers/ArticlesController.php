@@ -18,8 +18,8 @@ class ArticlesController {
     include("./views/layout.html.php");
   }
 
-  function save(){
-    $page_content ="Ajout article ";
+  function new(){
+    $page_content ="Nouvel article ";
     include("./views/layout.html.php");
   }
 }
