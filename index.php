@@ -159,7 +159,10 @@ elseif($request->method()== "POST"){
      elseif (preg_match('/^\/users\/signin\/?$/',
       $request->pathInfo())) {
       $controller = new UsersController();
-      if($controller->validForAuth($email,$login)){
+    
+      $email = $_POST['login']; 
+      $pwd = $_POST['password'];
+      if($controller->validForAuth($email,$pwd)){
         $_SESSION['connecte']= true ; 
         header('./index.php');
       }else{
@@ -182,7 +185,7 @@ elseif($request->method()== "POST"){
   }
 
 
-}
+
 elseif($request->method()== "PATCH"){
 
   // modifier un article
@@ -233,6 +236,10 @@ elseif($request->method()== "DELETE"){
     $controller->delete($id);
 
   }
+
+}
+else if (preg_match('/^\/populateDB\/?$/',$request->pathInfo()) ){
+  
 
 }
 else{

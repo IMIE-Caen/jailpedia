@@ -1,5 +1,6 @@
 <?php
-
+include_once("./PDO.php");
+$db = new PDO('sqlite:JailPedia.sqlite') ; 
 class UsersController {
   
   function show($id){
@@ -20,7 +21,13 @@ class UsersController {
   }
 
   function validForAuth( $log, $password){
+  	
+  	$sql = 'SELECT * FROM USERS WHERE ME_NAME = ? and ME_LASTNAME = ? ';
+  	$stmt = $db->prepareStatement($sql) ; 
+		$stmt= $db->bindValues([$log,$password]);
+		$stmt= $db->execute();
 
+		
  	}
 
   function save(){
