@@ -12,7 +12,7 @@ $articles_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt->closeCursor();
 //Parcourir la liste des membres
 foreach ($articles_list as $row) {
-    echo 'Identifiant'.$row['ME_ID'].'Nom'.$row['ME_NAME']."<br />";
+    echo 'Identifiant'.$row['ID'].' Titre '.$row['TITRE']."<br />";
 }
 echo "<br />";
 $sql = 'SELECT * FROM USERS';
@@ -23,7 +23,7 @@ $users_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt->closeCursor();
 //Parcourir la liste des membres
 foreach ($users_list as $row) {
-    echo 'Identifiant'.$row['ME_ID']. 'Prenom '.$row['ME_NAME'].' Nom '.$row['ME_LASTNAME']."<br />";
+    echo 'Identifiant'.$row['ID']. 'Prenom '.$row['PRENOM'].' Nom '.$row['NOM']."<br />";
 }
 
 function __autoload($className) {
@@ -131,13 +131,7 @@ elseif($request->method()== "PATCH"){
     $controller->edit($id);
 
   }
-
-
-
 }
-
-
-
 else{
    var_dump("toto");
   header("HTTP/1.0 404 Not Found");
