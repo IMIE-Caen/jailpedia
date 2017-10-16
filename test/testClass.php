@@ -30,3 +30,9 @@ echo 'Contribution de '.$username->getFirstname() .' '. $username->getLastname()
 echo "\n";
 echo ''.$eval->getUser()->getFirstname() .' '.$eval->getUser()->getLastname() .' a mis la note de '.$eval->getNote() .' pour l\'article '.$eval->getArticle()->getTitle();
 echo "\n";
+/****************************************/
+$articles = Article::fectchAll();
+var_dump($articles);
+foreach ($articles as $txt){
+
+}

@@ -31,11 +31,10 @@ class Article
      * @param string $text
      * @param Tag $tag
      */
-    public function __construct($title, $text, Tag $tag)
+    public function __construct($title, $text)
     {
         $this->title = $title;
         $this->text = $text;
-        $this->tag = $tag;
     }
 
     /**
@@ -103,6 +102,31 @@ class Article
         $this->tag = $tag;
     }
 
+    function getBdd() {
+        $db = new PDO('sqlite:JailPedia.sqlite');
+        //Activer les exceptions
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return $db;
+    }
+
+    public static function fectchAll(){
+        $db = new PDO('sqlite:JailPedia.sqlite');
+        //Activer les exceptions
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $articles = $db->prepare("SELECT * FROM ARTICLES");
+        $articles->execute();
+        $result = $articles->fetchAll(PDO::FETCH_CLASS,"Article");
+        return $result;
+    }
+
+    public static function getArticleById($id){
+        $db = new PDO('sqlite:JailPedia.sqlite');
+        //Activer les exceptions
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $article = $db->prepare("SELECT * FROM ARTICLES WHERE ME_ID = ?");
+        $article->execute(array($id));
+        return $article;
+    }
 
 
 }
