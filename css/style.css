@@ -1,36 +1,115 @@
-/*header {
-    height: 100px;
-    line-height: 100px;
-    overflow: hidden;
+@import url('https://fonts.googleapis.com/css?family=Fascinate+Inline');
+
+/************/
+/* Couleurs
+/* Bleu : #1B5773;
+/* Vert : #CEC68F;
+/***************************/
+
+/**
+ ** COMMUN
+*************************************/
+body {
+  color: #CEC68F; /* Vert */
+  background: url("/images/bg.jpg") center top fixed no-repeat;
+  background-size: cover;
 }
-*/
+
+body > .content { padding: 10px; }
+
+.content {
+  min-height: 1000px;
+  background-color: #fff;
+  box-shadow: 0 0 20px #000;
+}
+
+/**
+ ** HEADER
+*************************************/
+.headline > span {
+  display: block;
+  text-align: center;
+}
+
+.headline .headline-l1 {
+  font-family: 'Fascinate Inline', cursive;
+  font-size: 3em;
+}
+
+.headline .headline-l2 {
+  color: #1B5773;
+  font-size: 1rem;
+}
+
+.headline-l1 > *:nth-child(odd) {
+  color: #1B5773;
+}
+
+.headline-l1 > *:nth-child(even) {
+  color: #CEC68F;
+}
+
+header {
+  background-color: #fff; 
+}
+header button {
+  cursor: pointer;
+}
+
 header .logo img {
-    max-height: 100px;
+  max-height: 100px;
 }
-/*
+
+/**
+ ** MENU
+*************************************/
 nav {
-    position: relative;
-    height: 50px;
-    line-height: 50px;
+  padding: 0;
+  height: 100px;
+  line-height: 100px;
+  background-color: #1B5773; /* bleu */
+  overflow: hidden;
+}
+
+nav a {
+  box-sizing: border-box;
+  display: block;
+  color: #CEC68F;
+}
+
+nav li {
+  padding: 0 10px;
+}
+
+nav li:hover {
+  background-color: #CEC68F;
+}
+
+nav li:hover a {
+  color: #1B5773;
+  text-decoration: none;
 }
 
 nav .paypal {
-    box-sizing: border-box;
-    position: absolute;
-    right: 10px;
-    height: 50px;
+  margin-left: auto;
 }
 
-nav .paypal img { 
-    max-height: 100%; 
-    padding: 5px;
-}
-*/  
-.content {
-    min-height: 700px;
+nav ul { 
+  height: 100px;
+  box-sizing: border-box;
 }
 
+/**
+ ** FOOTER
+*************************************/
 footer {
-    text-align: center;
-    border-top: 1px solid #333;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  background-color: #1B5773;;
 }
+
+/**
+ ** Page 404
+*************************************/
+.page404 { text-align: center; }
