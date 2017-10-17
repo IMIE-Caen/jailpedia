@@ -2,8 +2,6 @@
     <ul class="navbar-nav">
       <?php 
         if ($_SESSION['connecte'] == false) {
-
-
       ?>
       <li class="nav-item">
         <a href="/signin" title="Se connecter">Se connecter</a>
@@ -23,6 +21,7 @@
       <?php 
         } ?>
     </ul>
+    Bonjour <?= $_SESSION["user"]->getFirstname(); ?>
     <a class="paypal" href="http://www.paypal.com" title="Faire un don" target="_blank">
       <img src="/images/paypal.png" alt="Logo Paypal" title="Paypal" />
     </a>
