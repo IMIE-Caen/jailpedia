@@ -110,9 +110,12 @@ class Article
     }
 
     public static function fectchAll(){
-        $db = new PDO('sqlite:../JailPedia.sqlite');
+        /*$db = new PDO('sqlite:../JailPedia.sqlite');
         //Activer les exceptions
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);*/
+        $db = getDatabase();
+        //$db = self::getDatabase();//->getDatabase();
+        var_dump($db);
         $articles = $db->prepare("SELECT * FROM ARTICLES");
         $articles->execute();
         $result = $articles->fetchAll(PDO::FETCH_CLASS,"Article");

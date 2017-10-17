@@ -54,6 +54,7 @@ echo "\n";
 $ajout = Article::createArticle("Fleury Merogis","C'est un article sur Fleury Merogis");
 
 $articles = Article::fectchAll();
+var_dump($articles);
 foreach ($articles as $txt){
     echo $txt->getId().' : '.$txt->getTitle() ."\n";
 }
