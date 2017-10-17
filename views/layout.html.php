@@ -19,7 +19,6 @@
         <?php include("footer.html.php"); ?>
 
     </body>
-
     <?php
     if($_SESSION['connecte']==true){
         echo('connecte');
