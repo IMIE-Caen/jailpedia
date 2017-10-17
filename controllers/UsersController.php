@@ -3,6 +3,8 @@
 class UsersController {
 
   function show($id){
+  	ob_start();
+  	include('./views/viewUser.php');
     $page_content ="Affichage de l'user $id";
     include("./views/layout.html.php");
   }
