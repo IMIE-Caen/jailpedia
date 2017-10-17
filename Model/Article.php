@@ -103,6 +103,11 @@ class Article
     }
 
     public static function fetchAll(){
+<<<<<<< HEAD
+        //Activer les exceptions
+=======
+        //$PDO = new SQLitePDO();
+>>>>>>> 892a2fd72d0f149ee373257cf4493cf15ed5b0ac
         $sql = "SELECT * FROM ARTICLES";
         $stmt = SQLitePDO::bdd()->prepare($sql);
         $stmt->execute();
