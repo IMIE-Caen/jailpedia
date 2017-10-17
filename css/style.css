@@ -17,10 +17,9 @@ body {
   background-size: cover;
 }
 
-body > .content { padding: 10px; }
-
 .content {
   min-height: 1000px;
+  padding: 40px;
   background-color: #fff;
   box-shadow: 0 0 20px #000;
 }
@@ -92,8 +91,10 @@ header button {
 }
 
 header {
+  padding: 10px;
   background-color: #fff;
 }
+
 header button {
   cursor: pointer;
 }
@@ -113,14 +114,9 @@ nav {
   overflow: hidden;
 }
 
-nav a {
+nav ul {
+  height: 100px;
   box-sizing: border-box;
-  display: block;
-  color: #CEC68F;
-}
-
-nav li {
-  padding: 0 10px;
 }
 
 nav li:hover {
@@ -137,19 +133,8 @@ nav .paypal {
 }
 
 nav .paypal img {
-    max-height: 100%;
+  max-height: 100%;
 }
-
-.content {
-    min-height: 1000px;
-    background-color: #fff;
-    box-shadow: 0 0 20px #000;
-}
-nav ul {
-  height: 100px;
-  box-sizing: border-box;
-}
-
 
 nav a {
   box-sizing: border-box;
@@ -163,55 +148,36 @@ nav li {
   transition: all .2s ease;
 }
 
-nav li:hover {
-  background-color: #CEC68F;
-}
-
-nav li:hover a {
-  color: #1B5773;
-  text-decoration: none;
-}
-
-nav .paypal {
-  margin-left: auto;
-}
-
-nav ul {
-  height: 100px;
-  box-sizing: border-box;
-}
-
 /**
  ** FOOTER
 *************************************/
 footer {
-    text-align: center;
-    border-top: 1px solid #333;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  background-color: #1B5773;;
 }
 
 .content_article  {
-	margin-left: 25%;
-	margin-right: 25%;
-	width: 50%;
-	text_align: center;
+  margin-left: 25%;
+  margin-right: 25%;
+  width: 50%;
+  text_align: center;
 }
 
 .form_article h2 {
-	margin-left: 40%;
-	text_align: center;
+  margin-left: 40%;
+  text_align: center;
 }
 
 .form_article button {
-	margin-left: 48%;
+  margin-left: 48%;
 }
 
 #add{
-	float: right;
-	width: 10%;
-	vertical-align: top;
-
+  float: right;
+  width: 10%;
+  vertical-align: top;
 }
-
-body > .content { padding: 10px; }
 
 .page404 { text-align: center; }

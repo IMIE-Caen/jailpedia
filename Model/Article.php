@@ -109,13 +109,13 @@ class Article
         return $db;
     }
 
-    public static function fectchAll(){
-        $db = new PDO('sqlite:../JailPedia.sqlite');
+    public static function fetchAll(){
+        $PDO = new SQLitePDO();
         //Activer les exceptions
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $articles = $db->prepare("SELECT * FROM ARTICLES");
-        $articles->execute();
-        $result = $articles->fetchAll(PDO::FETCH_CLASS,"Article");
+        $sql = "SELECT * FROM ARTICLES";
+        $stmt = $PDO->bdd()->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
         return $result;
     }
 

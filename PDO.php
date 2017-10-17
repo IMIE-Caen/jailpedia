@@ -6,7 +6,7 @@ class SQLitePDO {
         $db = new PDO('sqlite:JailPedia.sqlite');
         //Activer les exceptions
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        //Créer la table
+        //Crï¿½er la table
         $db->exec("CREATE TABLE IF NOT EXISTS ARTICLES (
                             ID INTEGER PRIMARY KEY AUTOINCREMENT,
                             Title VARCHAR(50),
@@ -43,7 +43,7 @@ class SQLitePDO {
                         /*
     $sql = 'INSERT INTO ARTICLES (ME_NAME) values(:ME_NAME)';
     $stmt = $db->prepare($sql);
-    //Paramètre PDO
+    //Paramï¿½tre PDO
     $P = array('ME_NAME' => 'La pire prison du monde');
     //Executer la requete
     $stmt->execute($P);
@@ -51,7 +51,7 @@ class SQLitePDO {
 
     $sql = 'INSERT INTO USERS (ME_NAME, ME_LASTNAME) values(:ME_NAME, :ME_LASTNAME)';
     $stmt = $db->prepare($sql);
-    //Paramètre PDO
+    //Paramï¿½tre PDO
     $P = array('ME_NAME' => 'Neant',
                 'ME_LASTNAME' => 'Du14');
     //Executer la requete
