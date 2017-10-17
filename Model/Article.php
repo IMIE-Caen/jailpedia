@@ -67,7 +67,7 @@ class Article
      */
     public function setTitle($title)
     {
-        $this->title = $title;
+        $this->Title = $title;
     }
 
     /**

@@ -12,6 +12,7 @@ class ArticlesController {
     ob_start();
     include("./views/article/list.html.php");
     $page_content = ob_get_contents();
+    include("./views/layout.html.php");
   }
 
   function edit($id) {
