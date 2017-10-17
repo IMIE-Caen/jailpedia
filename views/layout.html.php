@@ -7,6 +7,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
         <title>JAILPEDIA - INDEX</title>
+        <link rel="stylesheet" href="/css/select2-bootstrap.css">
         <link rel="stylesheet" href="/css/style.css">
     </head>
     <body>
@@ -16,6 +17,14 @@
             <?php echo $page_content ?>
         </div>
         <?php include("footer.html.php"); ?>
-    </body>
 
+    </body>
+    <?php
+    if($_SESSION['connecte']==true){
+        echo('connecte');
+    }
+    else{
+        echo('pas co');
+    }
+    ?>
 </html>
