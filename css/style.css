@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Fascinate+Inline');
+@import url('https://fonts.googleapis.com/css?family=Oswald:400,700');
 
 /************/
 /* Couleurs
@@ -11,6 +12,7 @@
 *************************************/
 body {
   color: #CEC68F; /* Vert */
+  font-family: 'Oswald', sans-serif;
   background: url("/images/bg.jpg") center top fixed no-repeat;
   background-size: cover;
 }
@@ -19,6 +21,46 @@ body > .content { padding: 10px; }
 
 .content {
   min-height: 1000px;
+  background-color: #fff;
+  box-shadow: 0 0 20px #000;
+}
+
+/**
+ ** HEADER
+*************************************/
+.headline > span {
+  display: block;
+  text-align: center;
+}
+
+.headline .headline-l1 {
+  font-family: 'Fascinate Inline', cursive;
+  font-size: 3em;
+}
+
+.headline .headline-l2 {
+  color: #1B5773;
+  font-size: 1rem;
+}
+
+.headline-l1 > *:nth-child(odd) {
+  color: #1B5773;
+}
+
+.headline-l1 > *:nth-child(even) {
+  color: #CEC68F;
+}
+
+header {
+  background-color: #fff;
+}
+header button {
+  cursor: pointer;
+}
+
+.content {
+  min-height: 1000px;
+  padding: 40px;
   background-color: #fff;
   box-shadow: 0 0 20px #000;
 }
@@ -94,7 +136,6 @@ nav .paypal {
   margin-left: auto;
 }
 
-<<<<<<< a584a0c26377d5452ea1bcc68135e05a0e969422
 nav .paypal img {
     max-height: 100%;
 }
@@ -103,11 +144,41 @@ nav .paypal img {
     min-height: 1000px;
     background-color: #fff;
     box-shadow: 0 0 20px #000;
-=======
+}
 nav ul {
   height: 100px;
   box-sizing: border-box;
->>>>>>> Amélioration du design général
+}
+
+
+nav a {
+  box-sizing: border-box;
+  display: block;
+  color: #CEC68F;
+  transition: all .2s ease;
+}
+
+nav li {
+  padding: 0 10px;
+  transition: all .2s ease;
+}
+
+nav li:hover {
+  background-color: #CEC68F;
+}
+
+nav li:hover a {
+  color: #1B5773;
+  text-decoration: none;
+}
+
+nav .paypal {
+  margin-left: auto;
+}
+
+nav ul {
+  height: 100px;
+  box-sizing: border-box;
 }
 
 /**
