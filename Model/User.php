@@ -191,7 +191,7 @@ class User
 
     public static function createUser($firstname,$lastname,$dob,$email,$password){
         //$db = new SQLitePDO();
-        $sql = 'INSERT INTO USERS ("firstname", "lastname", "dob","email","mdp") VALUES (:firstname, :lastname, :dob, :email, :password) ';
+        $sql = 'INSERT INTO USERS ("firstname", "firstname", "dob","email","password") VALUES (:firstname, :lastname, :dob, :email, :password) ';
         $stmt = SQLitePDO::bdd()->prepare($sql);
         $stmt->bindValue('firstname', $firstname);
         $stmt->bindValue('lastname', $lastname);
@@ -202,14 +202,14 @@ class User
         $stmt->closeCursor();
     }
 
-    /*public static function updateUser($title,$text,$id){
+    public static function updateUser($firstname,$firstname,$dob,$email,$mdp,$id){
         //$db = new SQLitePDO();
-        $sql = 'UPDATE ARTICLES SET title = :TITRE, text = :TEXTE where id = :ID';
+        $sql = 'UPDATE USERS SET firstname = :firstname, firstname = :firstname, dob = :dob , email = :email, mdp =:mdp  where id = :ID';
         $stmt = SQLitePDO::bdd()->prepare($sql);
-        $P = array('TITRE' => $title,'TEXTE'=>$text,'ID'=>$id);
+        $P = array('firstname' => $firstname,'firstname'=>$firstname, 'dob'=> $dob , 'email'=>$email ,'mdp'=>$mdp,  'ID'=>$id);
         $stmt->execute($P);
         $stmt->closeCursor();
-    }*/
+    }
 
     public static function deleteUser($id){
         $sql = 'DELETE FROM USERS WHERE id = :ID';
