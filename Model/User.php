@@ -185,7 +185,8 @@ class User
         $article = SQLitePDO::bdd()->prepare($sql);
         $article->execute(array($id));
         $result = $article->fetchAll(PDO::FETCH_CLASS,"User");
-        return $result;
+//        var_dump($result); exit;
+        return $result[0];
     }
 
     public static function createUser($firstname,$lastname,$dob,$email,$password){

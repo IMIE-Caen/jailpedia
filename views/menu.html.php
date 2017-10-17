@@ -1,7 +1,7 @@
 <nav class="container navbar navbar-expand-lg">
     <ul class="navbar-nav">
       <?php 
-        if ($_SESSION['connecte'] == false) {
+        if (!isset($_SESSION['connecte'])) {
       ?>
       <li class="nav-item">
         <a href="/signin" title="Se connecter">Se connecter</a>
@@ -21,7 +21,10 @@
       <?php 
         } ?>
     </ul>
-    Bonjour <?= $_SESSION["user"]->getFirstname(); ?>
+  <?php // var_dump($_SESSION["user"]); exit; ?>
+  <?php if (isset($_SESSION["user"])) { ?>
+     Bonjour <?= $_SESSION["user"]->getFirstname(); ?>
+  <?php } ?>
     <a class="paypal" href="http://www.paypal.com" title="Faire un don" target="_blank">
       <img src="/images/paypal.png" alt="Logo Paypal" title="Paypal" />
     </a>

@@ -24,17 +24,19 @@ class UsersController {
 
   function validForAuth($log, $password) {
     $PDO = new SQLitePDO();
-    $sql = 'SELECT COUNT(*) FROM USERS WHERE FirstName = ? and Mdp = ? ';
+    $sql = 'SELECT * FROM USERS WHERE FirstName = ? and Mdp = ? ';
     $stmt = $PDO->bdd()->prepare($sql);
     $stmt->bindValue(1, $log);
     $stmt->bindValue(2, $password);
     $stmt->execute();
 
-    $userValid = $stmt->fetchAll()[0][0];
-    if (!$userValid == 1) {
+    $userValid = $stmt->fetch();
+//    var_dump($userValid["id"]); exit;
+    if (!count($userValid) == 1) {
       return false;
     }
     $_SESSION["user"] = User::getUserById($userValid["id"]);
+    return true;
     
   }
 
