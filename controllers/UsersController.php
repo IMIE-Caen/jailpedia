@@ -4,7 +4,8 @@
 class UsersController {
 
   function show($id){
-  	ob_start();
+  	$user = User::getUserById($id);
+    ob_start();
   	include('./views/viewUser.php');
     $page_content = ob_get_clean();
     include("./views/layout.html.php");

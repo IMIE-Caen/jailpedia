@@ -128,7 +128,7 @@ $controller->search();
 
 
 // /users/123
-elseif (preg_match('/^\/users\/(\w+)\/?$/', $request->pathInfo(), $preg_match_results)) {
+elseif (preg_match('/^\/users\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
 
   $id = $preg_match_results[1];
   $controller = new UsersController();
