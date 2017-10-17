@@ -1,6 +1,6 @@
 <?php
 
-class SQLitePDO {
+class SQLitePDO{
 
     public static function bdd() {
         $db = new PDO('sqlite:JailPedia.sqlite');
