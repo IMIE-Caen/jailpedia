@@ -31,12 +31,11 @@ class Article
      * @param string $text
      * @param Tag $tag
      */
-    public function __construct($title, $text, Tag $tag)
+    /*public function __construct($title, $text)
     {
         $this->title = $title;
         $this->text = $text;
-        $this->tag = $tag;
-    }
+    }*/
 
     /**
      * @return int
@@ -68,7 +67,7 @@ class Article
      */
     public function setTitle($title)
     {
-        $this->title = $title;
+        $this->Title = $title;
     }
 
     /**
@@ -103,6 +102,46 @@ class Article
         $this->tag = $tag;
     }
 
+    public static function fetchAll(){
+        $sql = "SELECT * FROM ARTICLES";
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
+        return $result;
+    }
 
+    public static function getArticleById($id){
+       // $db = new SQLitePDO();
+        $sql = "SELECT * FROM ARTICLES WHERE id = ? ";
+        $article = SQLitePDO::bdd()->prepare($sql);
+        $article->execute(array($id));
+        $result = $article->fetchAll(PDO::FETCH_CLASS,"Article");
+        return $result;
+    }
 
+    public static function createArticle($title,$text){
+        //$db = new SQLitePDO();
+        $sql = 'INSERT INTO ARTICLES (Title, Text) values(:TITRE,:TEXTE)';
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $P = array('TITRE' => $title,'TEXTE'=>$text);
+        $stmt->execute($P);
+        $stmt->closeCursor();
+    }
+
+    public static function updateArticle($title,$text,$id){
+        //$db = new SQLitePDO();
+        $sql = 'UPDATE ARTICLES SET title = :TITRE, text = :TEXTE where id = :ID';
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $P = array('TITRE' => $title,'TEXTE'=>$text,'ID'=>$id);
+        $stmt->execute($P);
+        $stmt->closeCursor();
+    }
+
+    public static function deleteArticle($id){
+        $sql = 'DELETE FROM ARTICLES WHERE id = :ID';
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $P = array('ID'=>$id);
+        $stmt->execute($P);
+        $stmt->closeCursor();
+    }
 }
