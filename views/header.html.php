@@ -1,4 +1,3 @@
-
 <header class="container">
   <div class="row">
     <a class="logo col-2" href="/" title="Jailpedia">
@@ -22,6 +21,3 @@
     </div>
   </div>
 </header>
-
-
-
