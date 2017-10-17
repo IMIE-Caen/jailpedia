@@ -9,6 +9,5 @@
     </ul>
     <a class="paypal" href="http://www.paypal.com" title="Faire un don" target="_blank">
       <img src="/images/paypal.png" alt="Logo Paypal" title="Paypal" />
-      <img src="/images/paypal.png" alt="Logo Paypal" title="Paypal" />
     </a>
 </nav>
