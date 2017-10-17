@@ -191,7 +191,7 @@ class User
 
     public static function createUser($firstname,$lastname,$dob,$email,$password){
         //$db = new SQLitePDO();
-        $sql = 'INSERT INTO USERS ("firstname", "lastname", "dob","email","mdp") VALUES (:firstname, :lastname, :dob, :email, :password) ';
+        $sql = 'INSERT INTO USERS ("firstname", "lastname", "dob","email","password") VALUES (:firstname, :lastname, :dob, :email, :password) ';
         $stmt = SQLitePDO::bdd()->prepare($sql);
         $stmt->bindValue('firstname', $firstname);
         $stmt->bindValue('lastname', $lastname);

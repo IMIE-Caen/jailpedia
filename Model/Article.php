@@ -25,8 +25,6 @@ class Article
      */
     private $tag;
 
-    private $author_id;
-
     /**
      * Article constructor.
      * @param string $title
@@ -146,4 +144,5 @@ class Article
         $stmt->execute($P);
         $stmt->closeCursor();
     }
+
 }
