@@ -20,9 +20,9 @@ class UsersController {
   }
 
   function validForAuth( $log, $password){
-    $db= $GLOBALS['db'];
-  	$sql = 'SELECT COUNT(*) FROM USERS WHERE ME_NAME = ? and ME_LASTNAME = ? ';
-  	$stmt = $db->prepare($sql) ;
+    $PDO     = new SQLitePDO();
+  	$sql = 'SELECT COUNT(*) FROM USERS WHERE FIRSTNAME = ? and MDP = ? ';
+  	$stmt = $PDO->bdd()->prepare($sql) ;
 		$stmt->bindValue(1, $log);
     $stmt->bindValue(2, $password);
 	  $stmt->execute();
