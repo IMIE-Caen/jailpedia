@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+
 ini_set('display_errors', 'On');
 include_once 'PDO.php';
 
@@ -145,6 +146,7 @@ else if (preg_match('/^\/tags\/(\d+)\/?$/', $request->pathInfo(), $preg_match_re
   else if (preg_match('/^\/logout\/?$/',
     $request->pathInfo())) {
     $_SESSION['connecte']= false ;
+    session_destroy();
     header('Location: /');
       exit();
     }
