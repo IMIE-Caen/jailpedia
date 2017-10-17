@@ -103,7 +103,6 @@ class Article
     }
 
     public static function fetchAll(){
-        //$PDO = new SQLitePDO();
         $sql = "SELECT * FROM ARTICLES";
         $stmt = SQLitePDO::bdd()->prepare($sql);
         $stmt->execute();
