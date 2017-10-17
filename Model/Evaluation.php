@@ -31,12 +31,13 @@ class Evaluation
      * @param string $note
      * @param User $user
      */
-    public function __construct(Article $article, $note, User $user)
+    /*public function __construct(Article $article, $note, User $user)
     {
         $this->article = $article;
         $this->note = $note;
         $this->user = $user;
-    }
+    }*/
+
 
     /**
      * @return int
