@@ -102,41 +102,47 @@ class Article
         $this->tag = $tag;
     }
 
-    public function getDatabase() {
-        $db = new PDO('sqlite:JailPedia.sqlite');
-        //Activer les exceptions
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        return $db;
-    }
-
     public static function fetchAll(){
-        $PDO = new SQLitePDO();
-        //Activer les exceptions
+        //$PDO = new SQLitePDO();
         $sql = "SELECT * FROM ARTICLES";
-        $stmt = $PDO->bdd()->prepare($sql);
+        $stmt = SQLitePDO::bdd()->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
         return $result;
     }
 
     public static function getArticleById($id){
-        $db = new PDO('sqlite:../JailPedia.sqlite');
-        //Activer les exceptions
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $article = $db->prepare("SELECT * FROM ARTICLES WHERE id = ? ");
+       // $db = new SQLitePDO();
+        $sql = "SELECT * FROM ARTICLES WHERE id = ? ";
+        $article = SQLitePDO::bdd()->prepare($sql);
         $article->execute(array($id));
         $result = $article->fetchAll(PDO::FETCH_CLASS,"Article");
         return $result;
     }
 
     public static function createArticle($title,$text){
-        $db = new PDO('sqlite:../JailPedia.sqlite');
-        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $sql = 'INSERT INTO ARTICLES (title, text) values(:TITRE,:TEXTE)';
-        $stmt = $db->prepare($sql);
+        //$db = new SQLitePDO();
+        $sql = 'INSERT INTO ARTICLES (Title, Text) values(:TITRE,:TEXTE)';
+        $stmt = SQLitePDO::bdd()->prepare($sql);
         $P = array('TITRE' => $title,'TEXTE'=>$text);
         $stmt->execute($P);
         $stmt->closeCursor();
     }
 
+    public static function updateArticle($title,$text,$id){
+        //$db = new SQLitePDO();
+        $sql = 'UPDATE ARTICLES SET title = :TITRE, text = :TEXTE where id = :ID';
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $P = array('TITRE' => $title,'TEXTE'=>$text,'ID'=>$id);
+        $stmt->execute($P);
+        $stmt->closeCursor();
+    }
+
+    public static function deleteArticle($id){
+        $sql = 'DELETE FROM ARTICLES WHERE id = :ID';
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $P = array('ID'=>$id);
+        $stmt->execute($P);
+        $stmt->closeCursor();
+    }
 }

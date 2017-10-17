@@ -6,12 +6,12 @@
  * Time: 14:44
  */
 
-require_once('../Model/Article.php');
-require_once('../Model/User.php');
-require_once('../Model/Contribution.php');
-require_once('../Model/Evaluation.php');
-require_once('../Model/Tag.php');
-require_once ('../PDO.php');
+require_once('Model/Article.php');
+require_once('Model/User.php');
+require_once('Model/Contribution.php');
+require_once('Model/Evaluation.php');
+require_once('Model/Tag.php');
+require_once('PDO.php');
 
 
 $tag = new Tag();
@@ -51,9 +51,9 @@ echo "\n";
 echo ''.$eval->getUser()->getFirstname() .' '.$eval->getUser()->getLastname() .' a mis la note de '.$eval->getNote() .' pour l\'article '.$eval->getArticle()->getTitle();
 echo "\n";
 /****************************************/
-$ajout = Article::createArticle("Fleury Merogis","C'est un article sur Fleury Merogis");
+//$ajout = Article::createArticle("Fleury Merogis","C'est un article sur Fleury Merogis");
 
-$articles = Article::fectchAll();
+$articles = Article::fetchAll();
 var_dump($articles);
 foreach ($articles as $txt){
     echo $txt->getId().' : '.$txt->getTitle() ."\n";
@@ -64,3 +64,5 @@ foreach ($test as $item) {
     echo $item->getTitle();
 }
 
+$test1 = Article::updateArticle("Guantanamo","Article sur Guantanamo",1);
+$test2 = Article::deleteArticle(1);

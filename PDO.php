@@ -8,33 +8,33 @@ class SQLitePDO {
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         //Cr�er la table
         $db->exec("CREATE TABLE IF NOT EXISTS ARTICLES (
-                            ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                            Title VARCHAR(50),
-                            'Text' VARCHAR(100),
-                            Tag VARCHAR(25))");
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            title VARCHAR(50),
+                            text VARCHAR(100),
+                            tag VARCHAR(25))");
 
         $db->exec("CREATE TABLE IF NOT EXISTS TAGS (
-                            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
                             Name VARCHAR(25))");
 
         $db->exec("CREATE TABLE IF NOT EXISTS USERS (
-                            ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                            FirstName VARCHAR(25),
-                            LastName VARCHAR(25),
-                            Dob DATE,
-                            Email VARCHAR(50),
-                            Mdp VARCHAR (25))");
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            firstname VARCHAR(25),
+                            lastname VARCHAR(25),
+                            dob DATE,
+                            email VARCHAR(50),
+                            mdp VARCHAR (25))");
 
         $db->exec("CREATE TABLE IF NOT EXISTS EVALUATIONS (
-                            ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                            Article VARCHAR(50),
-                            Note VARCHAR(10),
-                            User VARCHAR(25))");
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            article VARCHAR(50),
+                            note VARCHAR(10),
+                            user VARCHAR(25))");
 
         $db->exec("CREATE TABLE IF NOT EXISTS CONTRIBUTIONS (
-                            ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                            User VARCHAR(25),
-                            Article VARCHAR(50))");
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            user VARCHAR(25),
+                            article VARCHAR(50))");
 
         return $db;
         }
