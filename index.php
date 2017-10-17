@@ -43,7 +43,7 @@ echo 'Identifiant'.$row['ID'].' Titre '.$row['TITRE']."<br />";
 }*/
 
 
-if ($request->pathInfo() == "/") {
+if($request->pathInfo() == "/"){
 
   $controller = new HomeController();
   $controller->render();
@@ -107,7 +107,7 @@ $controller->showAllTags();
 elseif (preg_match('/^\/signup\/?$/',
   $request->pathInfo())) {
   $controller = new UsersController();
-$controller->signUp();
+  $controller->signUp();
 }
 
 //connexion
@@ -140,6 +140,14 @@ else if (preg_match('/^\/tags\/(\d+)\/?$/', $request->pathInfo(), $preg_match_re
   $controller = new TagsController();
   $controller->show($id);
 } 
+
+  //deconnexionUser
+  else if (preg_match('/^\/logout\/?$/',
+    $request->pathInfo())) {
+    $_SESSION['connecte']= false ;
+    header('Location: /');
+      exit();
+    }
 }
 
 // si méthode HTTP est POST
@@ -165,39 +173,37 @@ else if($request->method()== "POST"){
       preg_match('/^\/articles\/create\/?$/', $request->pathInfo())) {
       $controller = new ArticlesController();
       $controller->save();
-    }
+          }
 
 // ajout user
 
 
 // /users
-    else if (preg_match('/^\/users\/?$/',
+    else if (preg_match('/^\/users\/save\/?$/',
       $request->pathInfo())) {
       $controller = new UsersController();
-    $controller->save();
+      $controller->save($_POST);
+      header('Location: /signin');
   }
 
 //connexionUser
   else if (preg_match('/^\/users\/signin\/?$/',
     $request->pathInfo())) {
     $controller = new UsersController();
-var_dump("toto atta");
-  $email = $_POST['login'];
-  $pwd = $_POST['password'];
-  if($controller->validForAuth($email,$pwd)){
-    $_SESSION['connecte']= true ;
-    header('Location: /articles');
-    exit();
-  }else{
-    $_SESSION['connecte']= false ;
-    header('Location: /signin');
- exit();
+    $email = $_POST['login'];
+    $pwd = $_POST['password'];
+    if($controller->validForAuth($email,$pwd)){
+      $_SESSION['connecte']= true ;
+      header('Location: /articles');
+      exit();
+    }else{
+      $_SESSION['connecte']= false ;
+      header('Location: /signin');
+      exit();
+    }
   }
-}
 
-
-
-}
+  }
 
 // recherche article
 else if(
