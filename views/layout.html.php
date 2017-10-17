@@ -17,14 +17,5 @@
             <?php echo $page_content ?>
         </div>
         <?php include("footer.html.php"); ?>
-
     </body>
-    <?php
-    if($_SESSION['connecte']==true){
-        echo('connecte');
-    }
-    else{
-        echo('pas co');
-    }
-    ?>
 </html>
