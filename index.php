@@ -64,7 +64,7 @@ else if ($request->method() == "GET") {
 
 
 // /users/toto
-  elseif (preg_match('/^\/users\/(\w+)\/?$/',
+  elseif (preg_match('/^\/users\/(\d+)\/?$/',
     $request->pathInfo(),
     $preg_match_results)) {
 
@@ -128,7 +128,7 @@ $controller->search();
 
 
 // /users/123
-elseif (preg_match('/^\/users\/(\w+)\/?$/', $request->pathInfo(), $preg_match_results)) {
+elseif (preg_match('/^\/users\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
 
   $id = $preg_match_results[1];
   $controller = new UsersController();
@@ -150,6 +150,17 @@ else if (preg_match('/^\/tags\/(\d+)\/?$/', $request->pathInfo(), $preg_match_re
     header('Location: /');
       exit();
     }
+
+    //modif user
+    else if(
+        preg_match('/^\/users\/edit\/(\d+)\/?$/',
+          $request->pathInfo(),
+          $preg_match_results) ){
+          $id = $preg_match_results[1];
+          $controller = new UsersController();
+          $controller->edit($id);
+
+      }
 }
 
 // si méthode HTTP est POST
@@ -216,11 +227,7 @@ else if(
 
 }
 
-
-
-elseif($request->method()== "PATCH"){
-
-  // modifier un article
+ // modifier un article
   // /articles/update
     if(
       preg_match('/^\/articles\/edit\/(\d+)\/?$/',
@@ -232,32 +239,21 @@ elseif($request->method()== "PATCH"){
         $controller = new TagsController();
         $controller->showAllTags();
       }
-  } 
-
-  elseif ($request->method() == "PATCH") {
-
-  // modifier un article 
-  // /articles/update 
-      if (
-        preg_match('/^\/articles\/edit\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
-
-        $id = $preg_match_results[1];
-        $controller = new ArticlesController();
-        $controller->edit($id);
-      }
-
+   
 
       else if(
-        preg_match('/^\/users\/edit\/(\w+)\/?$/',
+        preg_match('/^\/users\/edit\/?$/',
           $request->pathInfo(),
           $preg_match_results) ){
-        $id = $preg_match_results[1];
-        $controller = new ArticlesController();
-        $controller->edit($id);
+         $controller = new UsersController();
+          $controller->update($_POST);
+          $id = $_POST['id'];
+          header("Location: /users/$id");
+  
 
       }
 
-    }
+    
 
     elseif($request->method()== "DELETE"){
 
