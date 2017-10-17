@@ -174,7 +174,7 @@ else if($request->method()== "POST"){
     else if (
       preg_match('/^\/articles\/create\/?$/', $request->pathInfo())) {
       $controller = new ArticlesController();
-      $controller->save();
+      $controller->save($_POST);
           }
 
 // ajout user
