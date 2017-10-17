@@ -67,7 +67,7 @@ class Article
      */
     public function setTitle($title)
     {
-        $this->title = $title;
+        $this->Title = $title;
     }
 
     /**
@@ -110,10 +110,10 @@ class Article
     }
 
     public static function fetchAll(){
-        $PDO = new SQLitePDO();
+//        $PDO = new SQLitePDO();
         //Activer les exceptions
         $sql = "SELECT * FROM ARTICLES";
-        $stmt = $PDO->bdd()->prepare($sql);
+        $stmt = SQLitePDO::bdd()->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
         return $result;

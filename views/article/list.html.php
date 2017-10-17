@@ -1,10 +1,3 @@
-<?php
-//require_once ("../../Model/Article.php");
-$article = new Article();
-$article->setTitle("Titre 1");
-$article->setText("Mon article 1");
-$articles = [$article];
-?>
 <div class="listArticle">
 <?php foreach ($articles as $article) { ?>
     <div class="article">
