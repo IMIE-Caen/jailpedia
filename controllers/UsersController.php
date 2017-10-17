@@ -31,8 +31,7 @@ class UsersController {
     $stmt->execute();
 
     $userValid = $stmt->fetch();
-//    var_dump($userValid["id"]); exit;
-    if (!count($userValid) == 1) {
+    if ($userValid["id"] == NULL) {
       return false;
     }
     $_SESSION["user"] = User::getUserById($userValid["id"]);

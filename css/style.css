@@ -10,6 +10,12 @@
 /**
  ** COMMUN
 *************************************/
+h2, .title-h2 {
+  padding: 5px 0;
+  color: #1B5773;
+  border-bottom: 1px solid #CEC68F; 
+}
+
 body {
   color: #CEC68F; /* Vert */
   font-family: 'Oswald', sans-serif;
@@ -23,6 +29,22 @@ body {
   background-color: #fff;
   box-shadow: 0 0 20px #000;
 }
+
+.voir {
+  display: inline-block;
+  padding: 10px 20px;
+  color: #fff;
+  text-decoration: none;
+  background-color: #1B5773;
+  border: 1px solid #1B5773;
+  transition: all .2s ease;
+}
+.voir:hover {
+  color: #1B5773;
+  background-color: #fff;
+  text-decoration: none;
+}
+
 
 /**
  ** HEADER
@@ -166,8 +188,7 @@ footer {
 }
 
 .form_article h2 {
-  margin-left: 40%;
-  text_align: center;
+  text-align: center;
 }
 
 .form_article button {
@@ -181,3 +202,29 @@ footer {
 }
 
 .page404 { text-align: center; }
+
+/**
+ ** Liste des articles
+*************************************/
+.listArticle .article {
+  margin: 10px 0;
+}
+
+.listArticle .article h2 a {
+  color: inherit;
+  text-decoration: none;
+  transition: all .2s ease;
+}
+
+.listArticle .article h2 a:hover {
+  color: #276e8f;
+}
+
+.listArticle .article .bottom {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.listArticle .article .article-text {
+  color: #777;
+}
