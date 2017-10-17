@@ -27,11 +27,11 @@ class Contribution
      * @param User $user
      * @param Article $article
      */
-    public function __construct(User $user, Article $article)
+    /*public function __construct(User $user, Article $article)
     {
         $this->user = $user;
         $this->article = $article;
-    }
+    }*/
 
     /**
      * @return int

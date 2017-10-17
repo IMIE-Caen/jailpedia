@@ -1,30 +1,45 @@
 <?php
 
-    $db = new PDO('sqlite:JailPedia.sqlite');
-    //Activer les exceptions
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    //Créer la table
-    $db->exec("CREATE TABLE IF NOT EXISTS ARTICLES (
-                        ME_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                        ME_NAME VARCHAR(100))");
+class SQLitePDO {
 
-    $db->exec("CREATE TABLE IF NOT EXISTS TAGS (
-                        ME_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                        ME_NAME VARCHAR(100))");
+    public static function bdd() {
+        $db = new PDO('sqlite:JailPedia.sqlite');
+        //Activer les exceptions
+        $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        //Créer la table
+        $db->exec("CREATE TABLE IF NOT EXISTS ARTICLES (
+                            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                            Title VARCHAR(50),
+                            'Text' VARCHAR(100),
+                            Tag VARCHAR(25))");
 
-    $db->exec("CREATE TABLE IF NOT EXISTS USERS (
-                        ME_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                        ME_NAME VARCHAR(100),
-                        ME_LASTNAME varchar(100))");
+        $db->exec("CREATE TABLE IF NOT EXISTS TAGS (
+                            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                            Name VARCHAR(25))");
 
-    $db->exec("CREATE TABLE IF NOT EXISTS EVALUATIONS (
-                        ME_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                        ME_NOTES integer(3))");
+        $db->exec("CREATE TABLE IF NOT EXISTS USERS (
+                            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                            FirstName VARCHAR(25),
+                            LastName VARCHAR(25),
+                            Dob DATE,
+                            Email VARCHAR(50),
+                            Mdp VARCHAR (25))");
 
-    $db->exec("CREATE TABLE IF NOT EXISTS CONTRIBUTIONS (
-                        ME_ID INTEGER PRIMARY KEY AUTOINCREMENT,
-                        ME_NAME VARCHAR(100))");
+        $db->exec("CREATE TABLE IF NOT EXISTS EVALUATIONS (
+                            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                            Article VARCHAR(50),
+                            Note VARCHAR(10),
+                            User VARCHAR(25))");
 
+        $db->exec("CREATE TABLE IF NOT EXISTS CONTRIBUTIONS (
+                            ID INTEGER PRIMARY KEY AUTOINCREMENT,
+                            User VARCHAR(25),
+                            Article VARCHAR(50))");
+
+        return $db;
+        }
+
+    }
                         /*
     $sql = 'INSERT INTO ARTICLES (ME_NAME) values(:ME_NAME)';
     $stmt = $db->prepare($sql);
@@ -43,4 +58,3 @@
     $stmt->execute($P);
     $stmt->closeCursor();
 */
-?>
