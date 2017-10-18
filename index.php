@@ -15,8 +15,12 @@ function __autoload($className) {
   } else if (file_exists("./Model/" . $className . '.php')) {
     require_once "./Model/" . $className . '.php';
     return true;
-  } else {
-    return false;
+  }
+  else if (file_exists("./tools/".$className . '.php')){
+    require_once "./tools/".$className . '.php';
+    return true;
+  } else{
+      return false;
   }
 }
 
@@ -27,8 +31,8 @@ $preg_match_results = [];
 
 if ($request->pathInfo() == "/") {
   $controller = new HomeController();
-  $controller->render();
-} 
+    $controller->render();
+}
 
 /***********
  * GET

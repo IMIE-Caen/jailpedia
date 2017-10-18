@@ -126,4 +126,12 @@ class Article
         $stmt->closeCursor();
     }
 
+    public static function lastArticles(){
+     $sql = "SELECT * FROM ARTICLES ORDER BY ARTICLES.ID DESC limit 3 ";
+     $stmt = SQLitePDO::bdd()->prepare($sql);
+     $stmt->execute();
+     $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
+     return $result;
+  }
+
 }
