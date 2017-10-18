@@ -107,46 +107,6 @@ form .boutonAction input:hover {
 }
 
 header {
-  background-color: #fff;
-}
-header button {
-  cursor: pointer;
-}
-
-.content {
-  min-height: 1000px;
-  padding: 40px;
-  background-color: #fff;
-  box-shadow: 0 0 20px #000;
-}
-
-/**
- ** HEADER
-*************************************/
-.headline > span {
-  display: block;
-  text-align: center;
-}
-
-.headline .headline-l1 {
-  font-family: 'Fascinate Inline', cursive;
-  font-size: 3em;
-}
-
-.headline .headline-l2 {
-  color: #1B5773;
-  font-size: 1rem;
-}
-
-.headline-l1 > *:nth-child(odd) {
-  color: #1B5773;
-}
-
-.headline-l1 > *:nth-child(even) {
-  color: #CEC68F;
-}
-
-header {
   padding: 10px;
   background-color: #fff;
 }
@@ -280,4 +240,12 @@ footer {
 
 .listArticle .article .article-text {
   color: #777;
+}
+
+/**
+ ** Formulaire de connexion
+*************************************/
+.form-connexion { 
+  width: 50%;
+  margin: 0 auto;
 }

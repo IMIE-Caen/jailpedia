@@ -1,6 +1,6 @@
 <div class="form_article">
-  <h1>Créer un article</h1>
   <form action="/articles/create" class="form-vertical" method="post">
+    <h1>Créer un article</h1>
     <div class="form-group">
       <label for="titre">Titre :</label>
       <input type="text" class="form-control" id="titre" placeholder="Entrer un titre" name="titre">
@@ -16,7 +16,9 @@
         </select>
       </div>
     </div>
-    <button type="submit" class="btn btn-default">Enregister</button>
+    <div class="boutonAction">
+      <input type="submit"  class="btn btn-default" value="Enregistrer" />
+    </div>
   </form>
 </div>
 <!--
