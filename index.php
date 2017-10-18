@@ -209,14 +209,15 @@ else if($request->method()== "POST"){
       $_SESSION['connecte']= true ;
       header('Location: /articles');
       exit();
-    }else{
+    }
+    else{
       $_SESSION['connecte']= false ;
       header('Location: /signin');
       exit();
     }
   }
 
-  }
+  
 
 // recherche article
 else if(
@@ -252,7 +253,7 @@ else if(
   
 
       }
-
+}
     
 
     elseif($request->method()== "DELETE"){
@@ -290,6 +291,7 @@ else if(
     echo file_get_contents("./views/404.html.php");
     echo "La page n'existe pas";
   }
+
 
  
 
