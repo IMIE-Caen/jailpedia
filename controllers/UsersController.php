@@ -27,7 +27,7 @@ class UsersController {
 
   function validForAuth($log, $password) {
     $PDO = new SQLitePDO();
-    $sql = 'SELECT * FROM USERS WHERE FirstName = ? and password = ? ';
+    $sql = 'SELECT * FROM USERS WHERE firstname = ? and password = ? ';
     $stmt = $PDO->bdd()->prepare($sql);
     $stmt->bindValue(1, $log);
     $stmt->bindValue(2, $password);
