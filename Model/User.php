@@ -170,5 +170,52 @@ class User
     }
 
 
+    public static function fetchAll(){
+        //$PDO = new SQLitePDO();
+        $sql = "SELECT * FROM USERS";
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS,"User");
+        return $result;
+    }
 
+    public static function getUserById($id){
+        // $db = new SQLitePDO();
+        $sql = "SELECT * FROM USERS WHERE id = ? ";
+        $article = SQLitePDO::bdd()->prepare($sql);
+        $article->execute(array($id));
+        $result = $article->fetchAll(PDO::FETCH_CLASS,"User");
+//        var_dump($result); exit;
+        return $result[0];
+    }
+
+    public static function createUser($firstname,$lastname,$dob,$email,$password){
+        //$db = new SQLitePDO();
+        $sql = 'INSERT INTO USERS ("firstname", "lastname", "dob","email","password") VALUES (:firstname, :lastname, :dob, :email, :password) ';
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $stmt->bindValue('firstname', $firstname);
+        $stmt->bindValue('lastname', $lastname);
+        $stmt->bindValue('dob', $dob);
+        $stmt->bindValue('email', $email);
+        $stmt->bindValue('password', $password);
+        $stmt->execute();
+        $stmt->closeCursor();
+    }
+
+    public static function updateUser($firstname,$firstname,$dob,$email,$mdp,$id){
+        //$db = new SQLitePDO();
+        $sql = 'UPDATE USERS SET firstname = :firstname, firstname = :firstname, dob = :dob , email = :email, mdp =:mdp  where id = :ID';
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $P = array('firstname' => $firstname,'firstname'=>$firstname, 'dob'=> $dob , 'email'=>$email ,'mdp'=>$mdp,  'ID'=>$id);
+        $stmt->execute($P);
+        $stmt->closeCursor();
+    }
+
+    public static function deleteUser($id){
+        $sql = 'DELETE FROM USERS WHERE id = :ID';
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $P = array('ID'=>$id);
+        $stmt->execute($P);
+        $stmt->closeCursor();
+    }
 }

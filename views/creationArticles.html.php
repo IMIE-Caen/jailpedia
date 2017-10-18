@@ -33,25 +33,16 @@
         </div>
     </div>
     <div class="form-group">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>NAME</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td></td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="Tags">
+        <select class="form-control input-lg select2-single" dir="rtl">
+          <!-- Liste des tags à mettre pus tard -->
+        </select>
+      </div>
     </div>
-    <button type="submit" class="btn btn-default">Save</button>
-    </form>
-  </div>
+    <button type="submit" class="btn btn-default">Enregister</button>
+  </form>
 </div>
-
+<!--
 <script>
   $(".select2-single, .select2-multiple").select2({
     theme: "bootstrap",
@@ -64,3 +55,4 @@
     $(this).parent().nextAll("select").prop("disabled", !this.checked);
   });
 </script>
+-->

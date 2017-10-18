@@ -82,6 +82,30 @@ class Contribution
         $this->article = $article;
     }
 
+    public static function setContribution($userId, $articleId){
+        $sql = 'INSERT INTO CONTRIBUTIONS (userId,articleId) VALUES (:userId,:articleId) ';
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $P = array('userId' => $userId,'articleId'=>$articleId);
+        $stmt->execute($P);
+        $stmt->closeCursor();
+    }
 
+    public static function getContributionByArticle($articleId){
+        $sql = "SELECT u.id, u.firstname, u.lastname, u.dob,u.email, u.password FROM USERS u 
+        INNER JOIN CONTRIBUTIONS c ON u.id = c.userId WHERE c.articleId = ? ";
+        $article = SQLitePDO::bdd()->prepare($sql);
+        $article->execute(array($articleId));
+        $result = $article->fetchAll(PDO::FETCH_CLASS,"User");
+        return $result;
+    }
+
+    public static function getContributionByUser($userId){
+        $sql = "SELECT a.id, a.title, a.text, a.tag FROM ARTICLES a 
+        INNER JOIN CONTRIBUTIONS c ON a.id = c.articleId WHERE c.userId = ? ";
+        $article = SQLitePDO::bdd()->prepare($sql);
+        $article->execute(array($userId));
+        $result = $article->fetchAll(PDO::FETCH_CLASS,"Article");
+        return $result;
+    }
 
 }

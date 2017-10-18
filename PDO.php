@@ -7,15 +7,25 @@ class SQLitePDO{
         //Activer les exceptions
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         //Cr�er la table
+        $db->exec("CREATE TABLE IF NOT EXISTS USERS (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            firstname VARCHAR(25),
+                            lastname VARCHAR(25),
+                            dob DATE,
+                            email VARCHAR(50),
+                            password VARCHAR (25))");
+
         $db->exec("CREATE TABLE IF NOT EXISTS ARTICLES (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
                             title VARCHAR(50),
                             text VARCHAR(100),
-                            tag VARCHAR(25))");
+                            tag VARCHAR(25)
+)");
 
         $db->exec("CREATE TABLE IF NOT EXISTS TAGS (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            Name VARCHAR(25))");
+                            name VARCHAR(25))");
+
 
         $db->exec("CREATE TABLE IF NOT EXISTS USERS (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -24,18 +34,18 @@ class SQLitePDO{
                             dob DATE,
                             email VARCHAR(50),
                             password VARCHAR (25),
-                            Role VARCHAR (25))");
+                            role VARCHAR (25))");
 
         $db->exec("CREATE TABLE IF NOT EXISTS EVALUATIONS (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            article VARCHAR(50),
+                            articleId VARCHAR(50),
                             note VARCHAR(10),
-                            user VARCHAR(25))");
+                            userId VARCHAR(25))");
 
         $db->exec("CREATE TABLE IF NOT EXISTS CONTRIBUTIONS (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            user VARCHAR(25),
-                            article VARCHAR(50))");
+                            userId VARCHAR(25),
+                            articleId VARCHAR(50))");
 
         return $db;
         }

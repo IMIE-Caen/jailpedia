@@ -1,31 +1,35 @@
 <?php
 
+//session_start();
 class UsersController {
 
   function show($id){
-    $page_content ="Affichage de l'user $id";
+  	$user = User::getUserById($id);
+    ob_start();
+  	include('./views/viewUser.php');
+    $page_content = ob_get_clean();
     include("./views/layout.html.php");
   }
 
-	function signUp(){
-		ob_start();
-  	include('./views/createAccount.php');
-    $page_content =ob_get_clean();
+  function signUp() {
+    ob_start();
+    include('./views/createAccount.html.php');
+    $page_content = ob_get_clean();
     include("./views/layout.html.php");
   }
 
-  function signIn(){
-  	ob_start();
-  	include('./views/signIn.php');
-    $page_content =ob_get_clean();
+  function signIn() {
+    ob_start();
+    include('./views/signIn.php');
+    $page_content = ob_get_clean();
     include("./views/layout.html.php");
   }
 
-  function validForAuth( $log, $password){
+  function validForAuth($log, $password) {
     $PDO = new SQLitePDO();
-  	$sql = 'SELECT COUNT(*) FROM USERS WHERE FirstName = ? and Mdp = ? ';
-  	$stmt = $PDO->bdd()->prepare($sql) ;
-		$stmt->bindValue(1, $log);
+    $sql = 'SELECT * FROM USERS WHERE FirstName = ? and password = ? ';
+    $stmt = $PDO->bdd()->prepare($sql);
+    $stmt->bindValue(1, $log);
     $stmt->bindValue(2, $password);
 	  $stmt->execute();
 
@@ -68,16 +72,32 @@ class UsersController {
 
   }
 
-  function delete(){
-    $page_content ="suppression user";
+  function delete() {
+    $page_content = "suppression user";
     include("./views/layout.html.php");
   }
 
-  function edit($id){
-    $page_content ="suppression user";
+  function edit($id) {
+  	$user = User::getUserById($id);
+  	ob_start();
+    include('./views/editAccount.html.php');
+    $page_content = ob_get_clean();
     include("./views/layout.html.php");
+
   }
 
+  function update($param) {
 
+  	$firstname = $param['firstname'];
+  	$lastname = $param['lastname'];
+    $dob = $param['dob'];
+    $email = $param['email'];
+    $password = $param['password'];
+    $id =$param['id'];
+
+    User::updateUser($firstname,$firstname,$dob,$email,$password,$id);
+
+
+  }
 
 }
