@@ -8,7 +8,7 @@ function __autoload($className) {
   if (file_exists($className . '.php')) {
     require_once $className . '.php';
     return true;
-  } 
+  }
   else if (file_exists("./controllers/" . $className . '.php')) {
     require_once "./controllers/" . $className . '.php';
     return true;
@@ -139,7 +139,7 @@ else if (preg_match('/^\/tags\/(\d+)\/?$/', $request->pathInfo(), $preg_match_re
   $id = $preg_match_results[1];
   $controller = new TagsController();
   $controller->show($id);
-} 
+}
 
   //deconnexionUser
   else if (preg_match('/^\/logout\/?$/',
@@ -167,7 +167,7 @@ else if($request->method()== "POST"){
       $controller->showAllArticles();
     }
 
-//ajout article 
+//ajout article
 // /articles/create
     else if (
       preg_match('/^\/articles\/create\/?$/', $request->pathInfo())) {
@@ -178,7 +178,7 @@ else if($request->method()== "POST"){
 // ajout user
 
 
-// /users
+//users
     else if (preg_match('/^\/users\/save\/?$/',
       $request->pathInfo())) {
       $controller = new UsersController();
@@ -194,6 +194,7 @@ else if($request->method()== "POST"){
     $pwd = $_POST['password'];
     if($controller->validForAuth($email,$pwd)){
       $_SESSION['connecte']= true ;
+      $controller->RoleUser($email,$pwd);
       header('Location: /articles');
       exit();
     }else{
@@ -225,17 +226,17 @@ elseif($request->method()== "PATCH"){
         $request->pathInfo(),
         $preg_match_results) ){}
 
-  // /tags 
+  // /tags
       else if (preg_match('/^\/tags\/?$/', $request->pathInfo())) {
         $controller = new TagsController();
         $controller->showAllTags();
       }
-  } 
+  }
 
   elseif ($request->method() == "PATCH") {
 
-  // modifier un article 
-  // /articles/update 
+  // modifier un article
+  // /articles/update
       if (
         preg_match('/^\/articles\/edit\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
 
@@ -284,14 +285,10 @@ elseif($request->method()== "PATCH"){
       }
 
     }
-  
+
   else{
     var_dump("toto");
     header("HTTP/1.0 404 Not Found");
     echo file_get_contents("./views/404.html.php");
     echo "La page n'existe pas";
   }
-
- 
-
-

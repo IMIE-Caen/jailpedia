@@ -34,16 +34,29 @@ class UsersController {
 
  	}
 
+  function RoleUser( $log, $password){
+    $PDO = new SQLitePDO();
+    $sql = 'SELECT Role FROM USERS WHERE FirstName = ? and Mdp = ?';
+    $stmt = $PDO->bdd()->prepare($sql) ;
+    $stmt->bindValue(1, $log);
+    $stmt->bindValue(2, $password);
+    $stmt->execute();
+    $role_user = $stmt->fetchAll()[0][0];
+    return $role_user['Role'] ;
+
+  }
+
   function save($param){
   	$PDO = new SQLitePDO();
 
-  	$firstname = $param['firstname']; 
+  	$firstname = $param['firstname'];
   	$lastname = $param['lastname'];
   	$dob = $param['dob'];
   	$email = $param['email'];
   	$password = $param['password'];
+    $role = $param['role'];
 
-  	$sql = 'INSERT INTO USERS ("firstname", "lastname", "dob","email","mdp") VALUES (:firstname, :lastname, :dob, :email, :password) ';
+  	$sql = 'INSERT INTO USERS ("firstname", "lastname", "dob","email","mdp") VALUES (:firstname, :lastname, :dob, :email, :password, :role) ';
   	$stmt = $PDO->bdd()->prepare($sql) ;
   	$stmt->bindValue('firstname', $firstname);
   	$stmt->bindValue('lastname', $lastname);
@@ -52,7 +65,7 @@ class UsersController {
   	$stmt->bindValue('password', $password);
   	 $stmt->execute();
 
-   
+
   }
 
   function delete(){

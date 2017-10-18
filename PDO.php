@@ -23,7 +23,8 @@ class SQLitePDO{
                             lastname VARCHAR(25),
                             dob DATE,
                             email VARCHAR(50),
-                            mdp VARCHAR (25))");
+                            password VARCHAR (25),
+                            Role VARCHAR (25))");
 
         $db->exec("CREATE TABLE IF NOT EXISTS EVALUATIONS (
                             id INTEGER PRIMARY KEY AUTOINCREMENT,
