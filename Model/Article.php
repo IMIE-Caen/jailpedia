@@ -143,4 +143,14 @@ class Article
      $article = $stmt->fetchAll(PDO::FETCH_CLASS,"Article")[0];
      return $article;
   }
+
+
+  public static function getArticleByTitle($title){
+    $sql = "SELECT * FROM ARTICLES WHERE title like ? ";
+    $article = SQLitePDO::bdd()->prepare($sql);
+    $article->execute(array("%$title%"));
+    $result = $article->fetchAll(PDO::FETCH_CLASS,"Article");
+    return $result;
+
+  }
 }
