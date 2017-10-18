@@ -37,7 +37,7 @@ class ArticlesController {
 
   function create() {
     ob_start();
-    include("./views/creationArticles.html.php");
+    include("./views/article/creationArticles.html.php");
     $page_content = ob_get_clean();
     include("./views/layout.html.php");
   }
