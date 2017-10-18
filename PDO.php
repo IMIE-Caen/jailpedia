@@ -36,7 +36,7 @@ class SQLitePDO{
                             note INTEGER,
                             articleId INTEGER NOT NULL,
                             userId INTEGER NOT NULL,
-                            PRIMARY KEY (articleId, userId),
+                            /*PRIMARY KEY (articleId, userId),*/
                             FOREIGN KEY (articleId) REFERENCES ARTICLES(id),
                             FOREIGN KEY (userId) REFERENCES USERS(id)
                             )");
@@ -44,7 +44,7 @@ class SQLitePDO{
         $db->exec("CREATE TABLE IF NOT EXISTS CONTRIBUTIONS (
                             userId INTEGER NOT NULL,
                             articleId INTEGER NOT NULL,
-                            PRIMARY KEY (userId, articleId),
+                            /*PRIMARY KEY (userId, articleId),*/
                             FOREIGN KEY (userId) REFERENCES USERS(id),
                             FOREIGN KEY (articleId) REFERENCES ARTICLES(id)
                             )");
@@ -52,7 +52,7 @@ class SQLitePDO{
         $db->exec("CREATE TABLE IF NOT EXISTS CATEGORISATION (
                             articleId INTEGER NOT NULL,
                             tagId INTEGER NOT NULL,
-                            PRIMARY KEY (articleId,tagId),
+                            /*PRIMARY KEY (articleId,tagId),*/
                             FOREIGN KEY (articleId) REFERENCES ARTICLES(id),
                             FOREIGN KEY (tagId) REFERENCES TAGS(id)
 )");
