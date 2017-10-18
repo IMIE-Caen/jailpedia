@@ -206,18 +206,19 @@ else if($request->method()== "POST"){
     $email = $_POST['login'];
     $pwd = $_POST['password'];
     if($controller->validForAuth($email,$pwd)){
-      $_SESSION['connecte']= true ;
-      $controller->RoleUser($email,$pwd);
+      $_SESSION['connecte'] = true ;
+      $_SESSION['role'] = $controller->RoleUser($email,$pwd);
       header('Location: /articles');
       exit();
-    }else{
+    }
+    else{
       $_SESSION['connecte']= false ;
       header('Location: /signin');
       exit();
     }
   }
 
-  }
+
 
 // recherche article
 else if(
@@ -302,4 +303,5 @@ else if(
     echo file_get_contents("./views/404.html.php");
     echo "La page n'existe pas";
   }
+}
 }

@@ -20,10 +20,17 @@
         <a href="/articles/new" title="Créer un article">Créer un article</a>
       </li>
       <?php
-        if ($role_user['Role'] == 'admin') {
+        if (!isset($_SESSION['role']) == 'admin') {
       ?>
-      <li class="nav-item">
-        <a href="/articles/new" title="Gestion Admin">Gestion Admin</a>
+      <li class="nav-item" >
+          <div class="btn-group">
+            <button type="button" class="btn btn-secondaire dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestion Admin</button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Articles</a>
+            <a class="dropdown-item" href="#">Users</a>
+            <a class="dropdown-item" href="#">Tags</a>
+          </div>
+        </div>
       </li>
       <?php
         } ?>

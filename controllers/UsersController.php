@@ -3,6 +3,8 @@
 //session_start();
 class UsersController {
 
+  public $role_user;
+
   function show($id){
   	$user = User::getUserById($id);
     ob_start();
@@ -38,15 +40,15 @@ class UsersController {
 
  	}
 
-  function RoleUser( $log, $password){
+  function RoleUser( $login, $password){
     $PDO = new SQLitePDO();
     $sql = 'SELECT Role FROM USERS WHERE FirstName = ? and Mdp = ?';
     $stmt = $PDO->bdd()->prepare($sql) ;
-    $stmt->bindValue(1, $log);
+    $stmt->bindValue(1, $login);
     $stmt->bindValue(2, $password);
     $stmt->execute();
     $role_user = $stmt->fetchAll()[0][0];
-    return $role_user['Role'] ;
+    return $role_user['role'] ;
 
   }
 
