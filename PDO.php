@@ -26,6 +26,12 @@ class SQLitePDO{
                             id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                             name VARCHAR(100))");
 
+        $db->exec("CREATE TABLE IF NOT EXISTS IMAGES (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                            articleID INTEGER NOT NULL,
+                            name VARCHAR(255),
+                            FOREIGN KEY  (articleId) REFERENCES ARTICLES(id))");
+
         $db->exec("CREATE TABLE IF NOT EXISTS EVALUATIONS (
                             note INTEGER,
                             articleId INTEGER NOT NULL,

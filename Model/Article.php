@@ -100,11 +100,20 @@ class Article
         return $result[0];
     }
 
-    public static function createArticle($title,$text){
+    public static function createArticle($title,$text,$img){
         //$db = new SQLitePDO();
         $sql = 'INSERT INTO ARTICLES (Title, Text) values(:TITRE,:TEXTE)';
-        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $db = SQLitePDO::bdd();
+        $stmt = $db->prepare($sql);
         $P = array('TITRE' => $title,'TEXTE'=>$text);
+        $stmt->execute($P);
+        $id = $db->lastInsertId();
+        //
+        //$sql = 'INSERT INTO '
+        //var_dump($id);
+        $sql = 'INSERT INTO IMAGES (articleID, name) VALUES (:article, :img)';
+        $stmt = $db->prepare($sql);
+        $P = array('article' => $id, 'img' => $img);
         $stmt->execute($P);
         $stmt->closeCursor();
     }
@@ -133,5 +142,14 @@ class Article
      $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
      return $result;
   }
+
+    public static function getImage($articleId){
+        $sql = "SELECT name FROM IMAGES WHERE articleID = :ID";
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $P = array('ID'=>$articleId);
+        $stmt->execute($P);
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $res["name"];
+    }
 
 }

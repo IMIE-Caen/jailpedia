@@ -53,7 +53,8 @@ class ArticlesController {
   }
 
   public function save($values) {
-    Article::createArticle($values["titre"], $values["texte"]);
+      move_uploaded_file($_FILES['image']['tmp_name'],"images/articles/".$_FILES['image']['name']."");
+      Article::createArticle($values["titre"], $values["texte"],$_FILES['image']['name']);
   }
   
 }
