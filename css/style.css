@@ -133,7 +133,7 @@ nav {
   height: 100px;
   line-height: 100px;
   background-color: #1B5773; /* bleu */
-  overflow: hidden;
+
 }
 
 nav ul {
@@ -170,24 +170,6 @@ nav li {
   transition: all .2s ease;
 }
 
-nav h3 {
-  height: 100px;
-  color: #CEC68F;
-  display: block;
-  margin-top:39%;
-  font-size: 1em;
-  text-align: center;
-  cursor: pointer;
-}
-
-nav h3:hover {
-  color: #1B5773;
-  text-decoration: none;
-}
-
-.SousMenu{
-  color: #CEC68F;
-}
 
 /**
  ** FOOTER

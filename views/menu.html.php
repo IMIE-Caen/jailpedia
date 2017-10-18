@@ -26,9 +26,9 @@
           <div class="btn-group">
             <button type="button" class="btn btn-secondaire dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestion Admin</button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" href="#">Articles</a>
-            <a class="dropdown-item" href="#">Users</a>
-            <a class="dropdown-item" href="#">Tags</a>
+            <a class="dropdown-item" href="/gestion/users">Users</a>
+            <a class="dropdown-item" href="/gestion/articles">Articles</a>
+            <a class="dropdown-item" href="/gestion/tags">Tags</a>
           </div>
         </div>
       </li>
