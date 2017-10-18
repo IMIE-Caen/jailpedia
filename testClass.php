@@ -52,9 +52,13 @@ echo ''.$eval->getUser()->getFirstname() .' '.$eval->getUser()->getLastname() .'
 echo "\n";
 /****************************************/
 //$ajout = Article::createArticle("Fleury Merogis","C'est un article sur Fleury Merogis");
-
+//$createuser = User::createUser("Thibault","Lemesle","20-10-2017","tlemesle@gmail.com","tlua1994");
 $articles = Article::fetchAll();
 var_dump($articles);
+//$contribution = Contribution::setContribution(1,2);
+$contribution = Contribution::getContributionByArticle(2);
+$contribution = Contribution::getContributionByUser(1);
+var_dump($contribution);
 foreach ($articles as $txt){
     echo $txt->getId().' : '.$txt->getTitle() ."\n";
 }
@@ -64,5 +68,7 @@ foreach ($test as $item) {
     echo $item->getTitle();
 }
 
+
+
+
 $test1 = Article::updateArticle("Guantanamo","Article sur Guantanamo",1);
-$test2 = Article::deleteArticle(1);

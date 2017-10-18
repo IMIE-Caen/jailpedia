@@ -3,14 +3,17 @@
 //session_start();
 class UsersController {
 
-  function show($id) {
-    $page_content = "Affichage de l'user $id";
+  function show($id){
+  	$user = User::getUserById($id);
+    ob_start();
+  	include('./views/viewUser.php');
+    $page_content = ob_get_clean();
     include("./views/layout.html.php");
   }
 
   function signUp() {
     ob_start();
-    include('./views/createAccount.php');
+    include('./views/createAccount.html.php');
     $page_content = ob_get_clean();
     include("./views/layout.html.php");
   }
@@ -24,7 +27,7 @@ class UsersController {
 
   function validForAuth($log, $password) {
     $PDO = new SQLitePDO();
-    $sql = 'SELECT * FROM USERS WHERE FirstName = ? and Mdp = ? ';
+    $sql = 'SELECT * FROM USERS WHERE FirstName = ? and password = ? ';
     $stmt = $PDO->bdd()->prepare($sql);
     $stmt->bindValue(1, $log);
     $stmt->bindValue(2, $password);
@@ -48,7 +51,7 @@ class UsersController {
     $email = $param['email'];
     $password = $param['password'];
 
-    $sql = 'INSERT INTO USERS ("firstname", "lastname", "dob","email","mdp") VALUES (:firstname, :lastname, :dob, :email, :password) ';
+    $sql = 'INSERT INTO USERS ("firstname", "lastname", "dob","email","password") VALUES (:firstname, :lastname, :dob, :email, :password) ';
     $stmt = $PDO->bdd()->prepare($sql);
     $stmt->bindValue('firstname', $firstname);
     $stmt->bindValue('lastname', $lastname);
@@ -64,8 +67,26 @@ class UsersController {
   }
 
   function edit($id) {
-    $page_content = "suppression user";
+  	$user = User::getUserById($id);
+  	ob_start();
+    include('./views/editAccount.html.php');
+    $page_content = ob_get_clean();
     include("./views/layout.html.php");
+   
+  }
+
+  function update($param) {
+
+  	$firstname = $param['firstname']; 
+  	$lastname = $param['lastname'];
+    $dob = $param['dob'];
+    $email = $param['email'];
+    $password = $param['password'];
+    $id =$param['id'];
+
+    User::updateUser($firstname,$firstname,$dob,$email,$password,$id); 
+  
+   
   }
 
 }

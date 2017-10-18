@@ -144,4 +144,5 @@ class Article
         $stmt->execute($P);
         $stmt->closeCursor();
     }
+
 }
