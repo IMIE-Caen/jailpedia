@@ -9,10 +9,7 @@
       <label for="texte">Texte de l'article:</label>
       <textarea class="form-control" rows="15" id="texte" name="texte"></textarea>
     </div>
-      <div class="form-group">
-          <label for="image">Image :</label>
-          <input type="file" class="form-control" id="image" name="image" accept="image/x-png,image/gif,image/jpeg">
-      </div>
+
     <div class="form-group">
       <div class="Tags">
         <select class="form-control input-lg select2-single" dir="rtl">
