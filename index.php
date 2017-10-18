@@ -276,7 +276,7 @@ else if ($request->method() == "POST") {
     $controller = new UsersController();
     $controller->update($_POST);
     $id = $_POST['id'];
-    header("Location: /users/$id");
+    header("Location: /");
   }
 }
 

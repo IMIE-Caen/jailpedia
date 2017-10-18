@@ -37,7 +37,7 @@ class ArticlesController {
 
   function create() {
     ob_start();
-    include("./views/creationArticles.html.php");
+    include("./views/article/creationArticles.html.php");
     $page_content = ob_get_clean();
     include("./views/layout.html.php");
   }
@@ -55,6 +55,10 @@ class ArticlesController {
   public function save($values) {
       move_uploaded_file($_FILES['image']['tmp_name'],"images/articles/".$_FILES['image']['name']."");
       Article::createArticle($values["titre"], $values["texte"],$_FILES['image']['name']);
+    $articleId = Article::createArticle($values["titre"], $values["texte"]);
+      Categorisation::addTagToArticle($articleId, $tag);
+    foreach ($values["tags"] as $tag) {
+    }
   }
   
 }

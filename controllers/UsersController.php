@@ -15,14 +15,14 @@ class UsersController {
 
   function signUp() {
     ob_start();
-    include('./views/createAccount.html.php');
+    include('./views/user/createAccount.html.php');
     $page_content = ob_get_clean();
     include("./views/layout.html.php");
   }
 
   function signIn() {
     ob_start();
-    include('./views/signIn.php');
+    include('./views/user/signIn.php');
     $page_content = ob_get_clean();
     include("./views/layout.html.php");
   }
@@ -82,7 +82,7 @@ class UsersController {
   function edit($id) {
   	$user = User::getUserById($id);
   	ob_start();
-    include('./views/editAccount.html.php');
+    include('./views/user/editAccount.html.php');
     $page_content = ob_get_clean();
     include("./views/layout.html.php");
 

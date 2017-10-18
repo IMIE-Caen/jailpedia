@@ -116,6 +116,7 @@ class Article
         $P = array('article' => $id, 'img' => $img);
         $stmt->execute($P);
         $stmt->closeCursor();
+        return SQLitePDO::bdd()->lastInsertId();
     }
 
     public static function updateArticle($title,$text,$id){
@@ -171,4 +172,5 @@ class Article
     return $result;
 
   }
+  
 }

@@ -1,13 +1,13 @@
 <div class="form_article">
-  <form class="form-vertical" method="POST" action="/articles/edit">
-    <h1>Modification d'un article</h1>
+  <form action="/articles/create" class="form-vertical" method="post">
+    <h1>Créer un article</h1>
     <div class="form-group">
-      <label>Titre</label>
-      <input class="form-control" type="text" name="title" value="<?= $article->getTitle(); ?>" />
+      <label for="titre">Titre :</label>
+      <input type="text" class="form-control" id="titre" placeholder="Entrer un titre" name="titre">
     </div>
     <div class="form-group">
-      <label>Texte</label>
-      <textarea name="texte" class="form-control" rows="15"><?= $article->getText(); ?></textarea>
+      <label for="texte">Texte de l'article:</label>
+      <textarea class="form-control" rows="15" id="texte" name="texte"></textarea>
     </div>
     <div class="form-group">
       <div class="Tags">
@@ -17,10 +17,8 @@
         </select>
       </div>
     </div>
-    <input type="hidden" name="id" value="<?= $article->getId(); ?>" />
     <div class="boutonAction">
       <input type="submit"  class="btn btn-default" value="Enregistrer" />
     </div>
   </form>
 </div>
-
