@@ -202,11 +202,12 @@ class User
         $stmt->closeCursor();
     }
 
-    public static function updateUser($firstname,$firstname,$dob,$email,$mdp,$id){
+    public static function updateUser($firstname,$lastname,$dob,$email,$mdp,$id){
         //$db = new SQLitePDO();
-        $sql = 'UPDATE USERS SET firstname = :firstname, firstname = :firstname, dob = :dob , email = :email, mdp =:mdp  where id = :ID';
+        $sql = 'UPDATE USERS SET firstname = :firstname, lastname = :lastname, dob = :dob , email = :email, password
+ =:mdp  where id = :ID';
         $stmt = SQLitePDO::bdd()->prepare($sql);
-        $P = array('firstname' => $firstname,'firstname'=>$firstname, 'dob'=> $dob , 'email'=>$email ,'mdp'=>$mdp,  'ID'=>$id);
+        $P = array('firstname' => $firstname,'lastname'=>$lastname, 'dob'=> $dob , 'email'=>$email ,'mdp'=>$mdp,  'ID'=>$id);
         $stmt->execute($P);
         $stmt->closeCursor();
     }

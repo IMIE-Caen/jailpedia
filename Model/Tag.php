@@ -59,6 +59,47 @@ class Tag
         $this->name = $name;
     }
 
+    public static function fetchAll(){
+        $sql = "SELECT * FROM TAGS";
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Tag");
+        return $result;
+    }
 
+    public static function getTagById($id){
+        // $db = new SQLitePDO();
+        $sql = "SELECT * FROM TAGS WHERE id = ? ";
+        $article = SQLitePDO::bdd()->prepare($sql);
+        $article->execute(array($id));
+        $result = $article->fetchAll(PDO::FETCH_CLASS,"Tag");
+        return $result[0];
+    }
+
+    public static function createTag($name){
+        //$db = new SQLitePDO();
+        $sql = 'INSERT INTO TAGS (name) values(:NAME)';
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $P = array('NAME' => $name);
+        $stmt->execute($P);
+        $stmt->closeCursor();
+    }
+
+    public static function updateTag($name,$id){
+        //$db = new SQLitePDO();
+        $sql = 'UPDATE TAGS SET name = :NAME where id = :ID';
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $P = array('NAME' => $name,'ID'=>$id);
+        $stmt->execute($P);
+        $stmt->closeCursor();
+    }
+
+    public static function deleteTag($id){
+        $sql = 'DELETE FROM TAGS WHERE id = :ID';
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $P = array('ID'=>$id);
+        $stmt->execute($P);
+        $stmt->closeCursor();
+    }
 
 }

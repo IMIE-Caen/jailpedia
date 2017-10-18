@@ -100,7 +100,7 @@ class Contribution
     }
 
     public static function getContributionByUser($userId){
-        $sql = "SELECT a.id, a.title, a.text, a.tag FROM ARTICLES a 
+        $sql = "SELECT a.id, a.title, a.text FROM ARTICLES a 
         INNER JOIN CONTRIBUTIONS c ON a.id = c.articleId WHERE c.userId = ? ";
         $article = SQLitePDO::bdd()->prepare($sql);
         $article->execute(array($userId));

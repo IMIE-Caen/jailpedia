@@ -15,4 +15,3 @@ class MyHttp{
         return $_SERVER['PATH_INFO'];
     }
 }
-

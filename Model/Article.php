@@ -20,10 +20,6 @@ class Article
      * @var string text of the article
      */
     private $text;
-    /**
-     * @var Tag article's tag
-     */
-    private $tag;
 
     /**
      * Article constructor.
@@ -86,21 +82,6 @@ class Article
         $this->text = $text;
     }
 
-    /**
-     * @return Tag
-     */
-    public function getTag()
-    {
-        return $this->tag;
-    }
-
-    /**
-     * @param Tag $tag
-     */
-    public function setTag($tag)
-    {
-        $this->tag = $tag;
-    }
 
     public static function fetchAll(){
         $sql = "SELECT * FROM ARTICLES";
