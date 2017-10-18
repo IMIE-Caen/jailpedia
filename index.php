@@ -206,7 +206,7 @@ else if ($request->method() == "POST") {
       header('Location: /articles');
       exit();
     } else {
-      $_SESSION['connecte'] = false;
+      //$_SESSION['connecte'] = false;
       header('Location: /signin');
       exit();
     }
