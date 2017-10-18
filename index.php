@@ -240,7 +240,6 @@ else if(
         $controller = new TagsController();
         $controller->showAllTags();
       }
-  }
 
   elseif ($request->method() == "PATCH") {
 
@@ -303,3 +302,4 @@ else if(
     echo file_get_contents("./views/404.html.php");
     echo "La page n'existe pas";
   }
+}

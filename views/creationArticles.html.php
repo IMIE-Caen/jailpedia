@@ -26,21 +26,17 @@
               foreach ($tags_list as $tag) {
                 ?>
                 <option value="<?php echo $tag['ID'] ?>"><?php echo $tag['Name']; ?></option>
-<?php } ?>
+              <?php } ?>
             </optgroup>
           </select>
           <button type="submit" class="btn btn-default" id="add">Add</button>
         </div>
-    </div>
-    <div class="form-group">
-      <div class="Tags">
-        <select class="form-control input-lg select2-single" dir="rtl">
-          <!-- Liste des tags à mettre pus tard -->
-        </select>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-default">Enregister</button>
-  </form>
+        </div>
+
+      <button type="submit" class="btn btn-default">Enregister</button>
+    </form>
+  </div>
+  </div>
 </div>
 <!--
 <script>
