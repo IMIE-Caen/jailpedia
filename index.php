@@ -225,6 +225,18 @@ else if($request->method()== "POST"){
     }
   }
 
+   // modifier un article
+  // /articles/update
+  else if(
+      preg_match('/^\/articles\/edit\/?$/',
+        $request->pathInfo(),
+        $preg_match_results) ){
+          $controller = new ArticlesController();
+          $controller->update($_POST);
+           $id = $_POST['id'];
+          header("Location: /articles/$id");
+        }
+        
   }
 
 // recherche article
@@ -236,14 +248,7 @@ else if(
 
 }
 
- // modifier un article
-  // /articles/update
-    if(
-      preg_match('/^\/articles\/edit\/?$/',
-        $request->pathInfo(),
-        $preg_match_results) ){
 
-        }
 
   // /tags 
       else if (preg_match('/^\/tags\/?$/', $request->pathInfo())) {

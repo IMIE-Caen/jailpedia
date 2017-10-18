@@ -26,6 +26,10 @@ class ArticlesController {
     include("./views/layout.html.php");
   }
 
+  function update($values) {
+    Article::updateArticle($values["title"], $values["texte"], $values["id"]);
+  }
+  
   function delete() {
     $page_content = "suppression article ";
     include("./views/layout.html.php");
