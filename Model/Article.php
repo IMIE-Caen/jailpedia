@@ -107,6 +107,7 @@ class Article
         $P = array('TITRE' => $title,'TEXTE'=>$text);
         $stmt->execute($P);
         $stmt->closeCursor();
+        return SQLitePDO::bdd()->lastInsertId();
     }
 
     public static function updateArticle($title,$text,$id){
@@ -133,5 +134,5 @@ class Article
      $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
      return $result;
   }
-
+  
 }

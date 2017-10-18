@@ -11,8 +11,9 @@
     </div>
     <div class="form-group">
       <div class="Tags">
-        <select class="form-control input-lg select2-single" dir="rtl">
-          <!-- Liste des tags à mettre pus tard -->
+        <label for="tags">Tags</label>
+        <select id="tags" style="width: 100%;" class="select2-single" name="tags[]" multiple="multiple">
+          <?php include ("views/tag/select.html.php"); ?>
         </select>
       </div>
     </div>
@@ -21,17 +22,3 @@
     </div>
   </form>
 </div>
-<!--
-<script>
-  $(".select2-single, .select2-multiple").select2({
-    theme: "bootstrap",
-    placeholder: "Entrer ou sÃ©lectionner un ou plusieurs tags",
-    maximumSelectionSize: 6,
-    containerCssClass: ':all:'
-  });
-
-  $(":checkbox").on("click", function () {
-    $(this).parent().nextAll("select").prop("disabled", !this.checked);
-  });
-</script>
--->

@@ -9,6 +9,14 @@
       <label>Texte</label>
       <textarea name="texte" class="form-control" rows="15"><?= $article->getText(); ?></textarea>
     </div>
+    <div class="form-group">
+      <div class="Tags">
+        <label for="tags">Tags</label>
+        <select id="tags" style="width: 100%;" class="select2-single" name="tags[]" multiple="multiple">
+          <?php include ("views/tag/select.html.php"); ?>
+        </select>
+      </div>
+    </div>
     <input type="hidden" name="id" value="<?= $article->getId(); ?>" />
     <div class="boutonAction">
       <input type="submit"  class="btn btn-default" value="Enregistrer" />

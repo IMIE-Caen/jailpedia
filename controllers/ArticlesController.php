@@ -53,7 +53,10 @@ class ArticlesController {
   }
 
   public function save($values) {
-    Article::createArticle($values["titre"], $values["texte"]);
+    $articleId = Article::createArticle($values["titre"], $values["texte"]);
+    foreach ($values["tags"] as $tag) {
+      Categorisation::addTagToArticle($articleId, $tag);
+    }
   }
   
 }
