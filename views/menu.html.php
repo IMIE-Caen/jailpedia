@@ -21,6 +21,7 @@
       </li>
       <?php
         if (!isset($_SESSION['role']) == 'admin') {
+
       ?>
       <li class="nav-item" >
           <div class="btn-group">

@@ -165,10 +165,10 @@ else if ($request->method() == "GET") {
    * Affiche le formulaire de recherche d'un article
    * url = /articles/search
    */
-  else if (preg_match('/^\/articles\/search\/?$/', $request->pathInfo())) {
+  /*else if (preg_match('/^\/articles\/search\/?$/', $request->pathInfo())) {
     $controller = new ArticlesController();
     $controller->search();
-  }
+  }*/
 
   /**
    * Déconnecte un utilisateur
@@ -217,6 +217,23 @@ else if ($request->method() == "POST") {
     $controller = new ArticlesController();
     $controller->save($_POST);
   }
+  /**
+   * Ajoute un Tag
+   * url = /gestion/tags/create
+   */
+  if (preg_match('/^\/gestion\/tags\/create\/?$/', $request->pathInfo(), $preg_match_results)) {
+    $name = $preg_match_results[1];
+    $controller = new Tags();
+    $controller->createTag($name);
+    header("location:" . $_SERVER['HTTP_REFERER']);
+  }
+
+  else if (preg_match('/^\/gestion\/users\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
+    $id = $preg_match_results[1];
+    $controller = new User();
+    $controller->deleteUser($id);
+    header("location:" . $_SERVER['HTTP_REFERER']);
+  }
 
   /**
    * Enregistre un utilisateur
@@ -242,7 +259,7 @@ else if ($request->method() == "POST") {
       header('Location: /articles');
       exit();
     } else {
-      $_SESSION['connecte'] = false;
+      //$_SESSION['connecte'] = false;
       header('Location: /signin');
       exit();
     }
@@ -263,9 +280,9 @@ else if ($request->method() == "POST") {
    * Recherche un article
    * url = /articles
    */
-  else if (preg_match('/^\/articles\/?$/', $request->pathInfo())) {
+  else if (preg_match('/^\/articles\/search\/?$/', $request->pathInfo())) {
     $controller = new ArticlesController();
-    $controller->searchArticle();
+    $controller->search($_POST);
   }
 
   /**
@@ -276,7 +293,7 @@ else if ($request->method() == "POST") {
     $controller = new UsersController();
     $controller->update($_POST);
     $id = $_POST['id'];
-    header("Location: /users/$id");
+    header("Location: /");
   }
 }
 

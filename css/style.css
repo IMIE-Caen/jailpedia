@@ -10,6 +10,12 @@
 /**
  ** COMMUN
 *************************************/
+h1, .title-h1 {
+  color: #1B5773;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 h2, .title-h2 {
   padding: 5px 0;
   color: #1B5773;
@@ -45,50 +51,40 @@ body {
   text-decoration: none;
 }
 
+form {
+  background-color: #91b5c6;
+  padding: 20px;
+  color: #fff;
+  box-sizing: border-box;
+}
 
-/**
- ** HEADER
-*************************************/
-.headline > span {
-  display: block;
+form .boutonAction {
   text-align: center;
 }
 
-.headline .headline-l1 {
-  font-family: 'Fascinate Inline', cursive;
-  font-size: 3em;
+form .boutonAction input {
+  color: #fff;
+  background-color: #1B5773;
+  border: 1px solid #1B5773;
+  transition: all .2s ease;
 }
 
-.headline .headline-l2 {
+form .boutonAction input:hover {
   color: #1B5773;
-  font-size: 1rem;
-}
-
-.headline-l1 > *:nth-child(odd) {
-  color: #1B5773;
-}
-
-.headline-l1 > *:nth-child(even) {
-  color: #CEC68F;
-}
-
-header {
   background-color: #fff;
+  border: 1px solid #1B5773;
 }
-header button {
+
+
+.btn {
   cursor: pointer;
-}
-
-.content {
-  min-height: 1000px;
-  padding: 40px;
-  background-color: #fff;
-  box-shadow: 0 0 20px #000;
 }
 
 /**
  ** HEADER
 *************************************/
+header form { background-color: #fff; }
+
 .headline > span {
   display: block;
   text-align: center;
@@ -228,4 +224,12 @@ footer {
 
 .listArticle .article .article-text {
   color: #777;
+}
+
+/**
+ ** Formulaire de connexion
+*************************************/
+.form-connexion { 
+  width: 50%;
+  margin: 0 auto;
 }

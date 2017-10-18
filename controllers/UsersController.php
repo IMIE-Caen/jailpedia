@@ -15,28 +15,28 @@ class UsersController {
 
   function signUp() {
     ob_start();
-    include('./views/createAccount.html.php');
+    include('./views/user/createAccount.html.php');
     $page_content = ob_get_clean();
     include("./views/layout.html.php");
   }
 
   function signIn() {
     ob_start();
-    include('./views/signIn.php');
+    include('./views/user/signIn.php');
     $page_content = ob_get_clean();
     include("./views/layout.html.php");
   }
 
   function validForAuth($log, $password) {
     $PDO = new SQLitePDO();
-    $sql = 'SELECT * FROM USERS WHERE firstname = ? and password = ? ';
+    $sql = 'SELECT * FROM USERS WHERE email = ? and password = ? ';
     $stmt = $PDO->bdd()->prepare($sql);
     $stmt->bindValue(1, $log);
     $stmt->bindValue(2, $password);
-	  $stmt->execute();
-
+    $stmt->execute();
     $userValid = $stmt->fetchAll()[0][0];
-    return $userValid == 1 ;
+      var_dump($userValid);
+      return $userValid == true ;
 
  	}
 
@@ -82,7 +82,7 @@ class UsersController {
   function edit($id) {
   	$user = User::getUserById($id);
   	ob_start();
-    include('./views/editAccount.html.php');
+    include('./views/user/editAccount.html.php');
     $page_content = ob_get_clean();
     include("./views/layout.html.php");
 
