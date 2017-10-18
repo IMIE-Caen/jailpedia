@@ -3,10 +3,10 @@
     <a class="logo col-2" href="/" title="Jailpedia">
       <img class="img-fluid" src="/images/logo.png" alt="Logo Jailpedia" title="Jailpedia" />
     </a>
-    <form class="col-6 form-group row">
+    <form class="col-6 form-group row" action= "/articles/search" method="POST">
       <div class="form-row align-items-center">
         <div class="col-auto">
-          <input class="form-control mr-sm-2" type="text" placeholder="Rechercher" aria-label="Rechercher">
+          <input class="form-control mr-sm-2" type="text" placeholder="Rechercher" aria-label="Rechercher" name="search">
         </div>
         <div class="col-auto">
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Rechercher</button>

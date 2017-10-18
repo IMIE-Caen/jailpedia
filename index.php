@@ -165,10 +165,10 @@ else if ($request->method() == "GET") {
    * Affiche le formulaire de recherche d'un article
    * url = /articles/search
    */
-  else if (preg_match('/^\/articles\/search\/?$/', $request->pathInfo())) {
+  /*else if (preg_match('/^\/articles\/search\/?$/', $request->pathInfo())) {
     $controller = new ArticlesController();
     $controller->search();
-  }
+  }*/
 
   /**
    * Déconnecte un utilisateur
@@ -263,9 +263,9 @@ else if ($request->method() == "POST") {
    * Recherche un article
    * url = /articles
    */
-  else if (preg_match('/^\/articles\/?$/', $request->pathInfo())) {
+  else if (preg_match('/^\/articles\/search\/?$/', $request->pathInfo())) {
     $controller = new ArticlesController();
-    $controller->searchArticle();
+    $controller->search($_POST);
   }
 
   /**

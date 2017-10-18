@@ -42,15 +42,15 @@ class ArticlesController {
     include("./views/layout.html.php");
   }
 
-  function search() {
-    $page_content = "rechercher article ";
+  function search($param) {
+    $title = $param['search']; 
+    $articles = Article::getArticleByTitle($title);
+    ob_start();
+    include("./views/article/list.html.php");
+    $page_content =ob_get_clean() ;
     include("./views/layout.html.php");
   }
 
-  function searchArticle() {
-    $page_content = "rechercher article ";
-    include("./views/layout.html.php");
-  }
 
   public function save($values) {
       move_uploaded_file($_FILES['image']['tmp_name'],"images/articles/".$_FILES['image']['name']."");
