@@ -13,7 +13,7 @@
 h2, .title-h2 {
   padding: 5px 0;
   color: #1B5773;
-  border-bottom: 1px solid #CEC68F; 
+  border-bottom: 1px solid #CEC68F;
 }
 
 body {
@@ -168,6 +168,25 @@ nav a {
 nav li {
   padding: 0 10px;
   transition: all .2s ease;
+}
+
+nav h3 {
+  height: 100px;
+  color: #CEC68F;
+  display: block;
+  margin-top:39%;
+  font-size: 1em;
+  text-align: center;
+  cursor: pointer;
+}
+
+nav h3:hover {
+  color: #1B5773;
+  text-decoration: none;
+}
+
+.SousMenu{
+  color: #CEC68F;
 }
 
 /**

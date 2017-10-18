@@ -200,8 +200,9 @@ else if ($request->method() == "POST") {
     $controller = new UsersController();
     $email = $_POST['login'];
     $pwd = $_POST['password'];
-    if ($controller->validForAuth($email, $pwd)) {
-      $_SESSION['connecte'] = true;
+    if($controller->validForAuth($email,$pwd)){
+      $_SESSION['connecte'] = true ;
+      $_SESSION['role'] = $controller->RoleUser($email,$pwd);
       header('Location: /articles');
       exit();
     } else {
@@ -257,6 +258,8 @@ else if ($request->method() == "DELETE") {
     $controller = new ArticlesController();
     $controller->delete($id);
   }
+}
+}
 
   /**
    * Supprime un utilisateur

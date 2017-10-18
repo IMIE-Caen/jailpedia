@@ -3,6 +3,8 @@
 //session_start();
 class UsersController {
 
+  public $role_user;
+
   function show($id){
   	$user = User::getUserById($id);
     ob_start();
@@ -31,34 +33,45 @@ class UsersController {
     $stmt = $PDO->bdd()->prepare($sql);
     $stmt->bindValue(1, $log);
     $stmt->bindValue(2, $password);
-    $stmt->execute();
+	  $stmt->execute();
 
-    $userValid = $stmt->fetch();
-    if ($userValid["id"] == NULL) {
-      return false;
-    }
-    $_SESSION["user"] = User::getUserById($userValid["id"]);
-    return true;
-    
+    $userValid = $stmt->fetchAll()[0][0];
+    return $userValid == 1 ;
+
+ 	}
+
+  function RoleUser( $login, $password){
+    $PDO = new SQLitePDO();
+    $sql = 'SELECT Role FROM USERS WHERE FirstName = ? and Mdp = ?';
+    $stmt = $PDO->bdd()->prepare($sql) ;
+    $stmt->bindValue(1, $login);
+    $stmt->bindValue(2, $password);
+    $stmt->execute();
+    $role_user = $stmt->fetchAll()[0][0];
+    return $role_user['role'] ;
+
   }
 
-  function save($param) {
-    $PDO = new SQLitePDO();
+  function save($param){
+  	$PDO = new SQLitePDO();
 
-    $firstname = $param['firstname'];
-    $lastname = $param['lastname'];
-    $dob = $param['dob'];
-    $email = $param['email'];
-    $password = $param['password'];
+  	$firstname = $param['firstname'];
+  	$lastname = $param['lastname'];
+  	$dob = $param['dob'];
+  	$email = $param['email'];
+  	$password = $param['password'];
+    $role = $param['role'];
 
-    $sql = 'INSERT INTO USERS ("firstname", "lastname", "dob","email","password") VALUES (:firstname, :lastname, :dob, :email, :password) ';
-    $stmt = $PDO->bdd()->prepare($sql);
-    $stmt->bindValue('firstname', $firstname);
-    $stmt->bindValue('lastname', $lastname);
-    $stmt->bindValue('dob', $dob);
-    $stmt->bindValue('email', $email);
-    $stmt->bindValue('password', $password);
-    $stmt->execute();
+  	$sql = 'INSERT INTO USERS ("firstname", "lastname", "dob","email","mdp") VALUES (:firstname, :lastname, :dob, :email, :password, :role) ';
+  	$stmt = $PDO->bdd()->prepare($sql) ;
+  	$stmt->bindValue('firstname', $firstname);
+  	$stmt->bindValue('lastname', $lastname);
+  	$stmt->bindValue('dob', $dob);
+  	$stmt->bindValue('email', $email);
+  	$stmt->bindValue('password', $password);
+  	 $stmt->execute();
+
+
   }
 
   function delete() {
@@ -72,12 +85,12 @@ class UsersController {
     include('./views/editAccount.html.php');
     $page_content = ob_get_clean();
     include("./views/layout.html.php");
-   
+
   }
 
   function update($param) {
 
-  	$firstname = $param['firstname']; 
+  	$firstname = $param['firstname'];
   	$lastname = $param['lastname'];
     $dob = $param['dob'];
     $email = $param['email'];
