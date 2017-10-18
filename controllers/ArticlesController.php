@@ -19,10 +19,17 @@ class ArticlesController {
   }
 
   function edit($id) {
-    $page_content = "Modifier article $id";
+    $article = Article::getArticleById($id);
+    ob_start();
+    include("./views/article/edit.html.php");
+    $page_content = ob_get_clean();
     include("./views/layout.html.php");
   }
 
+  function update($values) {
+    Article::updateArticle($values["title"], $values["texte"], $values["id"]);
+  }
+  
   function delete() {
     $page_content = "suppression article ";
     include("./views/layout.html.php");
