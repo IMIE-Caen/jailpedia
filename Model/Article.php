@@ -134,4 +134,13 @@ class Article
      return $result;
   }
 
+
+    public static function randomArticle(){
+     $sql = "SELECT * FROM ARTICLES ORDER BY RANDOM() LIMIT 1 ";
+     $stmt = SQLitePDO::bdd()->prepare($sql);
+     $stmt->execute();
+     
+     $article = $stmt->fetchAll(PDO::FETCH_CLASS,"Article")[0];
+     return $article;
+  }
 }
