@@ -1,4 +1,5 @@
-<form action="/users/signin" method="POST">
+<form class="form-vertical" action="/users/signin" method="POST">
+  <h1>Connexion</h1>
     <div>
         <label for="login"> Login :</label>
         <input type="text" id="login" name="login"/>

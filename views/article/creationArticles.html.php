@@ -1,5 +1,5 @@
 <div class="form_article">
-  <h2>Créer un article</h2>
+  <h1>Créer un article</h1>
   <form action="/articles/create" class="form-vertical" method="post">
     <div class="form-group">
       <label for="titre">Titre :</label>

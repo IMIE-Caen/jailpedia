@@ -1,27 +1,27 @@
-<form action="/users/save" method="POST">
-    <h3> Création d'un compte </h3>
-    <div>
+<form action="/users/save" method="POST" class="form-vertical">
+  <h1>Création d'un compte</h1>
+    <div class="form-group">
         <label for="fisrtname"> Prenom :</label>
-        <input type="text" id="firstname" name="firstname"/>
+        <input class="form-control" type="text" id="firstname" name="firstname"/>
     </div>
-    <div>
+    <div class="form-group">
         <label for="lastname">Nom :</label>
-        <input type="text" id="lastname" name="lastname" />
+        <input class="form-control" type="text" id="lastname" name="lastname" />
     </div>
-    <div>
+    <div class="form-group">
         <label for="dob">Date de naissance :</label>
-        <input type="date" id="dob" name="dob" />
+        <input class="form-control" type="date" id="dob" name="dob" />
     </div>
-    <div>
+    <div class="form-group">
         <label for="email">Email</label>
-        <input type="mail" id="email" name="email" />
+        <input class="form-control" type="email" id="email" name="email" />
     </div>
-    <div>
+    <div class="form-group">
         <label for="mdp">Mot de passe</label>
-        <input type="password" id="password" name="password" />
+        <input class="form-control" type="password" id="password" name="password" />
     </div>
-    <div>
-    <button type="submit">OK</button>
+    <div class="boutonAction">
+      <input type="submit" value="Créer un compte" class="btn btn-default" />
     </div>
 </form>
 
