@@ -1,6 +1,6 @@
 <nav class="container navbar navbar-expand-lg">
     <ul class="navbar-nav">
-      <?php 
+      <?php
         if (!isset($_SESSION['connecte'])) {
       ?>
       <li class="nav-item">
@@ -14,12 +14,29 @@
       else {
          ?>
       <li class="nav-item">
-             
         <a href="/logout" title="Deconnexion">Se deconnecter</a>
       </li>
-
-      <?php 
+      <li class="nav-item">
+        <a href="/articles/new" title="Créer un article">Créer un article</a>
+      </li>
+      <?php
+        if (!isset($_SESSION['role']) == 'admin') {
+      ?>
+      <li class="nav-item" >
+          <div class="btn-group">
+            <button type="button" class="btn btn-secondaire dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestion Admin</button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="#">Articles</a>
+            <a class="dropdown-item" href="#">Users</a>
+            <a class="dropdown-item" href="#">Tags</a>
+          </div>
+        </div>
+      </li>
+      <?php
         } ?>
+      <?php
+        } ?>
+
     </ul>
   <?php // var_dump($_SESSION["user"]); exit; ?>
   <?php if (isset($_SESSION["user"])) { ?>

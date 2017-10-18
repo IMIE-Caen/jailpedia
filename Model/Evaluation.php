@@ -104,5 +104,32 @@ class Evaluation
     }
 
 
+    public static function addEvaluationToArticle($articleId, $userId, $note){
+        $sql = 'INSERT INTO EVALUATIONS (articleId, userId, note) VALUES (:articleId,:userId, :note) ';
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $P = array('articleId' => $articleId,'userId'=>$userId,'note'=>$note);
+        $stmt->execute($P);
+        $stmt->closeCursor();
+    }
 
+    public static function getAverageNoteArticle($articleId){
+        $sql = "SELECT AVG(note) FROM EVALUATIONS WHERE articleId = ? ";
+        $article = SQLitePDO::bdd()->prepare($sql);
+        $article->execute(array($articleId));
+        $result = $article->fetch(PDO::FETCH_ASSOC);
+        //$result = $article->fetchAll(PDO::FETCH_CLASS,"Tag");
+        //echo var_dump($result);
+        return $result["AVG(note)"];
+    }
+
+    public static function getUserNoteArticle($articleId,$userId){
+        $sql = "SELECT note FROM EVALUATIONS WHERE articleId = :ARTICLEID and userId= :USERID ";
+        $article = SQLitePDO::bdd()->prepare($sql);
+        $P = array('ARTICLEID' => $articleId,'USERID'=>$userId);
+        $article->execute($P);
+        //$result = $article->fetchAll(PDO::FETCH_CLASS,"Article");
+        $result = $article->fetch(PDO::FETCH_ASSOC);
+        //var_dump($result);
+        return $result["note"];
+    }
 }

@@ -15,8 +15,12 @@ function __autoload($className) {
   } else if (file_exists("./Model/" . $className . '.php')) {
     require_once "./Model/" . $className . '.php';
     return true;
-  } else {
-    return false;
+  }
+  else if (file_exists("./tools/".$className . '.php')){
+    require_once "./tools/".$className . '.php';
+    return true;
+  } else{
+      return false;
   }
 }
 
@@ -27,8 +31,8 @@ $preg_match_results = [];
 
 if ($request->pathInfo() == "/") {
   $controller = new HomeController();
-  $controller->render();
-} 
+    $controller->render();
+}
 
 /***********
  * GET
@@ -196,8 +200,9 @@ else if ($request->method() == "POST") {
     $controller = new UsersController();
     $email = $_POST['login'];
     $pwd = $_POST['password'];
-    if ($controller->validForAuth($email, $pwd)) {
-      $_SESSION['connecte'] = true;
+    if($controller->validForAuth($email,$pwd)){
+      $_SESSION['connecte'] = true ;
+      $_SESSION['role'] = $controller->RoleUser($email,$pwd);
       header('Location: /articles');
       exit();
     } else {
@@ -253,6 +258,8 @@ else if ($request->method() == "DELETE") {
     $controller = new ArticlesController();
     $controller->delete($id);
   }
+}
+
 
   /**
    * Supprime un utilisateur
@@ -262,5 +269,5 @@ else if ($request->method() == "DELETE") {
     $id = $preg_match_results[1];
     $controller = new ArticlesController();
     $controller->delete($id);
-  }
+
 }
