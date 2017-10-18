@@ -259,7 +259,7 @@ else if ($request->method() == "DELETE") {
     $controller->delete($id);
   }
 }
-}
+
 
   /**
    * Supprime un utilisateur
@@ -269,5 +269,5 @@ else if ($request->method() == "DELETE") {
     $id = $preg_match_results[1];
     $controller = new ArticlesController();
     $controller->delete($id);
-  }
+
 }

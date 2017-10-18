@@ -42,7 +42,7 @@ class UsersController {
 
   function RoleUser( $login, $password){
     $PDO = new SQLitePDO();
-    $sql = 'SELECT Role FROM USERS WHERE FirstName = ? and Mdp = ?';
+    $sql = 'SELECT Role FROM USERS WHERE firstname = ? and password = ?';
     $stmt = $PDO->bdd()->prepare($sql) ;
     $stmt->bindValue(1, $login);
     $stmt->bindValue(2, $password);
