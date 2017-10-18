@@ -15,13 +15,13 @@ require_once('Model/Categorisation.php');
 require_once('PDO.php');
 require_once('controllers/UsersController.php');
 
-//$ajout = Article::createArticle("Fleury Merogis","C'est un article sur Fleury Merogis");
+//$ajout = Article::createArticle("Fleury Merogis","C'est un article sur Fleury Merogis","odg");
 //$createuser = User::createUser("Thibault","Lemesle","20-10-2017","tlemesle@gmail.com","tlua1994");
 //$createuser = User::createUser("Valentin","Gallien","20-10-2017","valentin.gallien@imie.fr","toto");
 //$createuser = User::createUser("Cindy","Castel","20-10-2017","cindy.castel@imie.fr","toto");
 //$createuser = User::createUser("Benjamin","Aubert","20-10-2017","benjamin.aubert@imie.fr","toto");
 
-//$createtag = Tag::createTag("Prisons d'Europe");
+$createtag = Tag::createTag("Prisons d'Europe");
 $articles = Article::fetchAll();
 //$contribution = Contribution::setContribution(1,1);
 //$contribution = Contribution::getContributionByArticle(1);
