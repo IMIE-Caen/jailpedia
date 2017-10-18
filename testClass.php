@@ -11,6 +11,7 @@ require_once('Model/User.php');
 require_once('Model/Contribution.php');
 require_once('Model/Evaluation.php');
 require_once('Model/Tag.php');
+require_once('Model/Categorisation.php');
 require_once('PDO.php');
 
 
@@ -20,7 +21,7 @@ $tag->setName("Prisons célèbres");
 $article = new Article();
 $article->setTitle("Alcatraz");
 $article->setText("Ceci est un texte sur Alcatraz");
-$article->setTag($tag);
+
 
 $user1 = new User();
 $user1->setFirstname("Bernard");
@@ -51,14 +52,16 @@ echo "\n";
 echo ''.$eval->getUser()->getFirstname() .' '.$eval->getUser()->getLastname() .' a mis la note de '.$eval->getNote() .' pour l\'article '.$eval->getArticle()->getTitle();
 echo "\n";
 /****************************************/
-//$ajout = Article::createArticle("Fleury Merogis","C'est un article sur Fleury Merogis");
-//$createuser = User::createUser("Thibault","Lemesle","20-10-2017","tlemesle@gmail.com","tlua1994");
+$ajout = Article::createArticle("Fleury Merogis","C'est un article sur Fleury Merogis");
+$createuser = User::createUser("Thibault","Lemesle","20-10-2017","tlemesle@gmail.com","tlua1994");
+$createtag = Tag::createTag("Prisons d'Europe");
 $articles = Article::fetchAll();
 var_dump($articles);
-//$contribution = Contribution::setContribution(1,2);
-$contribution = Contribution::getContributionByArticle(2);
-$contribution = Contribution::getContributionByUser(1);
+//$contribution = Contribution::setContribution(1,1);
+$contribution = Contribution::getContributionByArticle(1);
 var_dump($contribution);
+
+$contribution = Contribution::getContributionByUser(1);
 foreach ($articles as $txt){
     echo $txt->getId().' : '.$txt->getTitle() ."\n";
 }
@@ -68,7 +71,10 @@ foreach ($test as $item) {
     echo $item->getTitle();
 }
 
+//$test = Categorisation::addTagToArticle(1,1);
+$test1 = Categorisation::getArticleByTag(1);
+var_dump($test1);
+$test2 = Categorisation::getTagByArticle(1);
+var_dump($test2);
 
-
-
-$test1 = Article::updateArticle("Guantanamo","Article sur Guantanamo",1);
+//$test1 = Article::updateArticle("Guantanamo","Article sur Guantanamo",1);

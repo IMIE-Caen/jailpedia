@@ -84,7 +84,7 @@ class UsersController {
     $password = $param['password'];
     $id =$param['id'];
 
-    User::updateUser($firstname,$firstname,$dob,$email,$password,$id); 
+    User::updateUser($firstname,$lastname,$dob,$email,$password,$id);
   
    
   }
