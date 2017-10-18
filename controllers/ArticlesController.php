@@ -19,7 +19,10 @@ class ArticlesController {
   }
 
   function edit($id) {
-    $page_content = "Modifier article $id";
+    $article = Article::getArticleById($id);
+    ob_start();
+    include("./views/article/edit.html.php");
+    $page_content = ob_get_clean();
     include("./views/layout.html.php");
   }
 

@@ -239,9 +239,11 @@ else if(
  // modifier un article
   // /articles/update
     if(
-      preg_match('/^\/articles\/edit\/(\d+)\/?$/',
+      preg_match('/^\/articles\/edit\/?$/',
         $request->pathInfo(),
-        $preg_match_results) ){}
+        $preg_match_results) ){
+
+        }
 
   // /tags 
       else if (preg_match('/^\/tags\/?$/', $request->pathInfo())) {
