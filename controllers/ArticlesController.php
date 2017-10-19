@@ -4,6 +4,7 @@ class ArticlesController {
 
   function show($id) {
     $article = Article::getArticleById($id);
+    $note = Evaluation::getUserNoteArticle($id);
     if($article != Null){
       ob_start();
       include("./views/article/view.html.php");
