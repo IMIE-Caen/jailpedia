@@ -53,4 +53,6 @@ var_dump($tag);
 
 $articles = Categorisation::getArticleByTag(1);
 var_dump($articles);
+
+$user = User::updateUser("test","test","20-10-2017","test@test.fr","test","admin",6);
 //$test1 = Article::updateArticle("Guantanamo","Article sur Guantanamo",1);
