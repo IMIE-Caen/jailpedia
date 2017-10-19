@@ -19,10 +19,16 @@
       <li class="nav-item">
         <a href="/articles/new" title="Créer un article">Créer un article</a>
       </li>
-      <li class="nav-item">
-        <a href="#" title="Mon compte">Mon compte</a>
-      </li>
-      <?php
+        <?php 
+          if (isset( $_SESSION['userConnect'])) { 
+            $id = $_SESSION['userConnect'][0]; 
+        ?>
+            
+        <li class="nav-item">
+          <a href="/users/<?= $id ?>" title="Mon compte">Mon compte</a>
+        </li>
+      <?php 
+        }
        if ($_SESSION['role'] == 'admin'){
 
       ?>
@@ -42,11 +48,11 @@
         } ?>
 
     </ul>
-  <?php // var_dump($_SESSION["user"]); exit; ?>
-  <?php if (isset($_SESSION["user"])) { ?>
-     Bonjour <?= $_SESSION["user"]->getFirstname(); ?>
-  <?php } ?>
+  
     <a class="paypal" href="http://www.paypal.com" title="Faire un don" target="_blank">
       <img src="/images/paypal.png" alt="Logo Paypal" title="Paypal" />
     </a>
 </nav>
+
+
+
