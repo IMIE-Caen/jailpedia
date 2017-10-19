@@ -98,12 +98,12 @@ $router->get('indexTags', '/^\/tags\/?/',
 
 $router->get('createTag','/^\/tag\/add\/?$/', function($request){
   (new TagsController())->add($_POST["tag"]);
-})
+});
 
 $router->get('deleteTag','/^\/tag\/delete\/(\d+)\/?$/', function($request){
   $id = $preg_match_results[1];
   (new TagsController())->delete($id);
-})
+});
 
 // session
 
@@ -146,7 +146,7 @@ $router->get('gestionUsers', '/^\/gestion\/users\/?$/', function($request){
 $router->post('gestionUpdateUser','/^\/gestion\/users\/update\/(\d+)\/?$/', function($request){
   (new UsersController())->update($_POST);
   header("location:" . $_SERVER['HTTP_REFERER']);
-})
+});
 $router->get('gestionDeleteUsers', '/^\/gestion\/users\/(\d+)\/?$/', function($request){
   $id = $request->routerParams[1];
   (new UsersController())->deleteUser($id);
@@ -167,7 +167,7 @@ $router->get('newTag','/^\/gestion\/tags\/create\/?$/', function($request){
   $name = $preg_match_results[1];
   (new TagsController())->createTag($name);
   header("location:" . $_SERVER['HTTP_REFERER']);
-})
+});
 
 if($router->dispatch($request))
   exit(0);
