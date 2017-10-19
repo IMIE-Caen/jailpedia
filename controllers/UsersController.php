@@ -98,8 +98,8 @@ class UsersController {
     $id =$param['id'];
 
     User::updateUser($firstname,$lastname,$dob,$email,$password,$id);
-  
-   
+
+
   }
 
 }

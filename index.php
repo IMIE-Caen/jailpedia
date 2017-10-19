@@ -29,210 +29,111 @@ $PDO = new SQLitePDO();
 $PDO->bdd();
 $preg_match_results = [];
 
-if ($request->pathInfo() == "/") {
-  $controller = new HomeController();
-    $controller->render();
-}
 
-/***********
- * GET
- ***********/
-else if ($request->method() == "GET") {
+$router = Router::getInstance();
 
-  /**
-   *  Affichage d'un article
-   *  url = /articles/{id}
-   */
-  if (preg_match('/^\/articles\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
-    $id = $preg_match_results[1];
-    $controller = new ArticlesController();
-    $controller->show($id);
-  }
+// home
 
-  /**
-   * Affichage d'un utilisateur
-   * url = /users/{id}
-   */
-  else if (preg_match('/^\/users\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
-    $id = $preg_match_results[1];
-    $controller = new UsersController();
-    $controller->show($id);
-  }
+$router->get('getHome', '/^\/$/', function($request){
+  (new HomeController())->render();
+});
 
-  /**
-   * Affichage d'un tag
-   * url = /tags/{id}
-   */
-  else if (preg_match('/^\/tags\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
-    $id = $preg_match_results[1];
-    $controller = new TagsController();
-    $controller->show($id);
-  }
 
-  /**
-   * Affiche la liste des articles
-   * url = /articles
-   */
-  else if (preg_match('/^\/articles\/?$/', $request->pathInfo())) {
-    $controller = new ArticlesController();
-    $controller->showAllArticles();
-  }
 
-  /**
-   * Affiche le formulaire de création d'un article
-   * url = /articles/new
-   */
-  else if (preg_match('/^\/articles\/new\/?$/', $request->pathInfo())) {
-    $controller = new ArticlesController();
-    $controller->create();
-  }
-  /**
-   * Gestion des users
-   * url = /gestion/users
-   */
-  else if (preg_match('/^\/gestion\/users\/?$/', $request->pathInfo())) {
-    $controller = new GestionController();
-    $controller->GestionUsers();
-  }
-  else if (preg_match('/^\/gestion\/users\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
-    $id = $preg_match_results[1];
-    $controller = new User();
-    $controller->deleteUser($id);
-    header("location:" . $_SERVER['HTTP_REFERER']);
-  }
+// articles
+$router->get('showArticle', '/^\/articles\/(?<id>\d+)\/?$/',
+  function($request){
+    $id = $request->routerParams['id'];
+    (new ArticlesController())->show($id);
+});
+$router->post('createArticle', '/^\/articles\/create\/?$/',
+  function($request){ (new ArticlesController())->save($_POST);  }
+);
+$router->get('indexArticles', '/^\/articles\/?$/',
+  function($request){ (new ArticlesController())->showAllArticles(); }
+);
+$router->get('newArticle', '/^\/articles\/new\/?$/',
+  function($request){ (new ArticlesController())->create();  }
+);
+$router->get('editArticle', '/^\/articles\/edit\/(?<id>\d+)\/?$/',
+  function($request){
+    $id = $request->routerParams['id'];
+    (new ArticlesController())->edit($id);
+});
+$router->post('updateArticle', '/^\/articles\/edit\/?$/',
+  function($request){
+    $id = $_POST['id'];
+    (new ArticlesController())->update($_POST);
+    header("Location: /articles/$id");
+});
+$router->post('searchArticle', '/^\/articles\/search\/?$/',
+  function($request){ (new ArticlesController())->search($_POST); }
+);
+$router->delete('deleteArticle','/^\/articles\/delete\/(\d+)\/?$/',
+  function($request){
+    $id = $request->routerParams['id'];
+    (new ArticlesController())->delete($id);
+});
 
-  else if (preg_match('/^\/gestion\/articles\/?$/', $request->pathInfo())) {
-    $controller = new GestionController();
-    $controller->GestionArticles();
-  }
-  else if (preg_match('/^\/gestion\/articles\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
-    $id = $preg_match_results[1];
-    $controller = new Article();
-    $controller->deleteArticle($id);
-    header("location:" . $_SERVER['HTTP_REFERER']);
-  }
 
-  else if (preg_match('/^\/gestion\/tags\/?$/', $request->pathInfo())) {
-    $controller = new GestionController();
-    $controller->GestionTags();
-  }
-  else if (preg_match('/^\/gestion\/tags\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
-    $id = $preg_match_results[1];
-    $controller = new Tag();
-    $controller->deleteTag($id);
-    header("location:" . $_SERVER['HTTP_REFERER']);
-  }
 
-  /**
-   * Affiche le formulaire d'édition d'un article
-   * url = /articles/edit/{id}
-   */
-  else if (
-    preg_match('/^\/articles\/edit\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
-    $id = $preg_match_results[1];
-    $controller = new ArticlesController();
-    $controller->edit($id);
-  }
 
-  /**
-   * Affiche la liste des tags
-   * url = /tags
-   */
-  else if (preg_match('/^\/tags\/?$/', $request->pathInfo())) {
-    $controller = new TagsController();
-    $controller->showAllTags();
-  }
 
-  /**
-   * Affiche le formulaire d'inscription
-   * url = /signup
-   */
-  else if (preg_match('/^\/signup\/?$/', $request->pathInfo())) {
-    $controller = new UsersController();
-    $controller->signUp();
-  }
 
-  /**
-   * Affiche le formulaire de connexion
-   * url = /signin
-   */
-  else if (preg_match('/^\/signin\/?$/', $request->pathInfo())) {
-    $controller = new UsersController();
-    $controller->signIn();
-  }
+// users
 
-  /**
-   * Affiche le formulaire de recherche d'un article
-   * url = /articles/search
-   */
-  /*else if (preg_match('/^\/articles\/search\/?$/', $request->pathInfo())) {
-    $controller = new ArticlesController();
-    $controller->search();
-  }*/
+$router->get('showUser', '/^\/users\/(?<id>\d+)\/?/',
+  function($request){
+    $id = $request->routerParams['id'];
+    (new UsersController())->show($id);
+});
+$router->post('updateUser', '/^\/users\/edit\/?/',
+  function($request){
+    (new UsersController())->update($_POST);
+    $id = $_POST['id'];
+    header("Location: /users/$id");
+});
+$router->post('createUser', '/^\/users\/save\/?/',
+  function($request){
+    (new UsersController())->save($_POST);
+    header("Location: /signin");
+});
+$router->get('showUser', '/^\/users\/edit\/(?<id>\d+)\/?/',
+  function($request){
+    $id = $request->routerParams['id'];
+    (new UsersController())->edit($id);
+});
 
-  /**
-   * Déconnecte un utilisateur
-   * url = /logout
-   */
-  else if (preg_match('/^\/logout\/?$/', $request->pathInfo())) {
-    $_SESSION['connecte'] = false;
-    session_destroy();
-    header('Location: /');
-    exit();
-  }
+$router->delete('deleteUser', '/^\/users\/edit\/(?<id>\d+)\/?/',
+  function($request){
+    $id = $request->routerParams['id'];
+    (new ArticlesController())->delete($id);
+});
 
-  /**
-   * Affiche le formulaire d'édition d'un utilisateur
-   * url = /users/edit/{id}
-   */
-  else if (
-    preg_match('/^\/users\/edit\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
-    $id = $preg_match_results[1];
-    $controller = new UsersController();
-    $controller->edit($id);
-  }
 
-  /**
-   * Si aucune route ne correspond on envoie une 404
-   */
-  else {
-    ob_start();
-    include("./views/404.html.php");
-    $page_content = ob_get_clean();
-    header("HTTP/1.0 404 Not Found");
-    include("./views/layout.html.php");
-  }
-}
+// tags
 
-/***********
- * POST
- ***********/
-else if ($request->method() == "POST") {
+$router->get('showTag', '/^\/tags\/(?<id>\d+)\/?/',
+  function($request){
+    $id = $request->routerParams['id'];
+    (new TagsController())->show($id);
+});
+$router->get('indexTags', '/^\/tags\/?/',
+  function($request){ (new TagsController())->showAllTags(); }
+);
 
-  /**
-   * Ajoute un article
-   * url = /articles/create
-   */
-  if (preg_match('/^\/articles\/create\/?$/', $request->pathInfo())) {
-    $controller = new ArticlesController();
-    $controller->save($_POST);
-  }
 
-  /**
-   * Enregistre un utilisateur
-   * url = /users/save
-   */
-  else if (preg_match('/^\/users\/save\/?$/', $request->pathInfo())) {
-    $controller = new UsersController();
-    $controller->save($_POST);
-    header('Location: /signin');
-  }
+// session
 
-  /**
-   * Connexion d'un utilisateur
-   * url = /users/signin
-   */
-  else if (preg_match('/^\/users\/signin\/?$/', $request->pathInfo())) {
+
+$router->get('newRegistration','/^\/signup\/?$/', function($request) {
+  (new UsersController())->signUp();
+});
+$router->get('newSession','/^\/signin\/?$/', function($request) {
+  (new UsersController())->signIn();
+});
+$router->post('createSession', '/^\/users\/signin\/?$/',
+  function($request){
     $controller = new UsersController();
     $email = $_POST['login'];
     $pwd = $_POST['password'];
@@ -240,70 +141,49 @@ else if ($request->method() == "POST") {
       $_SESSION['connecte'] = true ;
       $_SESSION['role'] = $controller->RoleUser($email,$pwd);
       header('Location: /articles');
-      exit();
     } else {
       //$_SESSION['connecte'] = false;
       header('Location: /signin');
-      exit();
     }
-  }
-
-  /**
-   * Edition d'un article
-   * url = /artiles/edit
-   */
-  else if (preg_match('/^\/articles\/edit\/?$/', $request->pathInfo(), $preg_match_results)) {
-    $controller = new ArticlesController();
-    $controller->update($_POST);
-    $id = $_POST['id'];
-    header("Location: /articles/$id");
-  }
-
-  /**
-   * Recherche un article
-   * url = /articles
-   */
-  else if (preg_match('/^\/articles\/search\/?$/', $request->pathInfo())) {
-    $controller = new ArticlesController();
-    $controller->search($_POST);
-  }
-
-  /**
-   * Edition d'un utilisateur
-   * url = /users/edit
-   */
-  else if (preg_match('/^\/users\/edit\/?$/', $request->pathInfo(), $preg_match_results)) {
-    $controller = new UsersController();
-    $controller->update($_POST);
-    $id = $_POST['id'];
-    header("Location: /");
-  }
-}
-
-/***********
- * DELETE
- ***********/
-else if ($request->method() == "DELETE") {
-
-  /**
-   * Supprime un article
-   * url = articles/delete/{id}
-   */
-  if (preg_match('/^\/articles\/delete\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
-    $id = $preg_match_results[1];
-    $controller = new ArticlesController();
-    $controller->delete($id);
-  }
-}
 
 
-  /**
-   * Supprime un utilisateur
-   * url = /users/delete/{id}
-   */
-  else if (preg_match('/^\/users\/delete\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
-    $id = $preg_match_results[1];
-    $controller = new ArticlesController();
-    $controller->delete($id);
+});
 
-}
+$router->get('destroySession', '/^\/logout\/?$/', function($request){
+  $_SESSION['connecte'] = false;
+  session_destroy();
+  header('Location: /');
+});
+
+
+$router->get('gestionUsers', '/^\/gestion\/users\/?$/', function($request){
+  (new GestionController())->GestionUsers();
+});
+$router->get('gestionDeleteUsers', '/^\/gestion\/users\/(\d+)\/?$/', function($request){
+  $id = $request->routerParams[1];
+  (new User())->deleteUser($id);
+  header("location:" . $_SERVER['HTTP_REFERER']);
+});
+
+$router->get('gestionArticles', '/^\/gestion\/articles\/?$/', function($request){
+  (new GestionController())->GestionArticles();
+});
+
+$router->get('deleteTag', '/^\/gestion\/articles\/(\d+)\/?$/', function($request){
+  $id = $request->routerParams[1];
+  (new Tag())->deleteTag($id);
+  header("location:" . $_SERVER['HTTP_REFERER']);
+});
+
+
+
+
+
+if($router->dispatch($request))
+  exit(0);
+
+ob_start();
+include("./views/404.html.php");
+$page_content = ob_get_clean();
+header("HTTP/1.0 404 Not Found");
+include("./views/layout.html.php");
