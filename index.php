@@ -303,7 +303,7 @@ else if ($request->method() == "DELETE") {
    */
   else if (preg_match('/^\/users\/delete\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
     $id = $preg_match_results[1];
-    $controller = new ArticlesController();
+    $controller = new UsersController();
     $controller->delete($id);
 
 }

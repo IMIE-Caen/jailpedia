@@ -158,9 +158,12 @@ class Article
      $sql = "SELECT * FROM ARTICLES ORDER BY RANDOM() LIMIT 1 ";
      $stmt = SQLitePDO::bdd()->prepare($sql);
      $stmt->execute();
-     
-     $article = $stmt->fetchAll(PDO::FETCH_CLASS,"Article")[0];
-     return $article;
+     $article = $stmt->fetchAll(PDO::FETCH_CLASS,"Article"); 
+     if( sizeof($article) != 0) {
+      $articleRandom =   $stmt->fetchAll(PDO::FETCH_CLASS,"Article")[0] ; 
+     }else 
+        $articleRandom = 0 ; 
+    return $articleRandom;
   }
 
 

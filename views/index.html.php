@@ -1,5 +1,11 @@
 <h2>Bienvenue sur l'accueil</h2>
 
+<?php 
+
+	if(sizeof($articles) == 0  ) { 
+		echo " Notre si ne contient pas encore de d'articles ..... " ; 
+	} else { 
+?> 
 <div>
 	<h3> L'article au hasard </h3>
 
@@ -35,6 +41,7 @@
 	</div> 
 	<?php	
 		}
+	}
 	?>
 </div>
 
