@@ -21,12 +21,12 @@ class UsersController {
       include("./views/layout.html.php");
 
     }
-
+   
   }
 
 
-
-
+ 
+    
   function signUp() {
     ob_start();
     include('./views/user/createAccount.html.php');
@@ -74,8 +74,7 @@ function UserConnect( $login, $password){
   $stmt->bindValue(2, $password);
   $stmt->execute();
   $connect_user = $stmt->fetchAll()[0][0];
-  var_dump($connect_user);
-  return $connect_user ;
+   return $connect_user ;
 }
 
   function save($param){
@@ -101,8 +100,9 @@ function UserConnect( $login, $password){
 
   }
 
-  function deleteUser($id) {
-    User::deleteUser($id);
+  function delete() {
+    $page_content = "suppression user";
+    include("./views/layout.html.php");
   }
 
   function edit($id) {
