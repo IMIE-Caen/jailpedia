@@ -12,14 +12,14 @@
 	<section>
 		<h2> L'article au hasard </h2>
 			<div class="article">
-			<h3> <a href="/articles/<?= $id ?>" title="<?= $randomArticle->getTitle(); ?>"> <?= $randomArticle->getTitle(); ?> </a> </h3>
+			<h3> <a href="/articles/<?= $randomArticle->getId(); ?>" title="<?= $randomArticle->getTitle(); ?>"> <?= $randomArticle->getTitle(); ?> </a> </h3>
 			<div class="description">
 			<?php
 				echo $randomArticle->getText();
 			?>
 			</div>
 			<div class="bottom">
-				<a class="voir" href="/articles/<?= $id ?>" title="<?= $randomArticle->getTitle(); ?>">Lire l'article</a>
+				<a class="voir" href="/articles/<?= $randomArticle->getId(); ?>" title="<?= $randomArticle->getTitle(); ?>">Lire l'article</a>
 			</div>
 		</div>
 	</section>
