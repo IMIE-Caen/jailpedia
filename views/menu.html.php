@@ -19,6 +19,9 @@
       <li class="nav-item">
         <a href="/articles/new" title="Créer un article">Créer un article</a>
       </li>
+      <li class="nav-item">
+        <a href="#" title="Mon compte">Mon compte</a>
+      </li>
       <?php
        if ($_SESSION['role'] == 'admin'){
 

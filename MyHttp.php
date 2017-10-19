@@ -1,7 +1,7 @@
 <?php
 
 class MyHttp{
-
+    public $routerParams = [];
     function MyHttp(){
       $this->request = $_SERVER;
     }
