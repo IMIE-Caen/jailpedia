@@ -97,7 +97,13 @@ class Article
         $article = SQLitePDO::bdd()->prepare($sql);
         $article->execute(array($id));
         $result = $article->fetchAll(PDO::FETCH_CLASS,"Article");
-        return $result[0];
+        if( sizeof($result) != 0) {
+            $article =$stmt->fetchAll(PDO::FETCH_CLASS,"Article")[0] ; 
+        }else 
+            $article = Null ; 
+        return $article;
+
+        
     }
 
     public static function createArticle($title,$text,$img){

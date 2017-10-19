@@ -3,8 +3,9 @@
 <?php 
 
 	if(sizeof($articles) == 0  ) { 
-		echo " Notre si ne contient pas encore de d'articles ..... " ; 
-	} else { 
+		echo " Notre si ne contient pas encore de d'articles ..... " ; ?>
+		<a href="/articles/new" title="Créer">Créez en un ici</a>
+	<?php } else { 
 ?> 
 <div>
 	<h3> L'article au hasard </h3>
