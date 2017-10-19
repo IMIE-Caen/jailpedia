@@ -54,7 +54,7 @@ class UsersController {
 
  	}
 
-  function RoleUser( $login, $password){
+  /*function RoleUser( $login, $password){
     $PDO = new SQLitePDO();
     $sql = 'SELECT role FROM USERS WHERE email = ? and password = ?';
     $stmt = $PDO->bdd()->prepare($sql) ;
@@ -64,7 +64,7 @@ class UsersController {
     $role_user = $stmt->fetchAll()[0][0];
     var_dump($role_user);
     return $role_user ;
-}
+}*/
 
 function UserConnect( $login, $password){
   $PDO = new SQLitePDO();

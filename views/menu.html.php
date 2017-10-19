@@ -35,7 +35,9 @@
 
         }
         
-       if ($_SESSION['role'] == 'admin'){
+        $userCoRole = User::getUserById($id); 
+       // if ($_SESSION['role'] == 'admin'){
+                if ($userCoRole->getRole() == 'admin'){
 
       ?>
 
