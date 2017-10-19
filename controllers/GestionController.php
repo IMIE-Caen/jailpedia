@@ -17,6 +17,7 @@ class GestionController {
   }
 
   function GestionTags() {
+    $tags = Tag::fetchAll();
     ob_start();
     include('./views/gestionTags.php');
     $page_content = ob_get_clean();
