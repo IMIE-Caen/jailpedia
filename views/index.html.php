@@ -1,67 +1,57 @@
-<h2>Bienvenue sur l'accueil</h2>
-
-<?php 
-
-	if(sizeof($articles) == 0 && $randomArticle == null ) { 
-		echo " Notre si ne  pas encore de d'articles ..... " ; ?>
-		<a href="/articles/new" title="Créer">Créez en un ici</a>
-	<?php } else { 
-?> 
-<div>
-	<h3> L'article au hasard </h3>
-
-	<h4> <?=$randomArticle->getTitle(); ?> </h4>
-
+<div class="homepage">
+	<h1>JailPedia - Préparez votre évasion</h1>
 	<?php
-		echo $randomArticle->getText(); 
-
+		if(sizeof($articles) == 0 && $randomArticle == null ) {
+			echo " Notre si ne  pas encore de d'articles ..... " ; ?>
+			<a href="/articles/new" title="Créer">Créez en un ici</a>
+		<?php } else {
 	?>
+	<div class="illustration">
+		<img src="/images/alcatraz.jpg" alt="La prison d'Alcatraz" title="La prison d'Alcatraz" />
+	</div>
+	<section>
+		<h2> L'article au hasard </h2>
+			<div class="article">
+			<h3> <a href="/articles/<?= $id ?>" title="<?= $randomArticle->getTitle(); ?>"> <?= $randomArticle->getTitle(); ?> </a> </h3>
+			<div class="description">
+			<?php
+				echo $randomArticle->getText();
+			?>
+			</div>
+			<div class="bottom">
+				<a class="voir" href="/articles/<?= $id ?>" title="<?= $randomArticle->getTitle(); ?>">Lire l'article</a>
+			</div>
+		</div>
+	</section>
 
-</div>
-
-<div>
-
-	
-	<h3> Dernier articles publiés </h3>
-	<?php
-		foreach ($articles as $article) {
-	?>
-	<div> 
+	<section>
+		<h2> Dernier articles publiés </h2>
 		<?php
-			$id = $article->getId(); 
-			
-		?>  
-		<h4> <?=$article->getTitle(); ?> </h4>
-
-		<?php
-
-			$text = Util::coupeTexte($article->getText(),5);
-			echo $text ;
+			foreach ($articles as $article) {
 		?>
-			<a href="/articles/<?= $id ?>" title="Voir plus">Voir plus</a>
-	</div> 
-	<?php	
+		<div class="article">
+			<?php $id = $article->getId(); ?>
+			<h3><a href="/articles/<?= $id ?>" title="<?=$article->getTitle(); ?>"><?=$article->getTitle(); ?></a></h3>
+			<div class="description">
+			<?php
+				$text = Util::coupeTexte($article->getText(),5);
+				echo $text ;
+			?>
+			</div>
+			<div class="bottom">
+				<a class="voir" href="/articles/<?= $id ?>" title="<?=$article->getTitle(); ?>">En savoir plus</a>
+			</div>
+		</div>
+		<?php
+			}
 		}
-	}
-	?>
-    <div>
-        <h3> Liste des tags </h3>
-
-        <?php
-        foreach ($tags as $tag) {
-            ?>
-            <div>
-                <?php
-                $id = $tag->getId();
-
-                ?>
-
-                <a href="/tags/<?= $id ?>" title=<?=$tag->getName(); ?> ><?=$tag->getName(); ?> </a>
-            </div>
-            <?php
-        }
-        ?>
-
-    </div>
+		?>
+	</section>
+	<section>
+	    <h2> Liste des tags </h2>
+      <?php foreach ($tags as $tag) { ?>
+          <?php $id = $tag->getId(); ?>
+          <a class="voir" href="/tags/<?= $id ?>" title=<?=$tag->getName(); ?> ><?=$tag->getName(); ?> </a>
+       <?php } ?>
+	</section>
 </div>
-
