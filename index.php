@@ -101,13 +101,6 @@ else if ($request->method() == "GET") {
     header("location:" . $_SERVER['HTTP_REFERER']);
   }
 
-  else if (preg_match('/^\/gestion\/users\/update\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
-    $controller = new UsersController();
-    $controller->update($_POST);
-    $id = $_POST['id'];
-    header("location:" . $_SERVER['HTTP_REFERER']);
-  }
-
   else if (preg_match('/^\/gestion\/articles\/?$/', $request->pathInfo())) {
     $controller = new GestionController();
     $controller->GestionArticles();
@@ -263,6 +256,7 @@ else if ($request->method() == "POST") {
     if($controller->validForAuth($email,$pwd)){
       $_SESSION['connecte'] = true ;
       $_SESSION['role'] = $controller->RoleUser($email,$pwd);
+      $_SESSION['userConnect'] = $controller->UserConnect($email,$pwd);
       header('Location: /articles');
       exit();
     } else {
@@ -301,6 +295,15 @@ else if ($request->method() == "POST") {
     $controller->update($_POST);
     $id = $_POST['id'];
     header("Location: /");
+  }
+  /**
+   * Edition du role d'un utilisateur
+   */
+  else if (preg_match('/^\/gestion\/users\/update\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
+    $controller = new UsersController();
+    $controller->update($_POST);
+    $id = $_POST['id'];
+    header("location:" . $_SERVER['HTTP_REFERER']);
   }
 }
 
