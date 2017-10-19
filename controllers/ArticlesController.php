@@ -6,6 +6,7 @@ class ArticlesController {
     $article = Article::getArticleById($id);
     $note = Evaluation::getAverageNoteArticle($id);
     $tags = Categorisation::getTagByArticle($id);
+    $contribs = Contribution::getContributionByArticle($id);
     //$note = Evaluation::getUserNoteArticle($id,$_SESSION['userConnect']);
     if($article != Null){
       ob_start();
@@ -72,6 +73,7 @@ class ArticlesController {
     foreach ($values["tags"] as $tag) {
         Categorisation::addTagToArticle($articleId, $tag);
     }
+    $contrib = Contribution::setContribution($_SESSION['userConnect'],$articleId);
   }
   
 }
