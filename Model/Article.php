@@ -165,10 +165,12 @@ class Article
      $stmt = SQLitePDO::bdd()->prepare($sql);
      $stmt->execute();
      $article = $stmt->fetchAll(PDO::FETCH_CLASS,"Article"); 
-     if( sizeof($article) != 0) {
-      $articleRandom =   $stmt->fetchAll(PDO::FETCH_CLASS,"Article")[0] ; 
+     var_dump($article); 
+     if( sizeof($article) != 0  ) {
+      $articleRandom =  $article[0] ; 
+      var_dump($articleRandom);
      }else 
-        $articleRandom = 0 ; 
+        $articleRandom = Null ; 
     return $articleRandom;
   }
 

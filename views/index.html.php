@@ -2,8 +2,8 @@
 
 <?php 
 
-	if(sizeof($articles) == 0  ) { 
-		echo " Notre si ne contient pas encore de d'articles ..... " ; ?>
+	if(sizeof($articles) == 0 && $randomArticle == null ) { 
+		echo " Notre si ne  pas encore de d'articles ..... " ; ?>
 		<a href="/articles/new" title="Créer">Créez en un ici</a>
 	<?php } else { 
 ?> 
