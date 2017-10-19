@@ -182,11 +182,15 @@ class User
     public static function getUserById($id){
         // $db = new SQLitePDO();
         $sql = "SELECT * FROM USERS WHERE id = ? ";
-        $article = SQLitePDO::bdd()->prepare($sql);
-        $article->execute(array($id));
-        $result = $article->fetchAll(PDO::FETCH_CLASS,"User");
-//        var_dump($result); exit;
-        return $result[0];
+        $user = SQLitePDO::bdd()->prepare($sql);
+        $user->execute(array($id));
+        $result = $user->fetchAll(PDO::FETCH_CLASS,"User");
+        if( sizeof($result) != 0) {
+            $user =$result[0] ;
+        }else 
+            $user = Null ; 
+        return $user;
+
     }
 
     public static function createUser($firstname,$lastname,$dob,$email,$password){

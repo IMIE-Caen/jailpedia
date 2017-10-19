@@ -77,10 +77,10 @@ $router->get('showUser', '/^\/users\/edit\/(?<id>\d+)\/?/',
     (new UsersController())->edit($id);
 });
 
-$router->delete('deleteUser', '/^\/users\/edit\/(?<id>\d+)\/?/',
+$router->delete('deleteUser', '/^\/users\/delete\/(?<id>\d+)\/?/',
   function($request){
     $id = $request->routerParams['id'];
-    (new ArticlesController())->delete($id);
+    (new UsersController())->delete($id);
 });
 
 
@@ -122,6 +122,7 @@ $router->post('createSession', '/^\/users\/signin\/?$/',
     if($controller->validForAuth($email,$pwd)){
       $_SESSION['connecte'] = true ;
       $_SESSION['role'] = $controller->RoleUser($email,$pwd);
+      $_SESSION['userConnect'] = $controller->UserConnect($email,$pwd);
       header('Location: /articles');
     } else {
       //$_SESSION['connecte'] = false;
