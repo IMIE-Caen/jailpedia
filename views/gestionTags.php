@@ -9,7 +9,7 @@ $stmt->closeCursor();
 
 <label for="tag">Name tag :</label>
 <input type="text" class="form-control" id="tag" placeholder="Enter Tag" name="tag">
-<button type="submit" class="btn btn-default" value="<?php  ?>">Add</button>
+<button type="submit" class="btn btn-default">Add</button>
 
 <table class="table">
       <thead>

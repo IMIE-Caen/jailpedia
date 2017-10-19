@@ -101,6 +101,13 @@ else if ($request->method() == "GET") {
     header("location:" . $_SERVER['HTTP_REFERER']);
   }
 
+  else if (preg_match('/^\/gestion\/users\/update\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
+    $controller = new UsersController();
+    $controller->update($_POST);
+    $id = $_POST['id'];
+    header("location:" . $_SERVER['HTTP_REFERER']);
+  }
+
   else if (preg_match('/^\/gestion\/articles\/?$/', $request->pathInfo())) {
     $controller = new GestionController();
     $controller->GestionArticles();
@@ -216,6 +223,23 @@ else if ($request->method() == "POST") {
   if (preg_match('/^\/articles\/create\/?$/', $request->pathInfo())) {
     $controller = new ArticlesController();
     $controller->save($_POST);
+  }
+  /**
+   * Ajoute un Tag
+   * url = /gestion/tags/create
+   */
+  if (preg_match('/^\/gestion\/tags\/create\/?$/', $request->pathInfo(), $preg_match_results)) {
+    $name = $preg_match_results[1];
+    $controller = new Tags();
+    $controller->createTag($name);
+    header("location:" . $_SERVER['HTTP_REFERER']);
+  }
+
+  else if (preg_match('/^\/gestion\/users\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
+    $id = $preg_match_results[1];
+    $controller = new User();
+    $controller->deleteUser($id);
+    header("location:" . $_SERVER['HTTP_REFERER']);
   }
 
   /**
