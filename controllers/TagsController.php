@@ -8,8 +8,10 @@ class TagsController {
   }
 
   function show($id){
-
-    $page_content ="Affichage du tag $id";
+    $articles = Categorisation::getArticleByTag($id);
+      ob_start();
+      include("./views/article/list.html.php");
+      $page_content = ob_get_clean();
     include("./views/layout.html.php");
   }
 

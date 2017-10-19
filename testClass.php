@@ -21,7 +21,7 @@ require_once('controllers/UsersController.php');
 //$createuser = User::createUser("Cindy","Castel","20-10-2017","cindy.castel@imie.fr","toto");
 //$createuser = User::createUser("Benjamin","Aubert","20-10-2017","benjamin.aubert@imie.fr","toto");
 
-$createtag = Tag::createTag("Prisons d'Europe");
+//$createtag = Tag::createTag("Prisons d'Europe");
 $articles = Article::fetchAll();
 //$contribution = Contribution::setContribution(1,1);
 //$contribution = Contribution::getContributionByArticle(1);
@@ -47,4 +47,10 @@ $test = Evaluation::getUserNoteArticle(1,1);
 echo "Note du user : ".$test;
 $controleur = new UsersController();
 $controleur->validForAuth("valentin.gallien@imie.fr","toto");
+
+$tag = Tag::fetchAll();
+var_dump($tag);
+
+$articles = Categorisation::getArticleByTag(1);
+var_dump($articles);
 //$test1 = Article::updateArticle("Guantanamo","Article sur Guantanamo",1);
