@@ -4,31 +4,11 @@ session_start();
 
 ini_set('display_errors', 'On');
 include_once 'PDO.php';
-
-function __autoload($className) {
-  if (file_exists($className . '.php')) {
-    require_once $className . '.php';
-    return true;
-  } else if (file_exists("./controllers/" . $className . '.php')) {
-    require_once "./controllers/" . $className . '.php';
-    return true;
-  } else if (file_exists("./Model/" . $className . '.php')) {
-    require_once "./Model/" . $className . '.php';
-    return true;
-  }
-  else if (file_exists("./tools/".$className . '.php')){
-    require_once "./tools/".$className . '.php';
-    return true;
-  } else{
-      return false;
-  }
-}
+include_once 'autoload.php';
 
 $request = new MyHttp();
 $PDO = new SQLitePDO();
 $PDO->bdd();
-$preg_match_results = [];
-
 
 $router = Router::getInstance();
 
@@ -37,8 +17,6 @@ $router = Router::getInstance();
 $router->get('getHome', '/^\/$/', function($request){
   (new HomeController())->render();
 });
-
-
 
 // articles
 $router->get('showArticle', '/^\/articles\/(?<id>\d+)\/?$/',
@@ -74,11 +52,6 @@ $router->delete('deleteArticle','/^\/articles\/delete\/(\d+)\/?$/',
     $id = $request->routerParams['id'];
     (new ArticlesController())->delete($id);
 });
-
-
-
-
-
 
 // users
 
@@ -123,6 +96,15 @@ $router->get('indexTags', '/^\/tags\/?/',
 );
 
 
+$router->get('createTag','/^\/tag\/add\/?$/', function($request){
+  (new TagsController())->add($_POST["tag"]);
+})
+
+$router->get('deleteTag','/^\/tag\/delete\/(\d+)\/?$/', function($request){
+  $id = $preg_match_results[1];
+  (new TagsController())->delete($id);
+})
+
 // session
 
 
@@ -159,9 +141,14 @@ $router->get('destroySession', '/^\/logout\/?$/', function($request){
 $router->get('gestionUsers', '/^\/gestion\/users\/?$/', function($request){
   (new GestionController())->GestionUsers();
 });
+
+$router->post('gestionUpdateUser','/^\/gestion\/users\/update\/(\d+)\/?$/', function($request){
+  (new UsersController())->update($_POST);
+  header("location:" . $_SERVER['HTTP_REFERER']);
+})
 $router->get('gestionDeleteUsers', '/^\/gestion\/users\/(\d+)\/?$/', function($request){
   $id = $request->routerParams[1];
-  (new User())->deleteUser($id);
+  (new UsersController())->deleteUser($id);
   header("location:" . $_SERVER['HTTP_REFERER']);
 });
 
@@ -171,13 +158,15 @@ $router->get('gestionArticles', '/^\/gestion\/articles\/?$/', function($request)
 
 $router->get('deleteTag', '/^\/gestion\/articles\/(\d+)\/?$/', function($request){
   $id = $request->routerParams[1];
-  (new Tag())->deleteTag($id);
+  (new TagsController())->deleteTag($id);
   header("location:" . $_SERVER['HTTP_REFERER']);
 });
 
-
-
-
+$router->get('newTag','/^\/gestion\/tags\/create\/?$/', function($request){
+  $name = $preg_match_results[1];
+  (new TagsController())->createTag($name);
+  header("location:" . $_SERVER['HTTP_REFERER']);
+})
 
 if($router->dispatch($request))
   exit(0);
