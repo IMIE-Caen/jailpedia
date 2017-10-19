@@ -77,12 +77,14 @@ class Tag
     }
 
     public static function createTag($name){
-        //$db = new SQLitePDO();
+        $db = SQLitePDO::bdd();
         $sql = 'INSERT INTO TAGS (name) values(:NAME)';
-        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $stmt = $db->prepare($sql);
         $P = array('NAME' => $name);
         $stmt->execute($P);
+        $id = $db->lastInsertId();
         $stmt->closeCursor();
+        return $id;
     }
 
     public static function updateTag($name,$id){

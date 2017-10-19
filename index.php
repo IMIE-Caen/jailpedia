@@ -278,6 +278,17 @@ else if ($request->method() == "POST") {
     $id = $_POST['id'];
     header("Location: /");
   }
+  
+  /**
+   * Ajout d'un tag
+   * url = /tag/delete
+   */
+  else if (preg_match('/^\/tag\/add\/?$/', $request->pathInfo(), $preg_match_results)) {
+    $controller = new TagsController();
+    $controller->add($_POST["tag"]);
+//    $id = $_POST['id'];
+//    header("Location: /");
+  }
 }
 
 /***********
