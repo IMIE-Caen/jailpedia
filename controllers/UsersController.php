@@ -35,8 +35,8 @@ class UsersController {
     $stmt->bindValue(2, $password);
     $stmt->execute();
     $userValid = $stmt->fetchAll()[0][0];
-      var_dump($userValid);
-      return $userValid == true ;
+    var_dump($userValid);
+    return $userValid == true ;
 
  	}
 
@@ -50,6 +50,18 @@ class UsersController {
     $role_user = $stmt->fetchAll()[0][0];
     var_dump($role_user);
     return $role_user ;
+}
+
+function UserConnect( $login, $password){
+  $PDO = new SQLitePDO();
+  $sql = 'SELECT id FROM USERS WHERE email = ? and password = ?';
+  $stmt = $PDO->bdd()->prepare($sql) ;
+  $stmt->bindValue(1, $login);
+  $stmt->bindValue(2, $password);
+  $stmt->execute();
+  $connect_user = $stmt->fetchAll()[0][0];
+  var_dump($connect_user);
+  return $connect_user ;
 }
 
   function save($param){

@@ -1,8 +1,8 @@
 <?php
 $PDO = new SQLitePDO();
-$sql = 'SELECT * FROM USERS';
+$sql = 'SELECT * FROM USERS WHERE id != ?';
 $stmt = $PDO->bdd()->prepare($sql);
-$stmt->execute();
+$stmt->execute(array($_SESSION['userConnect']));
 $users_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt->closeCursor();
 ?>

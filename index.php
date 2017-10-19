@@ -100,13 +100,6 @@ else if ($request->method() == "GET") {
     header("location:" . $_SERVER['HTTP_REFERER']);
   }
 
-  else if (preg_match('/^\/gestion\/users\/update\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
-    $controller = new UsersController();
-    $controller->update($_POST);
-    $id = $_POST['id'];
-    header("location:" . $_SERVER['HTTP_REFERER']);
-  }
-
   else if (preg_match('/^\/gestion\/articles\/?$/', $request->pathInfo())) {
     $controller = new GestionController();
     $controller->GestionArticles();
@@ -268,9 +261,10 @@ else if ($request->method() == "POST") {
     $controller = new UsersController();
     $email = $_POST['login'];
     $pwd = $_POST['password'];
-    if ($controller->validForAuth($email, $pwd)) {
-      $_SESSION['connecte'] = true;
-      $_SESSION['role'] = $controller->RoleUser($email, $pwd);
+    if($controller->validForAuth($email,$pwd)){
+      $_SESSION['connecte'] = true ;
+      $_SESSION['role'] = $controller->RoleUser($email,$pwd);
+      $_SESSION['userConnect'] = $controller->UserConnect($email,$pwd);
       header('Location: /articles');
       exit();
     } else {
@@ -318,6 +312,15 @@ else if ($request->method() == "POST") {
   else if (preg_match('/^\/tag\/add\/?$/', $request->pathInfo(), $preg_match_results)) {
     $controller = new TagsController();
     $controller->add($_POST["tag"]);
+  }
+  /**
+   * Edition du role d'un utilisateur
+   */
+  else if (preg_match('/^\/gestion\/users\/update\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
+    $controller = new UsersController();
+    $controller->update($_POST);
+    $id = $_POST['id'];
+    header("location:" . $_SERVER['HTTP_REFERER']);
   }
 }
 
