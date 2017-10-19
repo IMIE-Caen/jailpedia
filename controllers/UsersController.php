@@ -60,9 +60,9 @@ class UsersController {
   	$dob = $param['dob'];
   	$email = $param['email'];
   	$password = $param['password'];
-    $role = $param['role'];
+    //$role = $param['role'];
 
-  	$sql = 'INSERT INTO USERS ("firstname", "lastname", "dob","email","mdp") VALUES (:firstname, :lastname, :dob, :email, :password, :role) ';
+  	$sql = 'INSERT INTO USERS ("firstname", "lastname", "dob","email","password") VALUES (:firstname, :lastname, :dob, :email, :password) ';
   	$stmt = $PDO->bdd()->prepare($sql) ;
   	$stmt->bindValue('firstname', $firstname);
   	$stmt->bindValue('lastname', $lastname);
