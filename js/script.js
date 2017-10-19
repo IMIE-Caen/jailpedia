@@ -1,9 +1,9 @@
 $(document).ready(function () {
-  
+
   $(".select2-single").select2({
     placeholder: 'Sélectionner un ou plusieurs tags...'
   });
-  
+
   $("#form-ajout-tag").on("submit", function (e) {
     e.preventDefault();
     $.ajax({
@@ -14,5 +14,15 @@ $(document).ready(function () {
       $(".table").append(data);
     });
   });
-  
+
+  $(".btn-delete-tag").on("click", function (e) {
+    e.preventDefault();
+    var line = $(this).parent().parent();
+    $.ajax({
+      method: "GET",
+      url: this.href
+    }).done(function (data) {
+      line.hide('slow', function(){ line.remove(); });
+    });
+  });
 });
