@@ -21,7 +21,7 @@ class TagsController {
     $tagId = Tag::createTag($name);
     $tag = Tag::getTagById($tagId);
     ob_start();
-    include("./views/tag/add.html.php");
+    include("./views/tag/line.html.php");
     $line = ob_get_clean();
     echo $line;
   }
