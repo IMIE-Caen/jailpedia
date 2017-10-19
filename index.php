@@ -15,12 +15,11 @@ function __autoload($className) {
   } else if (file_exists("./Model/" . $className . '.php')) {
     require_once "./Model/" . $className . '.php';
     return true;
-  }
-  else if (file_exists("./tools/".$className . '.php')){
-    require_once "./tools/".$className . '.php';
+  } else if (file_exists("./tools/" . $className . '.php')) {
+    require_once "./tools/" . $className . '.php';
     return true;
-  } else{
-      return false;
+  } else {
+    return false;
   }
 }
 
@@ -31,12 +30,12 @@ $preg_match_results = [];
 
 if ($request->pathInfo() == "/") {
   $controller = new HomeController();
-    $controller->render();
+  $controller->render();
 }
 
-/***********
+/* * *********
  * GET
- ***********/
+ * ********* */ 
 else if ($request->method() == "GET") {
 
   /**
@@ -52,7 +51,7 @@ else if ($request->method() == "GET") {
   /**
    * Affichage d'un utilisateur
    * url = /users/{id}
-   */
+   */ 
   else if (preg_match('/^\/users\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
     $id = $preg_match_results[1];
     $controller = new UsersController();
@@ -111,7 +110,6 @@ else if ($request->method() == "GET") {
     $controller->deleteArticle($id);
     header("location:" . $_SERVER['HTTP_REFERER']);
   }
-
   else if (preg_match('/^\/gestion\/tags\/?$/', $request->pathInfo())) {
     $controller = new GestionController();
     $controller->GestionTags();
@@ -128,7 +126,7 @@ else if ($request->method() == "GET") {
    * url = /articles/edit/{id}
    */
   else if (
-    preg_match('/^\/articles\/edit\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
+          preg_match('/^\/articles\/edit\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
     $id = $preg_match_results[1];
     $controller = new ArticlesController();
     $controller->edit($id);
@@ -165,10 +163,10 @@ else if ($request->method() == "GET") {
    * Affiche le formulaire de recherche d'un article
    * url = /articles/search
    */
-  /*else if (preg_match('/^\/articles\/search\/?$/', $request->pathInfo())) {
+   else if (preg_match('/^\/articles\/search\/?$/', $request->pathInfo())) {
     $controller = new ArticlesController();
     $controller->search();
-  }*/
+    } 
 
   /**
    * Déconnecte un utilisateur
@@ -193,6 +191,16 @@ else if ($request->method() == "GET") {
   }
 
   /**
+   * Suppression d'un tag
+   * url = /tag/delete/{id}
+   */
+  else if (preg_match('/^\/tag\/delete\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
+    $id = $preg_match_results[1];
+    $controller = new TagsController();
+    $controller->delete($id);
+  }
+
+  /**
    * Si aucune route ne correspond on envoie une 404
    */
   else {
@@ -204,9 +212,9 @@ else if ($request->method() == "GET") {
   }
 }
 
-/***********
+/* * *********
  * POST
- ***********/
+ * ********* */ 
 else if ($request->method() == "POST") {
 
   /**
@@ -297,6 +305,15 @@ else if ($request->method() == "POST") {
     header("Location: /");
   }
 
+  /**
+   * Ajout d'un tag
+   * url = /tag/add
+   */
+  else if (preg_match('/^\/tag\/add\/?$/', $request->pathInfo(), $preg_match_results)) {
+    $controller = new TagsController();
+    $controller->add($_POST["tag"]);
+  }
+
 else if (preg_match('/^\/gestion\/users\/update\/?$/', $request->pathInfo())) {
     $controller = new UsersController();
     $controller->update($_POST);
@@ -304,9 +321,9 @@ else if (preg_match('/^\/gestion\/users\/update\/?$/', $request->pathInfo())) {
   }
 }
 
-/***********
+/* * *********
  * DELETE
- ***********/
+ * ********* */
 else if ($request->method() == "DELETE") {
 
   /**
@@ -327,7 +344,7 @@ else if ($request->method() == "DELETE") {
    */
   else if (preg_match('/^\/users\/delete\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
     $id = $preg_match_results[1];
-    $controller = new ArticlesController();
+    $controller = new UsersController();
     $controller->delete($id);
 
 }
