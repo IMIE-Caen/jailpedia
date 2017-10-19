@@ -20,8 +20,11 @@
         <label for="mdp">Mot de passe</label>
         <input class="form-control" type="password" id="password" name="password" />
     </div>
+    <div class="form-group">
+        <label for="role">Role</label>
+        <input class="form-control" type="role" id="role" name="role" value="user" readonly="readonly"/>
+    </div>
     <div class="boutonAction">
       <input type="submit" value="Créer un compte" class="btn btn-default" />
     </div>
 </form>
-

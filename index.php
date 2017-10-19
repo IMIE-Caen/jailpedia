@@ -101,6 +101,13 @@ else if ($request->method() == "GET") {
     header("location:" . $_SERVER['HTTP_REFERER']);
   }
 
+  else if (preg_match('/^\/gestion\/users\/update\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
+    $controller = new UsersController();
+    $controller->update($_POST);
+    $id = $_POST['id'];
+    header("location:" . $_SERVER['HTTP_REFERER']);
+  }
+
   else if (preg_match('/^\/gestion\/articles\/?$/', $request->pathInfo())) {
     $controller = new GestionController();
     $controller->GestionArticles();

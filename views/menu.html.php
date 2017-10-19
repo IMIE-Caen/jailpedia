@@ -20,7 +20,7 @@
         <a href="/articles/new" title="Créer un article">Créer un article</a>
       </li>
       <?php
-        if (!isset($_SESSION['role']) == 'admin') {
+       if ($_SESSION['role'] == 'admin'){
 
       ?>
       <li class="nav-item" >
