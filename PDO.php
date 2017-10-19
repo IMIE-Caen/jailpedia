@@ -7,34 +7,55 @@ class SQLitePDO{
         //Activer les exceptions
         $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         //Cr�er la table
-        $db->exec("CREATE TABLE IF NOT EXISTS ARTICLES (
-                            id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            title VARCHAR(50),
-                            text VARCHAR(100),
-                            tag VARCHAR(25))");
-
-        $db->exec("CREATE TABLE IF NOT EXISTS TAGS (
-                            id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            Name VARCHAR(25))");
-
         $db->exec("CREATE TABLE IF NOT EXISTS USERS (
-                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
                             firstname VARCHAR(25),
                             lastname VARCHAR(25),
                             dob DATE,
                             email VARCHAR(50),
-                            mdp VARCHAR (25))");
+                            password VARCHAR (25),
+                            role VARCHAR (25))");
+
+        $db->exec("CREATE TABLE IF NOT EXISTS ARTICLES (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT,
+                            title VARCHAR(50),
+                            text MESSAGE_TEXT
+)");
+
+        $db->exec("CREATE TABLE IF NOT EXISTS TAGS (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                            name VARCHAR(100))");
+
+        $db->exec("CREATE TABLE IF NOT EXISTS IMAGES (
+                            id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+                            articleID INTEGER NOT NULL,
+                            name VARCHAR(255),
+                            FOREIGN KEY  (articleId) REFERENCES ARTICLES(id))");
 
         $db->exec("CREATE TABLE IF NOT EXISTS EVALUATIONS (
-                            id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            article VARCHAR(50),
-                            note VARCHAR(10),
-                            user VARCHAR(25))");
+                            note INTEGER,
+                            articleId INTEGER NOT NULL,
+                            userId INTEGER NOT NULL,
+                            /*PRIMARY KEY (articleId, userId),*/
+                            FOREIGN KEY (articleId) REFERENCES ARTICLES(id),
+                            FOREIGN KEY (userId) REFERENCES USERS(id)
+                            )");
 
         $db->exec("CREATE TABLE IF NOT EXISTS CONTRIBUTIONS (
-                            id INTEGER PRIMARY KEY AUTOINCREMENT,
-                            user VARCHAR(25),
-                            article VARCHAR(50))");
+                            userId INTEGER NOT NULL,
+                            articleId INTEGER NOT NULL,
+                            /*PRIMARY KEY (userId, articleId),*/
+                            FOREIGN KEY (userId) REFERENCES USERS(id),
+                            FOREIGN KEY (articleId) REFERENCES ARTICLES(id)
+                            )");
+
+        $db->exec("CREATE TABLE IF NOT EXISTS CATEGORISATION (
+                            articleId INTEGER NOT NULL,
+                            tagId INTEGER NOT NULL,
+                            /*PRIMARY KEY (articleId,tagId),*/
+                            FOREIGN KEY (articleId) REFERENCES ARTICLES(id),
+                            FOREIGN KEY (tagId) REFERENCES TAGS(id)
+)");
 
         return $db;
         }

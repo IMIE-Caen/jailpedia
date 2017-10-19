@@ -8,10 +8,23 @@ class TagsController {
   }
 
   function show($id){
-
-    $page_content ="Affichage du tag $id";
+    $articles = Categorisation::getArticleByTag($id);
+      ob_start();
+      include("./views/article/list.html.php");
+      $page_content = ob_get_clean();
     include("./views/layout.html.php");
   }
 
-
+  function delete($id) {
+    Tag::deleteTag($id);
+  }
+  
+  public function add($name) {
+    $tagId = Tag::createTag($name);
+    $tag = Tag::getTagById($tagId);
+    ob_start();
+    include("./views/tag/line.html.php");
+    $line = ob_get_clean();
+    echo $line;
+  }
 }

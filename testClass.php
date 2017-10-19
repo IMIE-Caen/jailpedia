@@ -11,50 +11,22 @@ require_once('Model/User.php');
 require_once('Model/Contribution.php');
 require_once('Model/Evaluation.php');
 require_once('Model/Tag.php');
+require_once('Model/Categorisation.php');
 require_once('PDO.php');
+require_once('controllers/UsersController.php');
 
+//$ajout = Article::createArticle("Fleury Merogis","C'est un article sur Fleury Merogis","odg");
+$createuser = User::createUser("Thibault","Lemesle","20-10-2017","tlemesle@gmail.com","tlua1994");
+$createuser = User::createUser("Valentin","Gallien","20-10-2017","valentin.gallien@imie.fr","toto");
+$createuser = User::createUser("Cindy","Castel","20-10-2017","cindy.castel@imie.fr","toto");
+$createuser = User::createUser("Benjamin","Aubert","20-10-2017","benjamin.aubert@imie.fr","toto");
 
-$tag = new Tag();
-$tag->setName("Prisons célèbres");
-
-$article = new Article();
-$article->setTitle("Alcatraz");
-$article->setText("Ceci est un texte sur Alcatraz");
-$article->setTag($tag);
-
-$user1 = new User();
-$user1->setFirstname("Bernard");
-$user1->setLastname("Lavilliers");
-$user1->setDob("20/10/1967");
-$user1->setEmail("brouette@aol.fr");
-
-$user2 = new User();
-$user2->setFirstname("Francky");
-$user2->setLastname("Vincent");
-$user2->setDob("20/10/1967");
-$user2->setEmail("azerty@aol.fr");
-
-$contribution = new Contribution($user1,$article);
-$contribution->setUser($user1);
-$contribution->setArticle($article);
-
-$username = $contribution->getUser();
-$text = $contribution->getArticle();
-
-$eval = new Evaluation($article,2,$user2);
-$eval->setArticle($article);
-$eval->setNote(2);
-$eval->setUser($user2);
-
-echo 'Contribution de '.$username->getFirstname() .' '. $username->getLastname().' sur l\'article '.$text->getTitle();
-echo "\n";
-echo ''.$eval->getUser()->getFirstname() .' '.$eval->getUser()->getLastname() .' a mis la note de '.$eval->getNote() .' pour l\'article '.$eval->getArticle()->getTitle();
-echo "\n";
-/****************************************/
-//$ajout = Article::createArticle("Fleury Merogis","C'est un article sur Fleury Merogis");
-
+//$createtag = Tag::createTag("Prisons d'Europe");
 $articles = Article::fetchAll();
-var_dump($articles);
+//$contribution = Contribution::setContribution(1,1);
+//$contribution = Contribution::getContributionByArticle(1);
+//$contribution = Contribution::getContributionByUser(1);
+
 foreach ($articles as $txt){
     echo $txt->getId().' : '.$txt->getTitle() ."\n";
 }
@@ -64,5 +36,23 @@ foreach ($test as $item) {
     echo $item->getTitle();
 }
 
-$test1 = Article::updateArticle("Guantanamo","Article sur Guantanamo",1);
-$test2 = Article::deleteArticle(1);
+//$test = Categorisation::addTagToArticle(1,1);
+//$test = Evaluation::addEvaluationToArticle(1,1,5);
+//$test = Evaluation::addEvaluationToArticle(1,2,7);
+//$test = Evaluation::addEvaluationToArticle(1,3,2);
+//$test = Evaluation::addEvaluationToArticle(1,4,9);
+$test = Evaluation::getAverageNoteArticle(1);
+echo "Note moyenne pour l'article : ". $test."\n";
+$test = Evaluation::getUserNoteArticle(1,1);
+echo "Note du user : ".$test;
+$controleur = new UsersController();
+$controleur->validForAuth("valentin.gallien@imie.fr","toto");
+
+$tag = Tag::fetchAll();
+var_dump($tag);
+
+$articles = Categorisation::getArticleByTag(1);
+var_dump($articles);
+
+$user = User::updateUser("test","test","20-10-2017","test@test.fr","test","admin",6);
+//$test1 = Article::updateArticle("Guantanamo","Article sur Guantanamo",1);

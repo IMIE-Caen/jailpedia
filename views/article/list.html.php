@@ -1,9 +1,21 @@
 <div class="listArticle">
-<?php foreach ($articles as $article) { ?>
+  <h1>Liste des articles</h1>
+
+  <?php 
+  if(sizeof($articles)==0) {
+  
+   echo  "Aucun articles en base ! " ; 
+
+ } else {
+
+   foreach ($articles as $article) { ?>
     <div class="article">
-      <h2><?= $article->getTitle(); ?></h2>
+      <h2><a href="/articles/<?= $article->getId(); ?>" title="<?= $article->getTitle(); ?>"><?= $article->getTitle(); ?></a></h2>
       <div class="article-text"><?= $article->getText(); ?></div>
+      <div class="bottom">
+        <a href="/articles/<?= $article->getId(); ?>" class="voir" title="<?= $article->getTitle(); ?>">Lire la suite</a>
+      </div>
     </div>
-    <?php } ?>
+  <?php }} ?>
 </div>
 
