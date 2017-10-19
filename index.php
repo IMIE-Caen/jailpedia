@@ -296,13 +296,10 @@ else if ($request->method() == "POST") {
     $id = $_POST['id'];
     header("Location: /");
   }
-  /**
-   * Edition du role d'un utilisateur
-   */
-  else if (preg_match('/^\/gestion\/users\/update\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
+
+else if (preg_match('/^\/gestion\/users\/update\/?$/', $request->pathInfo())) {
     $controller = new UsersController();
     $controller->update($_POST);
-    $id = $_POST['id'];
     header("location:" . $_SERVER['HTTP_REFERER']);
   }
 }
