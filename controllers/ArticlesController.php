@@ -4,7 +4,8 @@ class ArticlesController {
 
   function show($id) {
     $article = Article::getArticleById($id);
-    $note = Evaluation::getUserNoteArticle($id);
+    $note = Evaluation::getAverageNoteArticle($id);
+    //$note = Evaluation::getUserNoteArticle($id,$_SESSION['userConnect']);
     if($article != Null){
       ob_start();
       include("./views/article/view.html.php");
