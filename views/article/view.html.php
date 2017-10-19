@@ -1,5 +1,12 @@
 <h1><?= $article->getTitle(); ?></h1>
 <p>Note : <?= $note ?> /10</p>
+ <p> Tags :
+    <?php foreach ($tags as $tag) { ?>
+        <a href="/tags/<?= $tag->getId(); ?>"><?= $tag->getName(); ?><a> &nbsp;
+    <?php
+    }
+    ?>
+</p>
 <p><?= $article->getText(); ?></p>
 <img src="../../images/articles/<?= Article::getImage($article->getId()) ?>" />
 

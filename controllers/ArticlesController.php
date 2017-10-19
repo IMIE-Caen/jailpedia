@@ -5,6 +5,7 @@ class ArticlesController {
   function show($id) {
     $article = Article::getArticleById($id);
     $note = Evaluation::getAverageNoteArticle($id);
+    $tags = Categorisation::getTagByArticle($id);
     //$note = Evaluation::getUserNoteArticle($id,$_SESSION['userConnect']);
     if($article != Null){
       ob_start();
