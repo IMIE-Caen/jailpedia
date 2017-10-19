@@ -42,15 +42,15 @@ class UsersController {
 
   function RoleUser( $login, $password){
     $PDO = new SQLitePDO();
-    $sql = 'SELECT Role FROM USERS WHERE firstname = ? and password = ?';
+    $sql = 'SELECT role FROM USERS WHERE email = ? and password = ?';
     $stmt = $PDO->bdd()->prepare($sql) ;
     $stmt->bindValue(1, $login);
     $stmt->bindValue(2, $password);
     $stmt->execute();
     $role_user = $stmt->fetchAll()[0][0];
-    return $role_user['role'] ;
-
-  }
+    var_dump($role_user);
+    return $role_user ;
+}
 
   function save($param){
   	$PDO = new SQLitePDO();
@@ -62,13 +62,14 @@ class UsersController {
   	$password = $param['password'];
     $role = $param['role'];
 
-  	$sql = 'INSERT INTO USERS ("firstname", "lastname", "dob","email","mdp") VALUES (:firstname, :lastname, :dob, :email, :password, :role) ';
+  	$sql = 'INSERT INTO USERS ("firstname", "lastname", "dob","email","password","role") VALUES (:firstname, :lastname, :dob, :email, :password, :role) ';
   	$stmt = $PDO->bdd()->prepare($sql) ;
   	$stmt->bindValue('firstname', $firstname);
   	$stmt->bindValue('lastname', $lastname);
   	$stmt->bindValue('dob', $dob);
   	$stmt->bindValue('email', $email);
   	$stmt->bindValue('password', $password);
+    $stmt->bindValue('role', $role);
   	 $stmt->execute();
 
 
@@ -95,11 +96,11 @@ class UsersController {
     $dob = $param['dob'];
     $email = $param['email'];
     $password = $param['password'];
+    $role = $param['role'];
     $id =$param['id'];
 
-    User::updateUser($firstname,$lastname,$dob,$email,$password,$id);
-  
-   
+    User::updateUser($firstname,$lastname,$dob,$email,$password,$role,$id);
   }
+
 
 }

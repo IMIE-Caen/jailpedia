@@ -44,5 +44,24 @@
 		}
 	}
 	?>
+    <div>
+        <h3> Liste des tags </h3>
+
+        <?php
+        foreach ($tags as $tag) {
+            ?>
+            <div>
+                <?php
+                $id = $tag->getId();
+
+                ?>
+
+                <a href="/tags/<?= $id ?>" title=<?=$tag->getName(); ?> ><?=$tag->getName(); ?> </a>
+            </div>
+            <?php
+        }
+        ?>
+
+    </div>
 </div>
 

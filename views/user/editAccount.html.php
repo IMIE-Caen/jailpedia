@@ -22,6 +22,10 @@
     <input class="form-control" type="password" id="password" name="password" value="<?php echo $user->getPassword() ?>" />
   </div>
   <div class="form-group">
+      <label for="role">Role</label>
+      <input class="form-control" type="role" id="role" name="role" value="<?php echo $user->getRole() ?>" readonly="readonly"/>
+  </div>
+  <div class="form-group">
     <div class="boutonAction">
       <input type="submit"  class="btn btn-default" value="Enregistrer les modifications" />
     </div>

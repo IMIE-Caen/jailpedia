@@ -98,7 +98,7 @@ class Article
         $article->execute(array($id));
         $result = $article->fetchAll(PDO::FETCH_CLASS,"Article");
         if( sizeof($result) != 0) {
-            $article =$result[0] ; 
+            $article =$result[0] ;
         }else 
             $article = Null ; 
         return $article;
@@ -122,7 +122,7 @@ class Article
         $P = array('article' => $id, 'img' => $img);
         $stmt->execute($P);
         $stmt->closeCursor();
-        return SQLitePDO::bdd()->lastInsertId();
+        return $id;
     }
 
     public static function updateArticle($title,$text,$id){
@@ -165,10 +165,9 @@ class Article
      $stmt = SQLitePDO::bdd()->prepare($sql);
      $stmt->execute();
      $article = $stmt->fetchAll(PDO::FETCH_CLASS,"Article"); 
-      if( sizeof($article) != 0  ) {
+     if( sizeof($article) != 0  ) {
       $articleRandom =  $article[0] ; 
-      
-     }else 
+     }else
         $articleRandom = Null ; 
     return $articleRandom;
   }
