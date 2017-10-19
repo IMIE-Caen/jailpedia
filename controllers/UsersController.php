@@ -7,12 +7,26 @@ class UsersController {
 
   function show($id){
   	$user = User::getUserById($id);
-    ob_start();
-  	include('./views/viewUser.php');
+    if($user != Null){
+       ob_start();
+    include('./views/user/showUser.html.php');
     $page_content = ob_get_clean();
     include("./views/layout.html.php");
+    }
+    else{
+      ob_start();
+      include("./views/404.html.php");
+      $page_content = ob_get_clean();
+      header("HTTP/1.0 404 Not Found");
+      include("./views/layout.html.php");
+
+    }
+   
   }
 
+
+ 
+    
   function signUp() {
     ob_start();
     include('./views/user/createAccount.html.php');
@@ -35,8 +49,8 @@ class UsersController {
     $stmt->bindValue(2, $password);
     $stmt->execute();
     $userValid = $stmt->fetchAll()[0][0];
-      var_dump($userValid);
-      return $userValid == true ;
+    var_dump($userValid);
+    return $userValid == true ;
 
  	}
 
@@ -50,6 +64,18 @@ class UsersController {
     $role_user = $stmt->fetchAll()[0][0];
     var_dump($role_user);
     return $role_user ;
+}
+
+function UserConnect( $login, $password){
+  $PDO = new SQLitePDO();
+  $sql = 'SELECT id FROM USERS WHERE email = ? and password = ?';
+  $stmt = $PDO->bdd()->prepare($sql) ;
+  $stmt->bindValue(1, $login);
+  $stmt->bindValue(2, $password);
+  $stmt->execute();
+  $connect_user = $stmt->fetchAll()[0][0];
+  var_dump($connect_user);
+  return $connect_user ;
 }
 
   function save($param){
