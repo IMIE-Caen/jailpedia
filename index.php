@@ -24,6 +24,13 @@ $router->get('showArticle', '/^\/articles\/(?<id>\d+)\/?$/',
     $id = $request->routerParams['id'];
     (new ArticlesController())->show($id);
 });
+
+$router->post('addNoteArticle','/^\/articles\/(?<id>\d+)\/?$/',
+    function ($request){
+    $id = $request->routerParams['id'];
+    (new NotationController())->addNote($_SESSION['userConnect'],$id,$_POST["note"]);
+});
+
 $router->post('createArticle', '/^\/articles\/create\/?$/',
   function($request){ (new ArticlesController())->save($_POST);  }
 );
@@ -168,6 +175,7 @@ $router->get('newTag','/^\/gestion\/tags\/create\/?$/', function($request){
   (new TagsController())->createTag($name);
   header("location:" . $_SERVER['HTTP_REFERER']);
 });
+
 
 if($router->dispatch($request))
   exit(0);

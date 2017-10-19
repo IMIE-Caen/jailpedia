@@ -1,9 +1,12 @@
 <h1><?= $article->getTitle(); ?></h1>
-<p>Note :<?= $note ?> /10</p>
+<p>Note : <?= $note ?> /10</p>
 <p><?= $article->getText(); ?></p>
 <img src="../../images/articles/<?= Article::getImage($article->getId()) ?>" />
 
-<form action="/articles/create" class="form-vertical" method="post">
+<?php
+if (isset($_SESSION['connecte'])) {
+?>
+<form action="/articles/<?= $article->getId() ?>" class="form-vertical" method="post">
     <h1>Noter cet article</h1>
     <div class="form-group">
         <label for="note">Note :</label>
@@ -23,3 +26,6 @@
     </div>
     <input type="submit"  class="btn btn-default" value="Enregistrer" />
 </form>
+    <?php
+}
+?>
