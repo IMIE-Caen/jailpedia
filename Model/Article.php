@@ -97,7 +97,13 @@ class Article
         $article = SQLitePDO::bdd()->prepare($sql);
         $article->execute(array($id));
         $result = $article->fetchAll(PDO::FETCH_CLASS,"Article");
-        return $result[0];
+        if( sizeof($result) != 0) {
+            $article =$stmt->fetchAll(PDO::FETCH_CLASS,"Article")[0] ; 
+        }else 
+            $article = Null ; 
+        return $article;
+
+        
     }
 
     public static function createArticle($title,$text,$img){
@@ -158,9 +164,14 @@ class Article
      $sql = "SELECT * FROM ARTICLES ORDER BY RANDOM() LIMIT 1 ";
      $stmt = SQLitePDO::bdd()->prepare($sql);
      $stmt->execute();
-     
-     $article = $stmt->fetchAll(PDO::FETCH_CLASS,"Article")[0];
-     return $article;
+     $article = $stmt->fetchAll(PDO::FETCH_CLASS,"Article"); 
+     var_dump($article); 
+     if( sizeof($article) != 0  ) {
+      $articleRandom =  $article[0] ; 
+      var_dump($articleRandom);
+     }else 
+        $articleRandom = Null ; 
+    return $articleRandom;
   }
 
 

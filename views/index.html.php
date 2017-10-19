@@ -1,5 +1,12 @@
 <h2>Bienvenue sur l'accueil</h2>
 
+<?php 
+
+	if(sizeof($articles) == 0 && $randomArticle == null ) { 
+		echo " Notre si ne  pas encore de d'articles ..... " ; ?>
+		<a href="/articles/new" title="Créer">Créez en un ici</a>
+	<?php } else { 
+?> 
 <div>
 	<h3> L'article au hasard </h3>
 
@@ -35,6 +42,7 @@
 	</div> 
 	<?php	
 		}
+	}
 	?>
     <div>
         <h3> Liste des tags </h3>

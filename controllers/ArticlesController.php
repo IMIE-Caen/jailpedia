@@ -4,10 +4,20 @@ class ArticlesController {
 
   function show($id) {
     $article = Article::getArticleById($id);
-    ob_start();
-    include("./views/article/view.html.php");
-    $page_content = ob_get_clean();
-    include("./views/layout.html.php");
+    if($article != Null){
+      ob_start();
+      include("./views/article/view.html.php");
+      $page_content = ob_get_clean();
+      include("./views/layout.html.php");
+    }
+    else{
+      ob_start();
+      include("./views/404.html.php");
+      $page_content = ob_get_clean();
+      header("HTTP/1.0 404 Not Found");
+      include("./views/layout.html.php");
+
+    }
   }
 
   function showAllArticles() {

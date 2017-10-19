@@ -338,12 +338,13 @@ else if ($request->method() == "DELETE") {
 }
 
 
-/**
- * Supprime un utilisateur
- * url = /users/delete/{id}
- */
-else if (preg_match('/^\/users\/delete\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
-  $id = $preg_match_results[1];
-  $controller = new ArticlesController();
-  $controller->delete($id);
+  /**
+   * Supprime un utilisateur
+   * url = /users/delete/{id}
+   */
+  else if (preg_match('/^\/users\/delete\/(\d+)\/?$/', $request->pathInfo(), $preg_match_results)) {
+    $id = $preg_match_results[1];
+    $controller = new UsersController();
+    $controller->delete($id);
+
 }
