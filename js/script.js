@@ -15,7 +15,7 @@ $(document).ready(function () {
     });
   });
 
-  $(".btn-delete-tag").on("click", function (e) {
+  $(document).on("click", ".btn-delete-tag", function (e) {
     e.preventDefault();
     var line = $(this).parent().parent();
     $.ajax({
@@ -25,4 +25,5 @@ $(document).ready(function () {
       line.hide('slow', function(){ line.remove(); });
     });
   });
+  
 });
