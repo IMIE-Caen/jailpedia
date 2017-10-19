@@ -11,6 +11,7 @@
  ** COMMUN
 *************************************/
 h1, .title-h1 {
+  margin-bottom: 40px;
   color: #1B5773;
   text-align: center;
   text-transform: uppercase;
@@ -201,6 +202,29 @@ footer {
 .page404 { text-align: center; }
 
 /**
+ ** Page d'accueil
+*************************************/
+.homepage section {
+  margin: 20px 0;
+}
+
+.homepage .description { color: #777; }
+.homepage .illustration { margin-bottom: 20px; }
+.homepage .illustration img { max-width: 100%; }
+
+.homepage .article { margin: 10px 0; padding: 10px; }
+.homepage .article:nth-child(odd) {
+  background-color: #eee;
+ }
+
+.homepage .bottom { text-align: right; }
+
+.homepage h3 a {
+  color: inherit;
+  text-decoration: none;
+ }
+
+/**
  ** Liste des articles
 *************************************/
 .listArticle .article {
@@ -229,7 +253,7 @@ footer {
 /**
  ** Formulaire de connexion
 *************************************/
-.form-connexion { 
+.form-connexion {
   width: 50%;
   margin: 0 auto;
 }
