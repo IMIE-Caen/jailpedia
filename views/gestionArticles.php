@@ -22,7 +22,7 @@ $stmt->closeCursor();
               <td><?php echo $article['id'] ?></td>
               <td><?php echo $article['title'] ?></td>
               <td><?php echo $article['text'] ?></td>
-              <td><a href="/gestion/articles/<?php echo $article['id'] ?>">Delete</a></td>
+              <td><a href="/gestion/articles/delete/<?php echo $article['id'] ?>">Delete</a></td>
        </tr>
        <?php } ?>
       </tbody>
