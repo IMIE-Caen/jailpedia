@@ -54,10 +54,9 @@ $router->delete('deleteArticle','/^\/articles\/delete\/(\d+)\/?$/',
 });
 
 // users
-
-$router->get('showUser', '/^\/users\/(?<id>\d+)\/?/',
+$router->get('showUser', '/^\/users\/(\d+)\/?$/',
   function($request){
-    $id = $request->routerParams['id'];
+    $id = $request->routerParams[1];
     (new UsersController())->show($id);
 });
 $router->post('updateUser', '/^\/users\/edit\/?/',
@@ -71,7 +70,7 @@ $router->post('createUser', '/^\/users\/save\/?/',
     (new UsersController())->save($_POST);
     header("Location: /signin");
 });
-$router->get('showUser', '/^\/users\/edit\/(?<id>\d+)\/?/',
+$router->get('editUser', '/^\/users\/edit\/(?<id>\d+)\/?/',
   function($request){
     $id = $request->routerParams['id'];
     (new UsersController())->edit($id);
