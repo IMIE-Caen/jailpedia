@@ -187,8 +187,10 @@ class User
         $result = $user->fetchAll(PDO::FETCH_CLASS,"User");
         if( sizeof($result) != 0) {
             $user =$result[0] ;
+
         }else 
             $user = Null ; 
+          
         return $user;
 
     }
