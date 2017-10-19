@@ -3,6 +3,7 @@
   <input type="text" class="form-control" id="tag" placeholder="Enter Tag" name="tag">
   <input class="btn btn-default" type="submit" value="Ajouter" />
 </form>
+
 <table class="table">
   <thead>
     <tr>

@@ -96,7 +96,7 @@ class Tag
         $stmt->closeCursor();
     }
 
-    public static function deleteTag($id){
+    public static function delete($id){
         $sql = 'DELETE FROM TAGS WHERE id = :ID';
         $stmt = SQLitePDO::bdd()->prepare($sql);
         $P = array('ID'=>$id);

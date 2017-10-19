@@ -96,12 +96,12 @@ $router->get('indexTags', '/^\/tags\/?/',
 );
 
 
-$router->get('createTag','/^\/tag\/add\/?$/', function($request){
+$router->post('createTag','/^\/tag\/add\/?$/', function($request){
   (new TagsController())->add($_POST["tag"]);
 });
 
-$router->get('deleteTag','/^\/tag\/delete\/(\d+)\/?$/', function($request){
-  $id = $preg_match_results[1];
+$router->post('deleteTag','/^\/tag\/delete\/(\d+)\/?$/', function($request){
+  $id = $request->routerParams['id'];
   (new TagsController())->delete($id);
 });
 
@@ -143,7 +143,7 @@ $router->get('gestionUsers', '/^\/gestion\/users\/?$/', function($request){
   (new GestionController())->GestionUsers();
 });
 
-$router->post('gestionUpdateUser','/^\/gestion\/users\/update\/(\d+)\/?$/', function($request){
+$router->post('gestionUpdateUser','/^\/gestion\/users\/update\/?$/', function($request){
   (new UsersController())->update($_POST);
   header("location:" . $_SERVER['HTTP_REFERER']);
 });
@@ -156,8 +156,17 @@ $router->get('gestionDeleteUsers', '/^\/gestion\/users\/(\d+)\/?$/', function($r
 $router->get('gestionArticles', '/^\/gestion\/articles\/?$/', function($request){
   (new GestionController())->GestionArticles();
 });
+$router->get('gestionDeleteArticles', '/^\/gestion\/articles\/delete\/(\d+)\/?$/', function($request){
+  $id = $request->routerParams[1];
+  (new ArticlesController())->delete($id);
+  header("location:" . $_SERVER['HTTP_REFERER']);
+});
 
-$router->get('deleteTag', '/^\/gestion\/articles\/(\d+)\/?$/', function($request){
+$router->get('gestionTags', '/^\/gestion\/tags\/?$/', function($request){
+  (new GestionController())->GestionTags();
+});
+
+$router->get('deleteTag', '/^\/gestion\/tags\/delete\/(\d+)\/?$/', function($request){
   $id = $request->routerParams[1];
   (new TagsController())->deleteTag($id);
   header("location:" . $_SERVER['HTTP_REFERER']);

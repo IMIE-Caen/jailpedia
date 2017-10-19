@@ -39,10 +39,9 @@ class ArticlesController {
   function update($values) {
     Article::updateArticle($values["title"], $values["texte"], $values["id"]);
   }
-  
-  function delete() {
-    $page_content = "suppression article ";
-    include("./views/layout.html.php");
+
+  function delete($id) {
+    Article::deleteArticle($id);
   }
 
   function create() {
@@ -53,7 +52,7 @@ class ArticlesController {
   }
 
   function search($param) {
-    $title = $param['search']; 
+    $title = $param['search'];
     $articles = Article::getArticleByTitle($title);
     ob_start();
     include("./views/article/list.html.php");
@@ -70,5 +69,5 @@ class ArticlesController {
         Categorisation::addTagToArticle($articleId, $tag);
     }
   }
-  
+
 }

@@ -15,10 +15,10 @@ class TagsController {
     include("./views/layout.html.php");
   }
 
-  function delete($id) {
-    Tag::deleteTag($id);
+  function deleteTag($id) {
+    Tag::delete($id);
   }
-  
+
   public function add($name) {
     $tagId = Tag::createTag($name);
     $tag = Tag::getTagById($tagId);
