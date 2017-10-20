@@ -1,6 +1,4 @@
 <?php
-
-
 $limit = 1;
 $pages = ceil($articlesCount / $limit);
 

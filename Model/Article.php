@@ -112,6 +112,17 @@ class Article
         return $pageCount;
     }
 
+    public static function fetchRowSearch($title){
+
+        $PDO = new SQLitePDO();
+        $sql = 'SELECT COUNT(*) FROM ARTICLES WHERE title like ?';
+        $stmt = $PDO->bdd()->prepare($sql);
+        $stmt->execute(array("%$title%"));
+        $pageCount = $stmt->fetchColumn();
+        $stmt->closeCursor();
+        return $pageCount;
+    }
+
     public static function getArticleById($id){
        // $db = new SQLitePDO();
         $sql = "SELECT * FROM ARTICLES WHERE id = ? ";
