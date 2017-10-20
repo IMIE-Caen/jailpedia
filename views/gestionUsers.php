@@ -1,11 +1,3 @@
-<?php
-$PDO = new SQLitePDO();
-$sql = 'SELECT * FROM USERS WHERE id != ?';
-$stmt = $PDO->bdd()->prepare($sql);
-$stmt->execute(array($_SESSION['userConnect']));
-$users_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$stmt->closeCursor();
-?>
 <table class="table">
       <thead>
         <tr>
@@ -21,18 +13,18 @@ $stmt->closeCursor();
         </tr>
       </thead>
       <tbody>
-           <?php foreach ($users_list as $user) { ?>
+           <?php foreach ($users as $user) { ?>
                <form action= "/gestion/users/update" method="POST">
           <tr>
-              <td><?php echo $user['id'] ?><input type="hidden" name="id" value="<?php echo $user['id'] ?>"></td>
-              <td><?php echo $user['firstname'] ?><input type="hidden" name="firstname" value="<?php echo $user['firstname'] ?>"></td>
-              <td><?php echo $user['lastname'] ?><input type="hidden" name="lastname" value="<?php echo $user['lastname'] ?>"></td>
-              <td><?php echo $user['dob'] ?><input type="hidden" name="dob" value="<?php echo $user['dob'] ?>"></td>
-              <td><?php echo $user['email'] ?><input type="hidden" name="email" value="<?php echo $user['email'] ?>"></td>
-              <td><?php echo $user['password'] ?><input type="hidden" name="password" value="<?php echo $user['password'] ?>"></td>
-              <td><?php echo $user['role'] ?></td>
-              <td><a href="/gestion/users/<?php echo $user['id'] ?>">Delete</a></td>
-             <?php  if($user['role'] == "admin") { ?>
+              <td><?= $user->getId(); ?><input type="hidden" name="id" value="<?= $user->getId(); ?>"></td>
+              <td><?= $user->getFirstname(); ?><input type="hidden" name="firstname" value="<?= $user->getFirstname(); ?>"></td>
+              <td><?= $user->getLastname(); ?><input type="hidden" name="lastname" value="<?= $user->getLastname(); ?>"></td>
+              <td><?= $user->getDob(); ?><input type="hidden" name="dob" value="<?= $user->getDob(); ?>"></td>
+              <td><?= $user->getEmail(); ?><input type="hidden" name="email" value="<?= $user->getEmail(); ?>"></td>
+              <td><?= $user->getpassword(); ?><input type="hidden" name="password" value="<?= $user->getpassword(); ?>"></td>
+              <td><?= $user->getRole(); ?></td>
+              <td><a href="/gestion/users/<?= $user->getId(); ?>">Delete</a></td>
+             <?php  if($user->getRole() == "admin") { ?>
                  <input type="hidden" name="role" value="user" />
               <td><button type="submit">User</button></td>
            <?php } else { ?>

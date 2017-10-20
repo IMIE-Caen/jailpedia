@@ -82,8 +82,18 @@ class Article
         $this->text = $text;
     }
 
+/*
+    public static function fetchAll($limit){
 
+        $sql = "SELECT * FROM ARTICLES Limit $limit";
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
+        return $result;
+    }
+*/
     public static function fetchAll(){
+
         $sql = "SELECT * FROM ARTICLES";
         $stmt = SQLitePDO::bdd()->prepare($sql);
         $stmt->execute();
@@ -99,11 +109,11 @@ class Article
         $result = $article->fetchAll(PDO::FETCH_CLASS,"Article");
         if( sizeof($result) != 0) {
             $article =$result[0] ;
-        }else 
-            $article = Null ; 
+        }else
+            $article = Null ;
         return $article;
 
-        
+
     }
 
     public static function createArticle($title,$text,$img){
@@ -164,11 +174,11 @@ class Article
      $sql = "SELECT * FROM ARTICLES ORDER BY RANDOM() LIMIT 1 ";
      $stmt = SQLitePDO::bdd()->prepare($sql);
      $stmt->execute();
-     $article = $stmt->fetchAll(PDO::FETCH_CLASS,"Article"); 
+     $article = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
      if( sizeof($article) != 0  ) {
-      $articleRandom =  $article[0] ; 
+      $articleRandom =  $article[0] ;
      }else
-        $articleRandom = Null ; 
+        $articleRandom = Null ;
     return $articleRandom;
   }
 
@@ -181,5 +191,5 @@ class Article
     return $result;
 
   }
-  
+
 }

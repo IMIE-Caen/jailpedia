@@ -3,6 +3,7 @@
 class GestionController {
 
   function GestionUsers() {
+    $users = User::fetchAll();
     ob_start();
     include('./views/gestionUsers.php');
     $page_content = ob_get_clean();
@@ -10,6 +11,7 @@ class GestionController {
   }
 
   function GestionArticles() {
+    $articles = Article::fetchAll();
     ob_start();
     include('./views/gestionArticles.php');
     $page_content = ob_get_clean();

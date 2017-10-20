@@ -1,13 +1,3 @@
-<?php
-$PDO = new SQLitePDO();
-$sql = 'SELECT * FROM ARTICLES';
-$stmt = $PDO->bdd()->prepare($sql);
-$stmt->execute();
-$articles_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
-$stmt->closeCursor();
-?>
-
-
 <table class="table">
       <thead>
         <tr>
@@ -17,12 +7,12 @@ $stmt->closeCursor();
         </tr>
       </thead>
       <tbody>
-           <?php foreach ($articles_list as $article) { ?>
+           <?php foreach ($articles as $article) { ?>
           <tr>
-              <td><?php echo $article['id'] ?></td>
-              <td><?php echo $article['title'] ?></td>
-              <td><?php echo $article['text'] ?></td>
-              <td><a href="/gestion/articles/delete/<?php echo $article['id'] ?>">Delete</a></td>
+              <td><?= $article->getId(); ?></td>
+              <td><?= $article->getTitle(); ?></td>
+              <td><?= $article->getText(); ?></td>
+              <td><a href="/gestion/articles/delete/<?= $article->getId(); ?>">Delete</a></td>
        </tr>
        <?php } ?>
       </tbody>
