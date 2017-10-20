@@ -40,6 +40,10 @@
         <label for="ccv">CCV*</label>
         <input class="form-control" type="number" name="ccv" id="ccv" />
       </div>
+      <div class="form-group">
+        <label for="expirationDate">Date d'expiration*</label>
+        <input class="form-control" type="text" name="expirationDate" id="expirationDate" />
+      </div>
     </div>
     <div class="form-group">
       <label for="message">Message*</label>
