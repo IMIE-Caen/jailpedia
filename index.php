@@ -150,6 +150,7 @@ $router->get('gestionUsers', '/^\/gestion\/users\/?$/', function($request){
 });
 
 $router->post('gestionUpdateUser','/^\/gestion\/users\/update\/?$/', function($request){
+  $id = $request->routerParams[1];
   (new UsersController())->update($_POST);
   header("location:" . $_SERVER['HTTP_REFERER']);
 });

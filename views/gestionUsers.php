@@ -6,8 +6,6 @@ $stmt->execute(array($_SESSION['userConnect']));
 $users_list = $stmt->fetchAll(PDO::FETCH_ASSOC);
 $stmt->closeCursor();
 ?>
-<form action= "/gestion/users/update" method="POST">
-
 <table class="table">
       <thead>
         <tr>
@@ -24,6 +22,7 @@ $stmt->closeCursor();
       </thead>
       <tbody>
            <?php foreach ($users_list as $user) { ?>
+               <form action= "/gestion/users/update" method="POST">
           <tr>
               <td><?php echo $user['id'] ?><input type="hidden" name="id" value="<?php echo $user['id'] ?>"></td>
               <td><?php echo $user['firstname'] ?><input type="hidden" name="firstname" value="<?php echo $user['firstname'] ?>"></td>
@@ -40,8 +39,8 @@ $stmt->closeCursor();
            <input type="hidden" name="role" value="admin" />
                 <td><button type="submit">Admin</button></td>
            <?php } ?>
+           </form>
        </tr>
        <?php } ?>
       </tbody>
     </table>
-</form>
