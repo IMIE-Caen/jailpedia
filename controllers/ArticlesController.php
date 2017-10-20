@@ -73,6 +73,7 @@ class ArticlesController {
 
   function search($param) {
     $title = $param['search'];
+    $articlesCount = Article::fetchRow();
     $articles = Article::getArticleByTitle($title);
     ob_start();
     include("./views/article/list.html.php");

@@ -94,7 +94,7 @@ class Article
 */
     public static function fetchAll(){
 
-        $sql = "SELECT * FROM ARTICLES LIMIT 1";
+        $sql = "SELECT * FROM ARTICLES";
         $stmt = SQLitePDO::bdd()->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
