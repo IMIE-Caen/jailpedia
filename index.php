@@ -127,7 +127,7 @@ $router->post('createSession', '/^\/users\/signin\/?$/',
     $pwd = $_POST['password'];
     if($controller->validForAuth($email,$pwd)){
       $_SESSION['connecte'] = true ;
-      $_SESSION['role'] = $controller->RoleUser($email,$pwd);
+      $_SESSION['role'] = $controller->UserConnect($email,$pwd);
       $_SESSION['userConnect'] = $controller->UserConnect($email,$pwd);
       header('Location: /articles');
     } else {

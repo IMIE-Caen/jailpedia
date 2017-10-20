@@ -27,11 +27,20 @@
         <li class="nav-item">
           <a href="/users/<?= $id ?>" title="Mon compte">Mon compte</a>
         </li>
-      <?php 
+        
+        <?php 
+           $userCoName = User::getUserById($id); 
+           echo  "Bonjour " .$userCoName->getFirstname();
+        
+
         }
-       if ($_SESSION['role'] == 'admin'){
+        
+        $userCoRole = User::getUserById($id); 
+       // if ($_SESSION['role'] == 'admin'){
+                if ($userCoRole->getRole() == 'admin'){
 
       ?>
+
       <li class="nav-item" >
           <div class="btn-group">
             <button type="button" class="btn btn-secondaire dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestion Admin</button>
