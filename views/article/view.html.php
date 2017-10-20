@@ -50,4 +50,11 @@
       </div>
     <?php } ?>
   </div>
+
+
+  <div> Dernières modifications 
+    <?php foreach ($modifs as $modif) { ?>
+              <a href="#"><?= $modif->getDateModif(); ?><a> &nbsp;
+          <?php } ?>
+  </div>
 </div>

@@ -7,6 +7,7 @@ class ArticlesController {
     $note = Evaluation::getAverageNoteArticle($id);
     $tags = Categorisation::getTagByArticle($id);
     $contribs = Contribution::getContributionByArticle($id);
+    $modifs = Historisation::getLastUpdateArticle($id); 
     //$note = Evaluation::getUserNoteArticle($id,$_SESSION['userConnect']);
     if($article != Null){
       ob_start();
@@ -42,7 +43,7 @@ class ArticlesController {
 
   function update($values) {
     Article::updateArticle($values["title"], $values["texte"], $values["id"]);
-    Article::updateArticleHistory($values["title"], $values["texte"], $values["id"], $values["idUser"]); 
+    Article::updateArticleHistory($values["title"], $values["texte"], $values["id"], $_SESSION['userConnect']->getId()); 
   }
 
   function delete($id) {
