@@ -23,7 +23,7 @@
           if (isset( $_SESSION['userConnect'])) { 
             $id = $_SESSION['userConnect']->getId();
         ?>
-            
+
         <li class="nav-item">
           <a href="/users/<?= $id ?>" title="Mon compte">Mon compte</a>
         </li>
@@ -32,6 +32,7 @@
            //$userCoName = User::getUserById($id);
            echo  "Bonjour " .$_SESSION['userConnect']->getFirstname();
         
+
 
         }
         
@@ -57,11 +58,8 @@
         } ?>
 
     </ul>
-  
+
     <a class="paypal" href="http://www.paypal.com" title="Faire un don" target="_blank">
       <img src="/images/paypal.png" alt="Logo Paypal" title="Paypal" />
     </a>
 </nav>
-
-
-

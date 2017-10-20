@@ -21,12 +21,12 @@ class UsersController {
       include("./views/layout.html.php");
 
     }
-   
+
   }
 
 
- 
-    
+
+
   function signUp() {
     ob_start();
     include('./views/user/createAccount.html.php');
@@ -100,9 +100,8 @@ function UserConnect( $login, $password){
 
   }
 
-  function delete() {
-    $page_content = "suppression user";
-    include("./views/layout.html.php");
+  function deleteUser($id) {
+    User::delete($id);
   }
 
   function edit($id) {
