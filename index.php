@@ -186,6 +186,15 @@ $router->get('newTag','/^\/gestion\/tags\/create\/?$/', function($request){
   header("location:" . $_SERVER['HTTP_REFERER']);
 });
 
+// contact
+$router->get('contact','/^\/contact\/?$/', function($request){
+  (new HomeController())->contact();
+});
+
+$router->post('contactSend','/^\/contact\/send\/?$/', function($request){
+  (new MailController())->send();
+  header("location:" . $_SERVER['HTTP_REFERER']);
+});
 
 if($router->dispatch($request))
   exit(0);

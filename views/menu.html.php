@@ -19,23 +19,23 @@
       <li class="nav-item">
         <a href="/articles/new" title="Créer un article">Créer un article</a>
       </li>
-        <?php 
-          if (isset( $_SESSION['userConnect'])) { 
+        <?php
+          if (isset( $_SESSION['userConnect'])) {
             $id = $_SESSION['userConnect']->getId();
         ?>
 
         <li class="nav-item">
           <a href="/users/<?= $id ?>" title="Mon compte">Mon compte</a>
         </li>
-        
-        <?php 
+
+        <?php
            //$userCoName = User::getUserById($id);
            echo  "Bonjour " .$_SESSION['userConnect']->getFirstname();
-        
+
 
 
         }
-        
+
         //$userCoRole = User::getUserById($id);
        // if ($_SESSION['role'] == 'admin'){
                 if ($_SESSION['userConnect']->getRole() == 'admin'){
@@ -59,7 +59,7 @@
 
     </ul>
 
-    <a class="paypal" href="http://www.paypal.com" title="Faire un don" target="_blank">
+    <a class="paypal" href="/contact?subject=paypal" title="Faire un don">
       <img src="/images/paypal.png" alt="Logo Paypal" title="Paypal" />
     </a>
 </nav>

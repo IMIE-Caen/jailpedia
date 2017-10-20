@@ -271,6 +271,17 @@ footer {
 }
 
 /**
+ ** Formulaire de connexion
+*************************************/
+#contactForm:not(.paypal) .montant { display: none; }
+.contact .messageSent {
+  display: none;
+  padding: 20px;
+  background-color: #1B5773;
+}
+
+
+/**
  ** Pagination
 *************************************/
 #page{

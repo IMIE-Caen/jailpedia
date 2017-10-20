@@ -38,6 +38,20 @@ $(document).ready(function () {
       $(".article-view form .leform").remove();
       form.append("<span>La note a bien été enregistrée.</span>");
     })
-  })
+  });
+
+  $("#contactForm select[name=subject]").on("change", function() {
+    $("#contactForm").removeClass().addClass($(this).val());
+  });
+
+  $("#contactForm").on("submit", function(e) {
+    e.preventDefault();
+    var don = false;
+    if ($("#subject").val() == "paypal") { don = true; }
+    $(this).remove();
+    if (don) { $(".messageSent").append("Message envoyé ! Merci pour le don ;) #rendLArgent"); }
+    else { $(".messageSent").append("Message envoyé !"); }
+    $(".messageSent").css("display", "block");
+  });
 
 });
