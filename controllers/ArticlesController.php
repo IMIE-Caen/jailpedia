@@ -4,6 +4,10 @@ class ArticlesController {
 
   function show($id) {
     $article = Article::getArticleById($id);
+    $note = Evaluation::getAverageNoteArticle($id);
+    $tags = Categorisation::getTagByArticle($id);
+    $contribs = Contribution::getContributionByArticle($id);
+    //$note = Evaluation::getUserNoteArticle($id,$_SESSION['userConnect']);
     if($article != Null){
       ob_start();
       include("./views/article/view.html.php");
@@ -68,6 +72,7 @@ class ArticlesController {
     foreach ($values["tags"] as $tag) {
         Categorisation::addTagToArticle($articleId, $tag);
     }
+    $contrib = Contribution::setContribution($_SESSION['userConnect'],$articleId);
   }
 
 }

@@ -24,6 +24,13 @@ $router->get('showArticle', '/^\/articles\/(?<id>\d+)\/?$/',
     $id = $request->routerParams['id'];
     (new ArticlesController())->show($id);
 });
+
+$router->post('addNoteArticle','/^\/articles\/(?<id>\d+)\/?$/',
+    function ($request){
+    $id = $request->routerParams['id'];
+    (new NotationController())->addNote($_SESSION['userConnect'],$id,$_POST["note"]);
+});
+
 $router->post('createArticle', '/^\/articles\/create\/?$/',
   function($request){ (new ArticlesController())->save($_POST);  }
 );
@@ -54,10 +61,9 @@ $router->delete('deleteArticle','/^\/articles\/delete\/(\d+)\/?$/',
 });
 
 // users
-
-$router->get('showUser', '/^\/users\/(?<id>\d+)\/?/',
+$router->get('showUser', '/^\/users\/(\d+)\/?$/',
   function($request){
-    $id = $request->routerParams['id'];
+    $id = $request->routerParams[1];
     (new UsersController())->show($id);
 });
 $router->post('updateUser', '/^\/users\/edit\/?/',
@@ -71,7 +77,7 @@ $router->post('createUser', '/^\/users\/save\/?/',
     (new UsersController())->save($_POST);
     header("Location: /signin");
 });
-$router->get('showUser', '/^\/users\/edit\/(?<id>\d+)\/?/',
+$router->get('editUser', '/^\/users\/edit\/(?<id>\d+)\/?/',
   function($request){
     $id = $request->routerParams['id'];
     (new UsersController())->edit($id);
@@ -177,6 +183,7 @@ $router->get('newTag','/^\/gestion\/tags\/create\/?$/', function($request){
   (new TagsController())->createTag($name);
   header("location:" . $_SERVER['HTTP_REFERER']);
 });
+
 
 if($router->dispatch($request))
   exit(0);
