@@ -42,6 +42,7 @@ class ArticlesController {
 
   function update($values) {
     Article::updateArticle($values["title"], $values["texte"], $values["id"]);
+    Article::updateArticleHistory($values["title"], $values["texte"], $values["id"], $values["idUser"]); 
   }
 
   function delete($id) {
