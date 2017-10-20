@@ -1,3 +1,6 @@
+<?php
+  $image = Article::getImage($article->getId());
+ ?>
 <div class="article-view">
   <?php if (isset($_SESSION['connecte'])) { ?>
     <a href="/articles/edit/<?= $article->getId(); ?>" title="Editer cet article">Editer cet article</a>
@@ -5,10 +8,12 @@
   <h1><?= $article->getTitle(); ?></h1>
   <div class="container">
     <div class="row">
+      <?php if ($image != "") { ?>
       <div class="col-4 imgContainer">
         <img class="img-thumbnail" src="../../images/articles/<?= Article::getImage($article->getId()) ?>" />
       </div>
-      <div class="col-8 description"><?= $article->getText(); ?></div>
+      <?php } ?>
+      <div class="col-<?= $image != "" ? "8":"12" ?> description"><?= $article->getText(); ?></div>
     </div>
   </div>
   <div class="informations">
@@ -52,9 +57,9 @@
   </div>
 
 
-  <div> Voir les dernières modifications 
-    
+  <div> Voir les dernières modifications
+
  <a href="/articles/history/<?= $article->getId(); ?>">Voir <a> &nbsp;
-          
+
   </div>
 </div>
