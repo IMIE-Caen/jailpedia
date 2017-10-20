@@ -12,7 +12,7 @@ class Auth
     public static function authorize($user,$action,$resource){
         $user_auths = [
             'Article' =>
-                ['create', 'update'],
+                ['createArticle', 'updateArticle'],
             'Tag' =>
                 ['create','update'],
             'User' =>

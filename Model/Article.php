@@ -135,6 +135,7 @@ class Article
     }
 
     public static function deleteArticle($id){
+        if(Auth::authorize($_SESSION['userConnect'],__FUNCTION__))
         $sql = 'DELETE FROM ARTICLES WHERE id = :ID';
         $stmt = SQLitePDO::bdd()->prepare($sql);
         $P = array('ID'=>$id);
