@@ -7,8 +7,8 @@
 
    echo  "Aucune modification pour cet article! " ;
 
- } else {?>
- <h1>Modificication de l'article <?= $articleModifs[0]->getArticle()->getTitle() ; ?> </h1>?>
+ } else { ?>
+ <h1>Modificication de l'article <?= $articleModifs[0]->getArticle()->getTitle() ; ?> </h1>
   <?php foreach ($articleModifs as $histoArticle) { ?>
 
     <div class="article">

@@ -43,6 +43,7 @@ class ArticlesController {
 
   function update($values) {
     Article::updateArticle($values["title"], $values["texte"], $values["id"]);
+    $contrib = Contribution::setContribution($_SESSION['userConnect']->getId(),$values["id"]);
     Article::updateArticleHistory($values["title"], $values["texte"], $values["id"], $_SESSION['userConnect']->getId()); 
   }
 
