@@ -37,7 +37,8 @@ $router->post('createArticle', '/^\/articles\/create\/?$/',
   header("Location: /articles");  }
 );
 $router->get('indexArticles', '/^\/articles\/?$/',
-  function($request){ (new ArticlesController())->showAllArticles(); }
+  function($request){
+    (new ArticlesController())->showAllArticles(); }
 );
 $router->get('newArticle', '/^\/articles\/new\/?$/',
   function($request){ (new ArticlesController())->create();  }
@@ -60,7 +61,6 @@ $router->get('deleteArticle','/^\/articles\/delete\/(\d+)\/?$/', function($reque
   $id = $request->routerParams[1];
   (new ArticlesController())->delete($id);
 });
-
 
 // users
 $router->get('showUser', '/^\/users\/(\d+)\/?$/',

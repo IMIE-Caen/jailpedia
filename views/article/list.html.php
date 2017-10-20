@@ -1,13 +1,7 @@
 <?php
-$PDO = new SQLitePDO();
-$sql = 'SELECT COUNT(*) FROM ARTICLES';
-$stmt = $PDO->bdd()->prepare($sql);
-$stmt->execute();
-$pagination_list = $stmt->fetchColumn();
-$stmt->closeCursor();
 
-$limit = 2;
-$pages = ceil($pagination_list / $limit);
+$limit = 1;
+$pages = ceil($articlesCount / $limit);
 
 $page = min($pages, filter_input(INPUT_GET, 'page', FILTER_VALIDATE_INT, array(
     'options' => array(
@@ -21,7 +15,7 @@ $offset = ($page - 1)  * $limit;
 
 // Some information to display to the user
 $start = $offset + 1;
-$end = min(($offset + $pagination_list), $pagination_list);
+$end = min(($offset + $articlesCount), $articlesCount);
 
   ?>
 
@@ -35,27 +29,6 @@ $end = min(($offset + $pagination_list), $pagination_list);
 
  } else {
 
-   $sql = 'SELECT * FROM ARTICLES LIMIT :limit OFFSET :offset';
-   $stmt = $PDO->bdd()->prepare($sql);
-   // Bind the query params
-   $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
-   $stmt->bindParam(':offset', $offset, PDO::PARAM_INT);
-   $stmt->execute();
-   // Do we have any results?
-   if ($stmt->rowCount() > 0) {
-       // Define how we want to fetch the results
-       $stmt->setFetchMode(PDO::FETCH_ASSOC);
-       $iterator = new IteratorIterator($stmt);
-
-           foreach ($pagination_list as $row) { ?>
-            <div class="article">
-              <h2><a href="/articles/<?= $row->getId(); ?>" title="<?= $row->getTitle(); ?>"><?= $row->getTitle(); ?></a></h2>
-              <div class="article-text"><?= $row->getText(); ?></div>
-              <div class="bottom">
-                <a href="/articles/<?= $row->getId(); ?>" class="voir" title="<?= $row->getTitle(); ?>">Lire la suite</a>
-              </div>
-            </div>
-          <?php }}
 
    foreach ($articles as $article) { ?>
     <div class="article">
@@ -68,13 +41,15 @@ $end = min(($offset + $pagination_list), $pagination_list);
   <?php }} ?>
 </div>
 
+<ul class='pagination text-center' id="pagination">
 <?php
 
-// The "back" link
-$prevlink = ($page > 1) ? '<a href="?page=1" >&laquo;</a> <a href="?page=' . ($page - 1) . '" >&lsaquo;</a>' : '<span class="disabled">&laquo;</span> <span class="disabled">&lsaquo;</span>';
-
-// The "forward" link
-$nextlink = ($page < $pages) ? '<a href="?page=' . ($page + 1) . '" >&rsaquo;</a> <a href="?page=' . $pages . '" >&raquo;</a>' : '<span class="disabled">&rsaquo;</span> <span class="disabled">&raquo;</span>';
-
-// Display the paging information
-echo '<div id="paging"><p>', $prevlink, ' Page ', $page, ' of ', $pages, ' pages', $nextlink, ' </p></div>';
+ if(!empty($pages)){
+   for($i=1; $i<=$pages; $i++){
+ if($i == 1){?>
+            <li class='active'  id="<?php echo $i;?>"><a href='/articles/?page=<?php echo $i;?>'><?php echo $i;?></a></li>
+ <?php } else{?>
+ <li id="<?php echo $i;?>"><a href='/articles/?page=<?php echo $i;?>'><?php echo $i;?></a></li>
+ <?php }}?>
+<?php } ?>
+</ul>

@@ -17,6 +17,7 @@
         <title>JAILPEDIA - Un wiki sur les prisons - Ne faites pas tomber la savonnette</title>
         <link rel="stylesheet" href="/css/select2-bootstrap.css">
         <link rel="stylesheet" href="/css/style.css">
+
     </head>
     <body>
         <?php include("header.html.php"); ?>
@@ -24,6 +25,8 @@
         <div class="content container">
             <?php echo $page_content ?>
         </div>
+        <div class="loading-div"></div>
+        <div id="results"><!-- content will be loaded here --></div>
         <?php include("footer.html.php"); ?>
     </body>
     <?php
