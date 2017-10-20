@@ -73,7 +73,7 @@ class ArticlesController {
     foreach ($values["tags"] as $tag) {
         Categorisation::addTagToArticle($articleId, $tag);
     }
-    $contrib = Contribution::setContribution($_SESSION['userConnect'],$articleId);
+    $contrib = Contribution::setContribution($_SESSION['userConnect']->getId(),$articleId);
     Article::updateArticleHistory($values["titre"], $values["texte"], $articleId, $_SESSION['userConnect']); 
   }
 

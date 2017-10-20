@@ -25,5 +25,19 @@ $(document).ready(function () {
       line.hide('slow', function(){ line.remove(); });
     });
   });
-  
+
+  $(".article-view form").on("submit", function(e) {
+    e.preventDefault();
+    var form = $(this);
+    $.ajax({
+      method: "POST",
+      url: this.action,
+      data: $(this).serialize()
+    }).done(function (data) {
+      console.log(data);
+      $(".article-view form .leform").remove();
+      form.append("<span>La note a bien été enregistrée.</span>");
+    })
+  })
+
 });

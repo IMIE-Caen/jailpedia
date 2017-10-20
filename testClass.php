@@ -12,14 +12,15 @@ require_once('Model/Contribution.php');
 require_once('Model/Evaluation.php');
 require_once('Model/Tag.php');
 require_once('Model/Categorisation.php');
+require_once('Model/Auth.php');
 require_once('PDO.php');
 require_once('controllers/UsersController.php');
 
 //$ajout = Article::createArticle("Fleury Merogis","C'est un article sur Fleury Merogis","odg");
-$createuser = User::createUser("Thibault","Lemesle","20-10-2017","tlemesle@gmail.com","tlua1994");
-$createuser = User::createUser("Valentin","Gallien","20-10-2017","valentin.gallien@imie.fr","toto");
-$createuser = User::createUser("Cindy","Castel","20-10-2017","cindy.castel@imie.fr","toto");
-$createuser = User::createUser("Benjamin","Aubert","20-10-2017","benjamin.aubert@imie.fr","toto");
+//$createuser = User::createUser("Thibault","Lemesle","20-10-2017","tlemesle@gmail.com","tlua1994");
+//$createuser = User::createUser("Valentin","Gallien","20-10-2017","valentin.gallien@imie.fr","toto");
+//$createuser = User::createUser("Cindy","Castel","20-10-2017","cindy.castel@imie.fr","toto");
+//$createuser = User::createUser("Benjamin","Aubert","20-10-2017","benjamin.aubert@imie.fr","toto");
 
 //$createtag = Tag::createTag("Prisons d'Europe");
 $articles = Article::fetchAll();
@@ -42,17 +43,21 @@ foreach ($test as $item) {
 //$test = Evaluation::addEvaluationToArticle(1,3,2);
 //$test = Evaluation::addEvaluationToArticle(1,4,9);
 $test = Evaluation::getAverageNoteArticle(1);
-echo "Note moyenne pour l'article : ". $test."\n";
+//echo "Note moyenne pour l'article : ". $test."\n";
 $test = Evaluation::getUserNoteArticle(1,1);
-echo "Note du user : ".$test;
+//echo "Note du user : ".$test;
 $controleur = new UsersController();
-$controleur->validForAuth("valentin.gallien@imie.fr","toto");
-
-$tag = Tag::fetchAll();
+$test = $controleur->UserConnect("valentin.gallien@imie.fr","toto");
+//var_dump($test);
+/*$tag = Tag::fetchAll();
 var_dump($tag);
 
 $articles = Categorisation::getArticleByTag(1);
-var_dump($articles);
+var_dump($articles);*/
 
-$user = User::updateUser("test","test","20-10-2017","test@test.fr","test","admin",6);
+
+//$test = new UsersController();
+//$user = User::updateUser("test","test","20-10-2017","test@test.fr","test","admin",6);
 //$test1 = Article::updateArticle("Guantanamo","Article sur Guantanamo",1);
+$auth = Auth::authorize($test,'delete','Article');
+var_dump($auth);
