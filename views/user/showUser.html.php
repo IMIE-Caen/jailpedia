@@ -1,7 +1,7 @@
 <?php 
-$id1 = $user->getId();
+$me = $_SESSION['userConnect'];
 
-if($_SESSION['userConnect'][0]== $id ) {
+if( $me->getId() ==  $user->getId() ) {
 
 ?>
 
@@ -9,10 +9,10 @@ if($_SESSION['userConnect'][0]== $id ) {
 	<!-- <?php $id = $user->getId(); ?> -->
 
 	<div>
-		<label>Nom :  </label> <?= $user->getFirstname(); ?> </br>
-		<label>Prenom :  </label> <?= $user->getLastname(); ?> </br>
-		<label>Date de naissance :  </label> <?= $user->getDob(); ?> </br>
-		<label>Email:  </label> <?= $user->getEmail(); ?> </br>
+		<label>Nom :  </label> <?= $me->getFirstname(); ?> </br>
+		<label>Prenom :  </label> <?= $me->getLastname(); ?> </br>
+		<label>Date de naissance :  </label> <?= $me->getDob(); ?> </br>
+		<label>Email:  </label> <?= $me->getEmail(); ?> </br>
 	</div>
 
 

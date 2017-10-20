@@ -74,7 +74,7 @@ class ArticlesController {
         Categorisation::addTagToArticle($articleId, $tag);
     }
     $contrib = Contribution::setContribution($_SESSION['userConnect']->getId(),$articleId);
-    Article::updateArticleHistory($values["titre"], $values["texte"], $articleId, $_SESSION['userConnect']); 
+    Article::updateArticleHistory($values["titre"], $values["texte"], $articleId, $_SESSION['userConnect']->getId()); 
   }
 
 }
