@@ -81,13 +81,18 @@ $router->post('createUser', '/^\/users\/save\/?/',
 $router->get('editUser', '/^\/users\/edit\/(?<id>\d+)\/?/',
   function($request){
     $id = $request->routerParams['id'];
-    (new UsersController())->edit($id);
+    if(isset($_SESSION['userConnect']) && $id == $_SESSION['userConnect']->getId()){
+        (new UsersController())->edit($id);
+    }else{
+        header('Location: /404');
+
+    }
 });
 
-$router->delete('deleteUser', '/^\/users\/delete\/(?<id>\d+)\/?/',
+$router->post('deleteUser', '/^\/users\/delete\/(?<id>\d+)\/?/',
   function($request){
     $id = $request->routerParams['id'];
-    (new UsersController())->delete($id);
+    (new UsersController())->deleteUser($id);
 });
 
 

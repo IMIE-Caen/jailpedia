@@ -212,19 +212,24 @@ class User
 
     public static function updateUser($firstname,$lastname,$dob,$email,$password,$role,$id){
         //$db = new SQLitePDO();
-        $sql = 'UPDATE USERS SET firstname = :firstname, lastname = :lastname, dob = :dob , email = :email, password
- =:password , role = :role  where id = :ID';
-        $stmt = SQLitePDO::bdd()->prepare($sql);
-        $P = array('firstname' => $firstname,'lastname'=>$lastname, 'dob'=> $dob , 'email'=>$email ,'password'=>$password,'role'=>$role, 'ID'=>$id);
-        $stmt->execute($P);
-        $stmt->closeCursor();
+        if(Auth::authorize($_SESSION['userConnect'],__FUNCTION__,__CLASS__) || $id == $_SESSION['userConnect']->getId()){
+            $sql = 'UPDATE USERS SET firstname = :firstname, lastname = :lastname, dob = :dob , email = :email, password
+            =:password , role = :role  where id = :ID';
+            $stmt = SQLitePDO::bdd()->prepare($sql);
+            $P = array('firstname' => $firstname,'lastname'=>$lastname, 'dob'=> $dob , 'email'=>$email ,'password'=>$password,'role'=>$role, 'ID'=>$id);
+            $stmt->execute($P);
+            $stmt->closeCursor();
+        }
+
     }
 
     public static function delete($id){
-        $sql = 'DELETE FROM USERS WHERE id = :ID';
-        $stmt = SQLitePDO::bdd()->prepare($sql);
-        $P = array('ID'=>$id);
-        $stmt->execute($P);
-        $stmt->closeCursor();
+        if(Auth::authorize($_SESSION['userConnect'],__FUNCTION__,__CLASS__)){
+            $sql = 'DELETE FROM USERS WHERE id = :ID';
+            $stmt = SQLitePDO::bdd()->prepare($sql);
+            $P = array('ID'=>$id);
+            $stmt->execute($P);
+            $stmt->closeCursor();
+        }
     }
 }

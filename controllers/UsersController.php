@@ -101,7 +101,17 @@ function UserConnect( $login, $password){
   }
 
   function deleteUser($id) {
-    User::delete($id);
+      try{
+          User::delete($id);
+      }catch (Exception $e){
+          echo "Exception reçue : ".$e->getMessage()."\n";
+          echo "Vous allez être redirigé sur la page d'accueil
+          dans quelques secondes";
+          echo '<script type="text/javascript">
+              setTimeout("window.location = \'/\'", 2000);
+          </script>';
+          //header('Location : /');
+      }
   }
 
   function edit($id) {

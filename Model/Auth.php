@@ -14,9 +14,9 @@ class Auth
             'Article' =>
                 ['createArticle', 'updateArticle'],
             'Tag' =>
-                ['create','update'],
+                ['create'],
             'User' =>
-                ['create','update']
+                ['create','updateUser']
         ];
 
         if($user && $user->getRole() == 'admin'){

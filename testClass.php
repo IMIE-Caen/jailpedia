@@ -15,6 +15,7 @@ require_once('Model/Categorisation.php');
 require_once('Model/Auth.php');
 require_once('PDO.php');
 require_once('controllers/UsersController.php');
+require_once('controllers/ArticlesController.php');
 
 //$ajout = Article::createArticle("Fleury Merogis","C'est un article sur Fleury Merogis","odg");
 //$createuser = User::createUser("Thibault","Lemesle","20-10-2017","tlemesle@gmail.com","tlua1994");
@@ -46,8 +47,8 @@ $test = Evaluation::getAverageNoteArticle(1);
 //echo "Note moyenne pour l'article : ". $test."\n";
 $test = Evaluation::getUserNoteArticle(1,1);
 //echo "Note du user : ".$test;
-$controleur = new UsersController();
-$test = $controleur->UserConnect("valentin.gallien@imie.fr","toto");
+$controleur = new ArticlesController();
+$test = $controleur->edit(13);
 //var_dump($test);
 /*$tag = Tag::fetchAll();
 var_dump($tag);
