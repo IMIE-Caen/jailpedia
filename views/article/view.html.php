@@ -50,4 +50,11 @@
       </div>
     <?php } ?>
   </div>
+
+
+  <div> Voir les dernières modifications 
+    
+ <a href="/articles/history/<?= $article->getId(); ?>">Voir <a> &nbsp;
+          
+  </div>
 </div>

@@ -7,6 +7,7 @@ class ArticlesController {
     $note = Evaluation::getAverageNoteArticle($id);
     $tags = Categorisation::getTagByArticle($id);
     $contribs = Contribution::getContributionByArticle($id);
+    $modifs = Historisation::getLastUpdateArticle($id); 
     //$note = Evaluation::getUserNoteArticle($id,$_SESSION['userConnect']);
     if($article != Null){
       ob_start();
@@ -42,6 +43,7 @@ class ArticlesController {
 
   function update($values) {
     Article::updateArticle($values["title"], $values["texte"], $values["id"]);
+    Article::updateArticleHistory($values["title"], $values["texte"], $values["id"], $_SESSION['userConnect']->getId()); 
   }
 
   function delete($id) {
@@ -73,6 +75,16 @@ class ArticlesController {
         Categorisation::addTagToArticle($articleId, $tag);
     }
     $contrib = Contribution::setContribution($_SESSION['userConnect']->getId(),$articleId);
+    Article::updateArticleHistory($values["titre"], $values["texte"], $articleId, $_SESSION['userConnect']->getId()); 
+  }
+
+
+  public function historyArticle($id){
+    $articleModifs = Historisation::getLastUpdateArticle($id);
+    ob_start();
+    include("./views/article/historyArticle.html.php");
+    $page_content =ob_get_clean() ;
+    include("./views/layout.html.php");
   }
 
 }

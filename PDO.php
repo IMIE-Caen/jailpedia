@@ -55,7 +55,21 @@ class SQLitePDO{
                             /*PRIMARY KEY (articleId,tagId),*/
                             FOREIGN KEY (articleId) REFERENCES ARTICLES(id),
                             FOREIGN KEY (tagId) REFERENCES TAGS(id)
-)");
+            )");
+
+        $db->exec("CREATE TABLE IF NOT EXISTS MODIF_ARTICLE (
+                            articleId INTEGER NOT NULL,
+                            userId INTEGER NOT NULL,
+                            newtitle VARCHAR(50),
+                            newtext MESSAGE_TEXT,
+                            dateModif datetime, 
+                            /*PRIMARY KEY (articleId,tagId),*/
+                            FOREIGN KEY (articleId) REFERENCES ARTICLES(id),
+                            FOREIGN KEY (userId) REFERENCES USERS(id)
+                            
+            )");
+
+
 
         return $db;
         }

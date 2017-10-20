@@ -33,7 +33,8 @@ $router->post('addNoteArticle','/^\/articles\/(?<id>\d+)\/?$/',
 });
 
 $router->post('createArticle', '/^\/articles\/create\/?$/',
-  function($request){ (new ArticlesController())->save($_POST);  }
+  function($request){ (new ArticlesController())->save($_POST);
+  header("Location: /articles");  }
 );
 $router->get('indexArticles', '/^\/articles\/?$/',
   function($request){ (new ArticlesController())->showAllArticles(); }
@@ -194,6 +195,13 @@ $router->get('contact','/^\/contact\/?$/', function($request){
 $router->post('contactSend','/^\/contact\/send\/?$/', function($request){
   (new MailController())->send();
   header("location:" . $_SERVER['HTTP_REFERER']);
+});
+
+// historique modif 
+$router->get('historiqueArticle','/^\/articles\/history\/(\d+)\/?$/', function($request){
+  $id = $request->routerParams[1];
+  (new ArticlesController())->historyArticle($id);
+ 
 });
 
 if($router->dispatch($request))
