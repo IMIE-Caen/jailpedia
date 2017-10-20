@@ -1,14 +1,16 @@
 <div class="listArticle">
-  <h1>Modificication de l'article <?= $articleModifs[0]->getArticle()->getTitle() ; ?> </h1>
+  
 
   <?php
-  /*var_dump($articleModifs);*/
-  if(sizeof($articleModifs)==0) {
+ 
+  if(count($articleModifs)==0) {
 
    echo  "Aucune modification pour cet article! " ;
 
- } else {
-   foreach ($articleModifs as $histoArticle) { ?>
+ } else {?>
+ <h1>Modificication de l'article <?= $articleModifs[0]->getArticle()->getTitle() ; ?> </h1>?>
+  <?php foreach ($articleModifs as $histoArticle) { ?>
+
     <div class="article">
       <!-- <h2><?= $histoArticle->getArticle()->getTitle(); ?></h2>
       <div class="article-text"><?= $histoArticle->getArticle()->getText(); ?></div> -->
@@ -22,7 +24,7 @@
 
       if(isset($_SESSION['connecte']) ) { ?>
       <div class="bottom">
-        <a href="# " class="voir" title=" Retour version ">Retourner à cette version </a>
+        <a href="#" class="voir" title=" Retour version ">Retourner à cette version </a>
       </div>
 
     </div>
