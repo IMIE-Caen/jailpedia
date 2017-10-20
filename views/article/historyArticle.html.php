@@ -1,10 +1,13 @@
 <div class="listArticle">
 <?php
   if(count($articleModifs)==0) {
-    echo  "Aucune modification pour cet article! " ;
-  } else { ?>
-    <h1>Historique des modificications de l'article <?= $articleModifs[0]->getArticle()->getTitle() ; ?></h1>
-    <?php foreach ($articleModifs as $histoArticle) { ?>
+
+   echo  "Aucune modification pour cet article! " ;
+
+ } else { ?>
+ <h1>Modificication de l'article <?= $articleModifs[0]->getArticle()->getTitle() ; ?> </h1>
+  <?php foreach ($articleModifs as $histoArticle) { ?>
+
     <div class="article">
         <h2> Titre : <?= $histoArticle->getNewTitle(); ?></h2>
        	<div class="description"><?= $histoArticle->getNewText(); ?></div>
