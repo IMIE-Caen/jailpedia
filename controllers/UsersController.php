@@ -68,13 +68,13 @@ class UsersController {
 
 function UserConnect( $login, $password){
   $PDO = new SQLitePDO();
-  $sql = 'SELECT id FROM USERS WHERE email = ? and password = ?';
+  $sql = 'SELECT * FROM USERS WHERE email = ? and password = ?';
   $stmt = $PDO->bdd()->prepare($sql) ;
   $stmt->bindValue(1, $login);
   $stmt->bindValue(2, $password);
   $stmt->execute();
-  $connect_user = $stmt->fetchAll()[0][0];
-   return $connect_user ;
+  $connect_user = $stmt->fetchAll(PDO::FETCH_CLASS,User::class)[0];
+  return $connect_user ;
 }
 
   function save($param){

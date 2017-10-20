@@ -9,6 +9,8 @@
 class User
 {
 
+
+
     /**
      * @var int id
      */

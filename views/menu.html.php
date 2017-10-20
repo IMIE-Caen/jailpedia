@@ -21,7 +21,7 @@
       </li>
         <?php 
           if (isset( $_SESSION['userConnect'])) { 
-            $id = $_SESSION['userConnect'][0]; 
+            $id = $_SESSION['userConnect']->getId();
         ?>
             
         <li class="nav-item">
@@ -29,15 +29,15 @@
         </li>
         
         <?php 
-           $userCoName = User::getUserById($id); 
-           echo  "Bonjour " .$userCoName->getFirstname();
+           //$userCoName = User::getUserById($id);
+           echo  "Bonjour " .$_SESSION['userConnect']->getFirstname();
         
 
         }
         
-        $userCoRole = User::getUserById($id); 
+        //$userCoRole = User::getUserById($id);
        // if ($_SESSION['role'] == 'admin'){
-                if ($userCoRole->getRole() == 'admin'){
+                if ($_SESSION['userConnect']->getRole() == 'admin'){
 
       ?>
 

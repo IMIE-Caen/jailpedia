@@ -1,7 +1,11 @@
 <?
 
 class Auth{
-  $base_auths = ['Article' => ['create', 'update'], 'Tag'=>['create', 'update'];
+  $base_auths = ["Article"=>
+                    ['create', 'update'],
+                'Tag'=>
+                ['create', 'update']
+                ];
 
   static function authorize($user, $action, $resource){
     if(!$user && $action == 'read')
@@ -11,7 +15,8 @@ class Auth{
     else if ($user->$role && in_array($action, $base_auth[$resource]))
       return true ;
     else
-      throw(new UnauthorizedException());
+      //throw(new UnauthorizedException());
+      return 'Erreur';
   }
 
 
