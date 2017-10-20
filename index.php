@@ -1,10 +1,11 @@
 <?php
 
-session_start();
 
 ini_set('display_errors', 'On');
 include_once 'PDO.php';
 include_once 'autoload.php';
+
+session_start();
 
 $request = new MyHttp();
 $PDO = new SQLitePDO();
@@ -28,7 +29,7 @@ $router->get('showArticle', '/^\/articles\/(?<id>\d+)\/?$/',
 $router->post('addNoteArticle','/^\/articles\/(?<id>\d+)\/?$/',
     function ($request){
     $id = $request->routerParams['id'];
-    (new NotationController())->addNote($_SESSION['userConnect'],$id,$_POST["note"]);
+    (new NotationController())->addNote($_SESSION['userConnect']->getId(),$id,$_POST["note"]);
 });
 
 $router->post('createArticle', '/^\/articles\/create\/?$/',
@@ -80,13 +81,18 @@ $router->post('createUser', '/^\/users\/save\/?/',
 $router->get('editUser', '/^\/users\/edit\/(?<id>\d+)\/?/',
   function($request){
     $id = $request->routerParams['id'];
-    (new UsersController())->edit($id);
+    if(isset($_SESSION['userConnect']) && $id == $_SESSION['userConnect']->getId()){
+        (new UsersController())->edit($id);
+    }else{
+        header('Location: /404');
+
+    }
 });
 
-$router->delete('deleteUser', '/^\/users\/delete\/(?<id>\d+)\/?/',
+$router->post('deleteUser', '/^\/users\/delete\/(?<id>\d+)\/?/',
   function($request){
     $id = $request->routerParams['id'];
-    (new UsersController())->delete($id);
+    (new UsersController())->deleteUser($id);
 });
 
 
@@ -127,7 +133,7 @@ $router->post('createSession', '/^\/users\/signin\/?$/',
     $pwd = $_POST['password'];
     if($controller->validForAuth($email,$pwd)){
       $_SESSION['connecte'] = true ;
-      $_SESSION['role'] = $controller->UserConnect($email,$pwd);
+      //$_SESSION['role'] = $controller->UserConnect($email,$pwd);
       $_SESSION['userConnect'] = $controller->UserConnect($email,$pwd);
       header('Location: /articles');
     } else {

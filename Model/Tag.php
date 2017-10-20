@@ -97,11 +97,14 @@ class Tag
     }
 
     public static function delete($id){
-        $sql = 'DELETE FROM TAGS WHERE id = :ID';
-        $stmt = SQLitePDO::bdd()->prepare($sql);
-        $P = array('ID'=>$id);
-        $stmt->execute($P);
-        $stmt->closeCursor();
+        if(Auth::authorize($_SESSION['userConnect'],__FUNCTION__,__CLASS__)){
+            $sql = 'DELETE FROM TAGS WHERE id = :ID';
+            $stmt = SQLitePDO::bdd()->prepare($sql);
+            $P = array('ID'=>$id);
+            $stmt->execute($P);
+            $stmt->closeCursor();
+        }
+
     }
 
 }

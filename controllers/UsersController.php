@@ -68,13 +68,13 @@ class UsersController {
 
 function UserConnect( $login, $password){
   $PDO = new SQLitePDO();
-  $sql = 'SELECT id FROM USERS WHERE email = ? and password = ?';
+  $sql = 'SELECT * FROM USERS WHERE email = ? and password = ?';
   $stmt = $PDO->bdd()->prepare($sql) ;
   $stmt->bindValue(1, $login);
   $stmt->bindValue(2, $password);
   $stmt->execute();
-  $connect_user = $stmt->fetchAll()[0][0];
-   return $connect_user ;
+  $connect_user = $stmt->fetchAll(PDO::FETCH_CLASS,User::class)[0];
+  return $connect_user ;
 }
 
   function save($param){
@@ -101,7 +101,17 @@ function UserConnect( $login, $password){
   }
 
   function deleteUser($id) {
-    User::delete($id);
+      try{
+          User::delete($id);
+      }catch (Exception $e){
+          echo "Exception reçue : ".$e->getMessage()."\n";
+          echo "Vous allez être redirigé sur la page d'accueil
+          dans quelques secondes";
+          echo '<script type="text/javascript">
+              setTimeout("window.location = \'/\'", 2000);
+          </script>';
+          //header('Location : /');
+      }
   }
 
   function edit($id) {

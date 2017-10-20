@@ -35,10 +35,15 @@ class ArticlesController {
 
   function edit($id) {
     $article = Article::getArticleById($id);
-    ob_start();
-    include("./views/article/edit.html.php");
-    $page_content = ob_get_clean();
-    include("./views/layout.html.php");
+    if($article != null){
+        ob_start();
+        include("./views/article/edit.html.php");
+        $page_content = ob_get_clean();
+        include("./views/layout.html.php");
+    }else{
+        header('Location: /404');
+    }
+
   }
 
   function update($values) {
@@ -46,7 +51,17 @@ class ArticlesController {
   }
 
   function delete($id) {
-    Article::deleteArticle($id);
+      try{
+          Article::deleteArticle($id);
+      }catch (Exception $e){
+          echo "Exception reçue : ".$e->getMessage()."\n";
+          echo "Vous allez être redirigé sur la page d'accueil
+          dans quelques secondes";
+          echo '<script type="text/javascript">
+              setTimeout("window.location = \'/\'", 2000);
+</script>';
+          //header('Location : /');
+      }
   }
 
   function create() {
@@ -73,7 +88,7 @@ class ArticlesController {
     foreach ($values["tags"] as $tag) {
         Categorisation::addTagToArticle($articleId, $tag);
     }
-    $contrib = Contribution::setContribution($_SESSION['userConnect'],$articleId);
+    $contrib = Contribution::setContribution($_SESSION['userConnect']->getId(),$articleId);
   }
 
 }

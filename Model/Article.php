@@ -156,11 +156,13 @@ class Article
     }
 
     public static function deleteArticle($id){
-        $sql = 'DELETE FROM ARTICLES WHERE id = :ID';
-        $stmt = SQLitePDO::bdd()->prepare($sql);
-        $P = array('ID'=>$id);
-        $stmt->execute($P);
-        $stmt->closeCursor();
+        if(Auth::authorize($_SESSION['userConnect'],__FUNCTION__,__CLASS__)){
+            $sql = 'DELETE FROM ARTICLES WHERE id = :ID';
+            $stmt = SQLitePDO::bdd()->prepare($sql);
+            $P = array('ID'=>$id);
+            $stmt->execute($P);
+            $stmt->closeCursor();
+        }
     }
 
     public static function lastArticles(){
