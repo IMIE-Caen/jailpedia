@@ -15,6 +15,6 @@
           <div class="bottom">
             <a href="#" class="voir" title="Retour version">Retourner à cette version</a>
           </div>
-    </div>
-  <?php }}} ?>
+      <?php } ?>
+  <?php }} ?>
 </div>
