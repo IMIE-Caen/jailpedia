@@ -12,6 +12,3 @@
 <div >
 	<a href="/users/edit/<?= $id ?>" class="voir" >Modifier </a>
 </div>
-
-
-
