@@ -23,6 +23,9 @@ class Historisation
      */
     private $user;
 
+    private $newTitle;
+    private $newText;
+
     /**
     * @var Date de la modif 
     */
@@ -92,16 +95,42 @@ class Historisation
     {
         $this->user = $user;
     }
+ public function setNewTitle($newTitle) {
+    $this->newTitle = $newTitle;
+ }
+ public function setNewText($newText) {
+    $this->newText = $newText;
+ }
 
-
+ public function getNewTitle() {
+    return $this->newTitle;
+ }
+ public function getNewText() {
+    return $this->newText;
+ }
 
     public static function getLastUpdateArticle($idArticle){
-    $sql = "SELECT * FROM MODIF_ARTICLE WHERE articleId = :id  limit 3 ";
-    $stmt = SQLitePDO::bdd()->prepare($sql);
-    $P = array('id'=>$idArticle);
-    $stmt->execute($P);
-    $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Historisation");
-    return $result;
+        $article = Article::getArticleById($idArticle);
+        $sql = "SELECT * FROM MODIF_ARTICLE WHERE articleId = :id order by MODIF_ARTICLE.DATEMODIF DESC  limit 3 ";
+        $stmt = SQLitePDO::bdd()->prepare($sql);
+        $P = array('id'=>$idArticle);
+        $stmt->execute($P);
+        $result = $stmt->fetchAll();
+        $tabHisto = array();
+        $i=0;
+        foreach ($result as $r) {
+            $tabHisto[$i] = new self();
+            $tabHisto[$i]->setArticle($article);
+
+            $user = User::getUserById($r["userId"]);
+            $tabHisto[$i]->setUser($user);
+
+            $tabHisto[$i]->setNewTitle($r["newtitle"]);
+            $tabHisto[$i]->setNewText($r["newtext"]);
+            $tabHisto[$i]->setDateModif($r["dateModif"]);
+            $i++;
+        }
+        return $tabHisto;
 
   }
 

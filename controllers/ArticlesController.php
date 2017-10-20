@@ -78,4 +78,13 @@ class ArticlesController {
     Article::updateArticleHistory($values["titre"], $values["texte"], $articleId, $_SESSION['userConnect']->getId()); 
   }
 
+
+  public function historyArticle($id){
+    $articleModifs = Historisation::getLastUpdateArticle($id);
+    ob_start();
+    include("./views/article/historyArticle.html.php");
+    $page_content =ob_get_clean() ;
+    include("./views/layout.html.php");
+  }
+
 }

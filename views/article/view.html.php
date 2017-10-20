@@ -52,9 +52,9 @@
   </div>
 
 
-  <div> Dernières modifications 
-    <?php foreach ($modifs as $modif) { ?>
-              <a href="#"><?= $modif->getDateModif(); ?><a> &nbsp;
-          <?php } ?>
+  <div> Voir les dernières modifications 
+    
+ <a href="/articles/history/<?= $article->getId(); ?>">Voir <a> &nbsp;
+          
   </div>
 </div>

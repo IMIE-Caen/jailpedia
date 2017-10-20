@@ -188,6 +188,13 @@ $router->get('newTag','/^\/gestion\/tags\/create\/?$/', function($request){
 });
 
 
+// historique modif 
+$router->get('historiqueArticle','/^\/articles\/history\/(\d+)\/?$/', function($request){
+  $id = $request->routerParams[1];
+  (new ArticlesController())->historyArticle($id);
+ 
+});
+
 if($router->dispatch($request))
   exit(0);
 
