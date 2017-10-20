@@ -269,3 +269,38 @@ footer {
   width: 50%;
   margin: 0 auto;
 }
+
+/**
+ ** Pagination
+*************************************/
+#page{
+  width:40%;
+  margin-left:10%;
+  float:left;
+  text-decoration:none;
+}
+
+#page td {
+  border:1px double black;
+  width:10%;
+  text-align:center;
+  text-decoration:none;
+  color:black;
+}
+
+#page td:hover {
+  text-decoration:none;
+  background-color:red;
+  color:black;
+}
+
+#page td a{
+  color:black;
+  text-decoration:none;
+}
+
+#page td:hover a{
+  text-decoration:underline;
+  background-color:red;
+  color:black;
+}

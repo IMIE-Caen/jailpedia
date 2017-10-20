@@ -54,7 +54,7 @@ class UsersController {
 
  	}
 
-  function RoleUser( $login, $password){
+  /*function RoleUser( $login, $password){
     $PDO = new SQLitePDO();
     $sql = 'SELECT role FROM USERS WHERE email = ? and password = ?';
     $stmt = $PDO->bdd()->prepare($sql) ;
@@ -64,17 +64,16 @@ class UsersController {
     $role_user = $stmt->fetchAll()[0][0];
     var_dump($role_user);
     return $role_user ;
-}
+}*/
 
 function UserConnect( $login, $password){
   $PDO = new SQLitePDO();
-  $sql = 'SELECT id FROM USERS WHERE email = ? and password = ?';
+  $sql = 'SELECT * FROM USERS WHERE email = ? and password = ?';
   $stmt = $PDO->bdd()->prepare($sql) ;
   $stmt->bindValue(1, $login);
   $stmt->bindValue(2, $password);
   $stmt->execute();
-  $connect_user = $stmt->fetchAll()[0][0];
-  var_dump($connect_user);
+  $connect_user = $stmt->fetchAll(PDO::FETCH_CLASS,User::class)[0];
   return $connect_user ;
 }
 
@@ -102,7 +101,7 @@ function UserConnect( $login, $password){
   }
 
   function deleteUser($id) {
-    User::deleteUser($id);
+    User::delete($id);
   }
 
   function edit($id) {

@@ -9,6 +9,8 @@
 class User
 {
 
+
+
     /**
      * @var int id
      */
@@ -188,9 +190,9 @@ class User
         if( sizeof($result) != 0) {
             $user =$result[0] ;
 
-        }else 
-            $user = Null ; 
-          
+        }else
+            $user = Null ;
+
         return $user;
 
     }
@@ -218,7 +220,7 @@ class User
         $stmt->closeCursor();
     }
 
-    public static function deleteUser($id){
+    public static function delete($id){
         $sql = 'DELETE FROM USERS WHERE id = :ID';
         $stmt = SQLitePDO::bdd()->prepare($sql);
         $P = array('ID'=>$id);

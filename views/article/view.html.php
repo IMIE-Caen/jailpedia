@@ -41,7 +41,7 @@
         ?>
       <?php } ?>
     </div>
-    <div>Note : <?= $note != NULL ? $note . " / 10" : "Cet article n'a pas encore été noté."; ?></div>
+    <div>Note : <?= $note != NULL ? round($note, 1) . " / 10" : "Cet article n'a pas encore été noté."; ?></div>
     <?php if(count($tags)) { ?>
       <div> Tags :
           <?php foreach ($tags as $tag) { ?>
