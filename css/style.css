@@ -4,7 +4,7 @@
 /************/
 /* Couleurs
 /* Bleu : #1B5773;
-/* Vert : #CEC68F;
+/* Or : #CEC68F;
 /***************************/
 
 /**
@@ -246,9 +246,22 @@ footer {
   text-align: right;
 }
 
-.listArticle .article .article-text {
+.listArticle .article .article-text,
+.listArticle .article .description {
   color: #777;
 }
+
+/**
+ ** Vue d'un article
+*************************************/
+.article-view .imgContainer { text-align: center; }
+.article-view .description { color: #777; }
+.article-view .informations {
+  margin-top: 40px;
+}
+.article-view form { margin-bottom: .5rem; }
+.article-view form input[type=submit] { margin-left: 10px; }
+
 
 /**
  ** Formulaire de connexion
@@ -257,6 +270,17 @@ footer {
   width: 50%;
   margin: 0 auto;
 }
+
+/**
+ ** Formulaire de connexion
+*************************************/
+#contactForm:not(.paypal) .montant { display: none; }
+.contact .messageSent {
+  display: none;
+  padding: 20px;
+  background-color: #1B5773;
+}
+
 
 /**
  ** Pagination

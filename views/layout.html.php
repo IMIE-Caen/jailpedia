@@ -10,14 +10,15 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
         <script src="/js/script.js"></script>
-        <title>JAILPEDIA - INDEX</title>
+        <META name="description" content="Un wiki sur les prisons.">
+        <META name="keywords" content="wiki, prison, prisonniers, célèbre, europe, amérique, cellule, douche, savonnette">
+        <title>JAILPEDIA - Un wiki sur les prisons - Ne faites pas tomber la savonnette</title>
         <link rel="stylesheet" href="/css/select2-bootstrap.css">
         <link rel="stylesheet" href="/css/style.css">
     </head>
     <body>
-
         <?php include("header.html.php"); ?>
         <?php include("menu.html.php"); ?>
         <div class="content container">

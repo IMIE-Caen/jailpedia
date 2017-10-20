@@ -134,6 +134,15 @@ class Article
         $stmt->closeCursor();
     }
 
+    public static function updateArticleHistory($title,$text,$id, $idUser){
+        $date = date("d-m-Y H:i"); 
+        $sql = 'INSERT INTO MODIF_ARTICLE (articleId, userId , newTitle, newText, dateModif) values(:articleId, :userId ,  :newTitle,:newText , :dateModif )' ;
+        $db = SQLitePDO::bdd();
+        $stmt = $db->prepare($sql);
+        $P = array('newTitle' => $title,'newText'=>$text, 'articleId'=>$id, 'userId'=>$idUser , 'dateModif' => $date );
+        $stmt->execute($P);
+    }
+
     public static function deleteArticle($id){
         if(Auth::authorize($_SESSION['userConnect'],__FUNCTION__,__CLASS__)){
             $sql = 'DELETE FROM ARTICLES WHERE id = :ID';
@@ -183,5 +192,9 @@ class Article
     return $result;
 
   }
+
+  
+
+  
   
 }

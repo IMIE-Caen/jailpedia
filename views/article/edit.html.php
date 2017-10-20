@@ -18,6 +18,7 @@
       </div>
     </div>
     <input type="hidden" name="id" value="<?= $article->getId(); ?>" />
+    <input type="hidden" name="idUser" value="<?= $_SESSION['userConnect']->getId() ?>" />
     <div class="boutonAction">
       <input type="submit"  class="btn btn-default" value="Enregistrer" />
     </div>

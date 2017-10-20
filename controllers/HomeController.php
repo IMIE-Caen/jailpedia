@@ -12,7 +12,12 @@ class HomeController {
     include("./views/layout.html.php");
   }
 
-  
+  function contact() {
+    ob_start();
+    include("./views/contact/contact.html.php");
+    $page_content = ob_get_clean();
+    include("./views/layout.html.php");
+  }
 
 
 }
