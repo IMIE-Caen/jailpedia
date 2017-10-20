@@ -25,6 +25,7 @@ class ArticlesController {
   }
 
   function showAllArticles() {
+    $articlesCount = Article::fetchRow();
     $articles = Article::fetchAll();
     ob_start();
     include("./views/article/list.html.php");

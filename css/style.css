@@ -261,23 +261,7 @@ footer {
 /**
  ** Pagination
 *************************************/
-.loading-div{
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background: rgba(0, 0, 0, 0.56);
-	z-index: 999;
-	display:none;
-}
-.loading-div img {
-	margin-top: 20%;
-	margin-left: 50%;
-}
 
-/* Pagination style */
-.pagination{margin:0;padding:0;}
 .pagination li{
 	display: inline;
 	padding: 6px 10px 6px 10px;

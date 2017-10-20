@@ -94,11 +94,22 @@ class Article
 */
     public static function fetchAll(){
 
-        $sql = "SELECT * FROM ARTICLES";
+        $sql = "SELECT * FROM ARTICLES LIMIT 1";
         $stmt = SQLitePDO::bdd()->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_CLASS,"Article");
         return $result;
+    }
+
+    public static function fetchRow(){
+
+        $PDO = new SQLitePDO();
+        $sql = 'SELECT COUNT(*) FROM ARTICLES';
+        $stmt = $PDO->bdd()->prepare($sql);
+        $stmt->execute();
+        $pageCount = $stmt->fetchColumn();
+        $stmt->closeCursor();
+        return $pageCount;
     }
 
     public static function getArticleById($id){

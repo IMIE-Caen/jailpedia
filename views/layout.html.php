@@ -10,27 +10,12 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"></script>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
         <script src="/js/script.js"></script>
         <title>JAILPEDIA - INDEX</title>
         <link rel="stylesheet" href="/css/select2-bootstrap.css">
         <link rel="stylesheet" href="/css/style.css">
-        <script type="text/javascript">
-        $(document).ready(function() {
-        	$("#results" ).load( "fetch_pages.php"); //load initial records
 
-        	//executes code below when user click on pagination links
-        	$("#results").on( "click", ".pagination a", function (e){
-        		e.preventDefault();
-        		$(".loading-div").show(); //show loading element
-        		var page = $(this).attr("data-page"); //get page number from link
-        		$("#results").load("fetch_pages.php",{"page":page}, function(){ //get content from PHP page
-        			$(".loading-div").hide(); //once done, hide loading element
-        		});
-
-        	});
-        });
-        </script>
     </head>
     <body>
 
