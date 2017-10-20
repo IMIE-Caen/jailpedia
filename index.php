@@ -54,11 +54,11 @@ $router->post('updateArticle', '/^\/articles\/edit\/?$/',
 $router->post('searchArticle', '/^\/articles\/search\/?$/',
   function($request){ (new ArticlesController())->search($_POST); }
 );
-$router->delete('deleteArticle','/^\/articles\/delete\/(\d+)\/?$/',
-  function($request){
-    $id = $request->routerParams['id'];
-    (new ArticlesController())->delete($id);
+$router->get('deleteArticle','/^\/articles\/delete\/(\d+)\/?$/', function($request){
+  $id = $request->routerParams[1];
+  (new ArticlesController())->delete($id);
 });
+
 
 // users
 $router->get('showUser', '/^\/users\/(\d+)\/?$/',
