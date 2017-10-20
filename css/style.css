@@ -4,7 +4,7 @@
 /************/
 /* Couleurs
 /* Bleu : #1B5773;
-/* Vert : #CEC68F;
+/* Or : #CEC68F;
 /***************************/
 
 /**
@@ -249,6 +249,18 @@ footer {
 .listArticle .article .article-text {
   color: #777;
 }
+
+/**
+ ** Vue d'un article
+*************************************/
+.article-view .imgContainer { text-align: center; }
+.article-view .description { color: #777; }
+.article-view .informations {
+  margin-top: 40px;
+}
+.article-view form { margin-bottom: .5rem; }
+.article-view form input[type=submit] { margin-left: 10px; }
+
 
 /**
  ** Formulaire de connexion
