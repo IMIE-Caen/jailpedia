@@ -10,23 +10,22 @@ class Auth
 {
 
     public static function authorize($user,$action,$resource){
-        $admin_auths = [
+        $user_auths = [
             'Article' =>
-                ['create', 'update','edit','delete'],
+                ['create', 'update'],
             'Tag' =>
-                ['create','update','edit','delete'],
+                ['create','update'],
             'User' =>
-                ['create','update','edit','delete']
+                ['create','update']
         ];
 
         if($user && $user->getRole() == 'admin'){
             return true;
-        }else if ($user->getRole() && in_array($action, $admin_auths[$resource]))
-            var_dump($admin_auths[$resource]);
-            //return true ;
+        }else if ($user->getRole() == 'user' && in_array($action, $user_auths[$resource]))
+            //var_dump($user_auths[$resource]);
+            return true ;
         else
-            //throw(new UnauthorizedException());
-            return 'Erreur';
+            throw new Exception("Vous n'avez pas le role requis pour cette action");
 
     }
 

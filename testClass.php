@@ -47,7 +47,7 @@ $test = Evaluation::getAverageNoteArticle(1);
 $test = Evaluation::getUserNoteArticle(1,1);
 //echo "Note du user : ".$test;
 $controleur = new UsersController();
-$test = $controleur->UserConnect("test@test.fr","test");
+$test = $controleur->UserConnect("valentin.gallien@imie.fr","toto");
 //var_dump($test);
 /*$tag = Tag::fetchAll();
 var_dump($tag);
@@ -59,5 +59,5 @@ var_dump($articles);*/
 //$test = new UsersController();
 //$user = User::updateUser("test","test","20-10-2017","test@test.fr","test","admin",6);
 //$test1 = Article::updateArticle("Guantanamo","Article sur Guantanamo",1);
-$auth = Auth::authorize($test,'create','Article');
+$auth = Auth::authorize($test,'delete','Article');
 var_dump($auth);
