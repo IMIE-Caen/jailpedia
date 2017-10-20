@@ -26,12 +26,24 @@ class Categorisation {
   }
 
   public static function getArticleByTag($tagId) {
-    $sql = "SELECT a.id, a.title, a.text FROM ARTICLES a 
+    $sql = "SELECT a.id, a.title, a.text FROM ARTICLES a
         INNER JOIN CATEGORISATION c ON a.id = c.articleId WHERE c.tagId = ? ";
     $article = SQLitePDO::bdd()->prepare($sql);
     $article->execute(array($tagId));
     $result = $article->fetchAll(PDO::FETCH_CLASS, "Article");
     return $result;
+  }
+
+  public static function fetchRowTag($tagId){
+
+      $PDO = new SQLitePDO();
+      $sql = "SELECT COUNT(*) FROM ARTICLES a
+          INNER JOIN CATEGORISATION c ON a.id = c.articleId WHERE c.tagId = ? ";
+      $stmt = $PDO->bdd()->prepare($sql);
+      $stmt->execute(array($tagId));
+      $pageCount = $stmt->fetchColumn();
+      $stmt->closeCursor();
+      return $pageCount;
   }
 
   public static function getIdTagByArticle($articleId) {

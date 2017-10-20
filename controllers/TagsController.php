@@ -9,6 +9,7 @@ class TagsController {
 
   function show($id){
     $articles = Categorisation::getArticleByTag($id);
+    $articlesCount = Categorisation::fetchRowTag($id);
       ob_start();
       include("./views/article/list.html.php");
       $page_content = ob_get_clean();
