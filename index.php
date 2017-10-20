@@ -32,7 +32,8 @@ $router->post('addNoteArticle','/^\/articles\/(?<id>\d+)\/?$/',
 });
 
 $router->post('createArticle', '/^\/articles\/create\/?$/',
-  function($request){ (new ArticlesController())->save($_POST);  }
+  function($request){ (new ArticlesController())->save($_POST);
+  header("Location: /articles");  }
 );
 $router->get('indexArticles', '/^\/articles\/?$/',
   function($request){ (new ArticlesController())->showAllArticles(); }

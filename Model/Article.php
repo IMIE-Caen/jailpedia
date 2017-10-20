@@ -135,7 +135,7 @@ class Article
     }
 
     public static function updateArticleHistory($title,$text,$id, $idUser){
-        $date = date("d-m-Y"); 
+        $date = date("d-m-Y H:i"); 
         $sql = 'INSERT INTO MODIF_ARTICLE (articleId, userId , newTitle, newText, dateModif) values(:articleId, :userId ,  :newTitle,:newText , :dateModif )' ;
         $db = SQLitePDO::bdd();
         $stmt = $db->prepare($sql);
