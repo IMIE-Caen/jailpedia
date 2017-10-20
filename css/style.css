@@ -246,7 +246,8 @@ footer {
   text-align: right;
 }
 
-.listArticle .article .article-text {
+.listArticle .article .article-text,
+.listArticle .article .description {
   color: #777;
 }
 
